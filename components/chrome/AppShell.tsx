@@ -7,9 +7,11 @@ import { ProductivityRail } from "./ProductivityRail";
 export function AppShell({ tabs, children }: { tabs: SessionTab[]; children: React.ReactNode }) {
   return (
     <div className="relative flex min-h-[889px] flex-1 flex-col items-start bg-page">
-      <MainHeader />
-      <TabMenu />
-      <TabStrip tabs={tabs} />
+      <div className="sticky top-0 z-40 flex w-full flex-col bg-page">
+        <MainHeader />
+        <TabMenu />
+        <TabStrip tabs={tabs} />
+      </div>
       {children}
       <ProductivityRail />
     </div>

@@ -22,7 +22,7 @@ export const Rail: StoryObj = {
     <div className="relative h-72 bg-page">
       <div className="absolute inset-y-0 right-0 w-16">
         <div className="relative h-full">
-          <ProductivityRail />
+          <ProductivityRail fixed={false} />
         </div>
       </div>
     </div>

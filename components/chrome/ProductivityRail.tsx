@@ -1,8 +1,8 @@
 /* Right productivity pane — Figma node 2958:205679 */
 
-export function ProductivityRail() {
+export function ProductivityRail({ fixed = true }: { fixed?: boolean }) {
   return (
-    <aside className="absolute top-11 right-0 bottom-0 w-16 bg-chrome">
+    <aside className={`${fixed ? "fixed" : "absolute"} top-11 right-0 bottom-0 z-50 w-16 bg-chrome`}>
       <div className="absolute top-0 bottom-0 left-0 w-px bg-rail-line" />
       <div className="flex w-16 flex-col items-center">
         <button aria-label="Copilot" className="flex size-11 cursor-pointer items-center justify-center p-2.5">
