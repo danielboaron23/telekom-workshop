@@ -34,9 +34,12 @@ export default function OrderItemsPage() {
             <Link href="/offer" className="text-sm leading-5 font-medium whitespace-nowrap text-info">
               Back
             </Link>
-            <button className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn bg-ink px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap text-white hover:bg-black">
+            <Link
+              href="/delivery"
+              className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn bg-ink px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap text-white hover:bg-black"
+            >
               Next Step
-            </button>
+            </Link>
           </div>
         </div>
       </div>

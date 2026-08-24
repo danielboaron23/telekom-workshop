@@ -5,14 +5,14 @@
 import { useRouter } from "next/navigation";
 import { Icon, IconButton } from "@/components/ui/Icon";
 
-export function OrderHeader() {
+export function OrderHeader({ showRefresh = true, backHref = "/offer" }: { showRefresh?: boolean; backHref?: string }) {
   const router = useRouter();
   return (
     <div className="flex w-full flex-col overflow-clip rounded-card bg-paper shadow-card">
       <div className="flex w-full items-center gap-3 px-6 py-2">
         <button
           aria-label="Back"
-          onClick={() => router.push("/offer")}
+          onClick={() => router.push(backHref)}
           className="flex cursor-pointer items-center gap-2 rounded-full p-2 hover:bg-black/5"
         >
           <span className="relative size-4">
@@ -23,10 +23,12 @@ export function OrderHeader() {
           </span>
         </button>
         <div className="h-6 w-px bg-black/12" />
-        <button className="flex h-8 w-24 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn px-3 py-2 hover:bg-black/5">
-          <Icon src="/icons/ui/refresh.svg" inset="inset-[4.17%_8.33%]" />
-          <span className="text-center text-sm leading-5 font-medium whitespace-nowrap text-black/87">Refresh</span>
-        </button>
+        {showRefresh && (
+          <button className="flex h-8 w-24 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn px-3 py-2 hover:bg-black/5">
+            <Icon src="/icons/ui/refresh.svg" inset="inset-[4.17%_8.33%]" />
+            <span className="text-center text-sm leading-5 font-medium whitespace-nowrap text-black/87">Refresh</span>
+          </button>
+        )}
       </div>
       <div className="h-px w-full bg-black/12" />
       <div className="flex w-full items-center gap-4 px-6 py-4">

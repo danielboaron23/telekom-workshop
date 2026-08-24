@@ -14,7 +14,7 @@ plus a Storybook design system (built after the screens are done).
 | Browse Catalog | `2958:206096` (base) / `2958:208592` (Mobile-tab state) | 1312×1438 | ✅ built (`/catalog`) |
 | Offer configuration | `2960:222429` (Plan) / `2958:207616` (Add-ons) / `2960:223002` (Select number) — one wizard, three step-states | 1287×1058 | ✅ built (`/offer`) |
 | Order Items | `2958:206268` | 1287×1257 | ✅ built (`/order`) |
-| Delivery Method | `2958:206479` / `2958:206612` | 1287×1058 | — |
+| Delivery Method | `2958:206479` (toggle) / `2958:206612` (form empty) / `2969:66848` (form filled) — one step, three states | 1287×1058 | ✅ built (`/delivery`) |
 | ID Settings | `2958:206729` | 1287×1058 | — |
 | Billing Details | `2958:206873` / `2958:207491` | 1287×1058+ | — |
 | Summary variants | `2969:68198` … `2958:208338` | various | — |
@@ -102,7 +102,14 @@ Current nav graph:
   from the offer page's "Continue to order". Collapsible item accordion,
   totals card, pay-now banner, sticky Back/Next Step footer (Back →
   `/offer`; Next Step reserved for Delivery Method).
-- `scripts/flow-test.mjs` — Playwright nav+data test (31 checks); run
+- `/delivery` (Delivery Method — order wizard step 2): reached from
+  Order Items "Next Step". Live states: Store pick up ↔ Shipping toggle
+  per item; choosing Shipping swaps the card to the shipping-details
+  form ("Edit" returns to the toggle). Next step is disabled until
+  name/phone/email/method are filled — exactly the B→C Figma states.
+  Previous steps / back arrow → `/order`. Stepper shows step 1 with a
+  checkmark. Next step reserved for Equipment IDs.
+- `scripts/flow-test.mjs` — Playwright nav+data test (37 checks); run
   after wiring each new screen.
 - Note: the Find Customer table intentionally deviates from the Figma
   (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people
@@ -190,3 +197,15 @@ Current nav graph:
   space before its divider.
 - First "Total"/"Tax" labels in the totals card are secondary gray;
   only the final Total is ink.
+
+## Gotchas learned on screen 7 (Delivery Method)
+
+- Three same-screen frames were interaction states again: toggle view,
+  empty form (Next step disabled), filled form (enabled) — build the
+  validation, not three pages.
+- The order header's "Refresh" is visible on Order Items but absent on
+  Delivery Method — parameterized (`showRefresh`).
+- The Icon component collapses to 0×0 inside a non-flex absolute
+  wrapper (inline spans don't take size) — give such wrappers `flex`.
+- Frame wobble again: this frame's card sits 7px higher than Order
+  Items' — accepted, in-card spacing verified instead.

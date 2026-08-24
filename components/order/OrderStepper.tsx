@@ -1,4 +1,6 @@
-/* Order wizard stepper — Figma "wizard" row inside 2958:206268 */
+/* Order wizard stepper — Figma "wizard" row inside 2958:206268 / 2958:206479 */
+
+import { Icon } from "@/components/ui/Icon";
 
 export const orderSteps = ["Order items", "Delivery method", "Equipment IDs", "Billing details", "Summary"];
 
@@ -11,6 +13,10 @@ export function OrderStepper({ active = 0 }: { active?: number }) {
             {i === active ? (
               <span className="flex size-6 items-center justify-center rounded-full bg-brand">
                 <span className="text-center text-xs leading-4 font-bold text-white">{i + 1}</span>
+              </span>
+            ) : i < active ? (
+              <span className="flex size-6 items-center justify-center rounded-full border border-ink">
+                <Icon src="/icons/ui/checkmark-mini.svg" inset="inset-[20%]" />
               </span>
             ) : (
               <span className="flex size-6 items-center justify-center rounded-full border border-ink">

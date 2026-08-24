@@ -154,6 +154,32 @@ await page.getByRole("link", { name: "Back" }).click();
 await page.waitForURL("**/offer");
 check("order Back → /offer", page.url().endsWith("/offer"));
 
+// 23. order Next Step → delivery method
+await page.goto(base + "/order", { waitUntil: "networkidle" });
+await page.getByRole("link", { name: "Next Step" }).click();
+await page.waitForURL("**/delivery");
+check("order Next Step → /delivery", page.url().endsWith("/delivery"));
+
+// 24. pickup mode: Next step enabled; switch to Shipping → form appears, Next disabled
+check("pickup Next step enabled", await page.getByRole("button", { name: "Next step" }).isEnabled());
+await page.getByRole("button", { name: "Shipping", exact: true }).click();
+check("shipping form appears", await page.locator("text=Shipping details").isVisible());
+check("empty form → Next step disabled", !(await page.getByRole("button", { name: "Next step" }).isEnabled()));
+
+// 25. filling the form enables Next step
+await page.locator("input").nth(0).fill("Sai Kumar");
+await page.locator("input").nth(1).fill("(434) 452 342");
+await page.locator("input").nth(2).fill("SaiKumar@gmail.com");
+await page.locator("select").selectOption("Regular");
+check("filled form → Next step enabled", await page.getByRole("button", { name: "Next step" }).isEnabled());
+
+// 26. Edit returns to the toggle view; Previous steps → order
+await page.getByRole("button", { name: "Edit" }).click();
+check("Edit → back to pickup/shipping toggle", await page.locator("text=Items you can pick up").isVisible());
+await page.getByRole("link", { name: "Previous steps" }).click();
+await page.waitForURL("**/order");
+check("Previous steps → /order", page.url().endsWith("/order"));
+
 console.log(results.join("\n"));
 await browser.close();
 process.exit(results.some((r) => r.startsWith("FAIL")) ? 1 : 0);
