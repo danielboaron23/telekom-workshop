@@ -6,7 +6,7 @@ import type { Customer } from "@/lib/customers";
 export function ContactCard({ customer }: { customer: Customer }) {
   const details = [
     { icon: "/icons/ui/note-document.svg", inset: "inset-[4.17%_12.5%]", text: customer.passport },
-    { icon: "/icons/ui/note-mobile-phone.svg", inset: "inset-[4.17%_16.67%]", text: customer.phone },
+    { icon: "/icons/ui/note-mobile-phone.svg", inset: "inset-[4.17%_16.67%]", text: customer.contactPhone ?? customer.phone },
     { icon: "/icons/ui/email-white.svg", inset: "inset-[12.5%_4.17%]", text: customer.email },
     {
       icon: "/icons/ui/location.svg",

@@ -13,6 +13,8 @@ export type Customer = {
   /* Row 1 in the Figma renders its owner cell at 14px — kept as-is. */
   bigOwner?: boolean;
   passport: string;
+  /* the Figma contact card shows a different number than the results table */
+  contactPhone?: string;
   email: string;
   address: string;
   /* Figma truncates Sai's address with an ellipsis at this width */
@@ -76,6 +78,7 @@ export const customers: Customer[] = [
     owner: "Sai Kumar",
     bigOwner: true,
     passport: "Passport: C05066558805988",
+    contactPhone: "(333) 344 3443",
     email: "Sai.Kumar@hotmail.com",
     address: "16 Sandilands Road, Kovan, Singapore 546080",
     addressClamp: 288,

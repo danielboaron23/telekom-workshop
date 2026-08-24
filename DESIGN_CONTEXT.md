@@ -2,7 +2,7 @@
 
 1:1 clone of the Figma file **"Flow for Workshop with Daniel"**
 (fileKey `dFg3nUfY5hqdsKZiLgPgfb`, section "Section 1" node `40000003:29317`),
-plus a Storybook design system (built after the screens are done).
+plus the Storybook design system (`npm run storybook`, port 6006).
 
 ## Figma screens (Section 1)
 
@@ -245,3 +245,22 @@ Current nav graph:
   (pointer events) since it's an interaction, per the overlay rule.
 - Section icons export in wrong colors again; van/settings came red,
   billing icon recolored from note-bill-paper.
+
+## Storybook design system
+
+- Storybook 10 (`@storybook/nextjs-vite`) — `npm run storybook` → :6006.
+- 44 stories under `stories/`: Design System/Welcome → Foundations
+  (Colors+Gradients, Typography, Spacing/Radius/Shadows, Icons — the
+  full exported set) → Atoms (buttons, chips, inputs, selection
+  controls, tabs/segments, progress) → Molecules (search fields,
+  stepper, session tabs, payment card, gradient tiles) → Organisms
+  (chrome, dashboard/customer cards, catalog, all five wizard cards —
+  fully interactive) → Screens (all 11 pages).
+- Tokens mirrored in `lib/design-system/tokens.ts` (single source
+  remains `app/globals.css` @theme).
+- Montserrat loads via `.storybook/preview-head.html` (Google Fonts —
+  next/font's variable doesn't reach the Storybook iframe reliably);
+  `preview.tsx` imports globals.css, wraps stories in `font-sans`,
+  sets `nextjs.appDirectory` so router-using components work.
+- `node scripts/sb-smoke.mjs` renders every story headlessly and fails
+  on error overlays — run it after adding stories (44/44 green).
