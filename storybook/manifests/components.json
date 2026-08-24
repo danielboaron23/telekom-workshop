@@ -1,0 +1,429 @@
+{
+  "v": 0,
+  "components": {
+    "design-system-welcome": {
+      "id": "design-system-welcome",
+      "name": "Welcome",
+      "path": "./stories/Welcome.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  1 | import type { Meta, StoryObj } from \"@storybook/react\";\n  2 |\n> 3 | const meta: Meta = { title: \"Design System/Welcome\", parameters: { layout: \"fullscreen\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  4 | export default meta;\n  5 |\n  6 | export const Welcome: StoryObj = {\n\n./stories/Welcome.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nconst meta: Meta = { title: \"Design System/Welcome\", parameters: { layout: \"fullscreen\" } };\nexport default meta;\n\nexport const Welcome: StoryObj = {\n  render: () => (\n    <div className=\"min-h-screen bg-page p-16\">\n      <div className=\"mx-auto flex max-w-3xl flex-col gap-6\">\n        <div className=\"flex items-center gap-4\">\n          <div className=\"flex size-12 items-center justify-center rounded-xl bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)] p-2.5\">\n            {/* eslint-disable-next-line @next/next/no-img-element */}\n            <img src=\"/telekom-workshop/storybook/icons/ui/tile-box-product.svg\" alt=\"\" className=\"size-7\" />\n          </div>\n          <h1 className=\"text-2xl leading-8 font-bold text-ink\">Telekom Workshop Design System</h1>\n        </div>\n        <p className=\"text-base leading-6 font-medium text-black/87\">\n          A 1:1 implementation of the Figma file <b>“Flow for Workshop with Daniel”</b> (Amdocs/Telekom CEP design\n          system), extracted from the 11 built screens of the live app.\n        </p>\n        <div className=\"flex flex-col gap-3 rounded-card bg-paper p-6 shadow-card\">\n          <p className=\"text-sm leading-5 font-bold text-ink\">How this library is organized</p>\n          <ul className=\"flex list-disc flex-col gap-2 pl-5 text-sm leading-5 font-medium text-black/87\">\n            <li>\n              <b>Foundations</b> — colors, gradients, typography, spacing, radius, shadows, and the exported Figma icon\n              set.\n            </li>\n            <li>\n              <b>Atoms</b> — buttons, chips, toggles, inputs, radios/checkboxes, progress, tabs.\n            </li>\n            <li>\n              <b>Molecules</b> — search fields, wizard stepper, session tabs, payment card.\n            </li>\n            <li>\n              <b>Organisms</b> — app chrome, cards, tables, and the interactive wizards.\n            </li>\n            <li>\n              <b>Screens</b> — the full pages exactly as they run in the app.\n            </li>\n          </ul>\n        </div>\n        <div className=\"flex flex-col gap-3 rounded-card bg-paper p-6 shadow-card\">\n          <p className=\"text-sm leading-5 font-bold text-ink\">Ground rules</p>\n          <ul className=\"flex list-disc flex-col gap-2 pl-5 text-sm leading-5 font-medium text-black/87\">\n            <li>Tokens live in <code>app/globals.css</code> (@theme) and are mirrored in <code>lib/design-system/tokens.ts</code>.</li>\n            <li>Montserrat (500/600/700) everywhere; Segoe UI stack only in the Dynamics customer heading.</li>\n            <li>Icons are exported Figma SVGs — never hand-drawn.</li>\n            <li>Figma overlays and duplicate frames are interaction states — components implement them as real behavior.</li>\n          </ul>\n        </div>\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "design-system-welcome--welcome",
+          "name": "Welcome",
+          "snippet": "const Welcome = () => (\n  <div className=\"min-h-screen bg-page p-16\">\n    <div className=\"mx-auto flex max-w-3xl flex-col gap-6\">\n      <div className=\"flex items-center gap-4\">\n        <div className=\"flex size-12 items-center justify-center rounded-xl bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)] p-2.5\">\n          {/* eslint-disable-next-line @next/next/no-img-element */}\n          <img src=\"/telekom-workshop/storybook/icons/ui/tile-box-product.svg\" alt=\"\" className=\"size-7\" />\n        </div>\n        <h1 className=\"text-2xl leading-8 font-bold text-ink\">Telekom Workshop Design System</h1>\n      </div>\n      <p className=\"text-base leading-6 font-medium text-black/87\">\n        A 1:1 implementation of the Figma file <b>“Flow for Workshop with Daniel”</b> (Amdocs/Telekom CEP design\n        system), extracted from the 11 built screens of the live app.\n      </p>\n      <div className=\"flex flex-col gap-3 rounded-card bg-paper p-6 shadow-card\">\n        <p className=\"text-sm leading-5 font-bold text-ink\">How this library is organized</p>\n        <ul className=\"flex list-disc flex-col gap-2 pl-5 text-sm leading-5 font-medium text-black/87\">\n          <li>\n            <b>Foundations</b> — colors, gradients, typography, spacing, radius, shadows, and the exported Figma icon\n            set.\n          </li>\n          <li>\n            <b>Atoms</b> — buttons, chips, toggles, inputs, radios/checkboxes, progress, tabs.\n          </li>\n          <li>\n            <b>Molecules</b> — search fields, wizard stepper, session tabs, payment card.\n          </li>\n          <li>\n            <b>Organisms</b> — app chrome, cards, tables, and the interactive wizards.\n          </li>\n          <li>\n            <b>Screens</b> — the full pages exactly as they run in the app.\n          </li>\n        </ul>\n      </div>\n      <div className=\"flex flex-col gap-3 rounded-card bg-paper p-6 shadow-card\">\n        <p className=\"text-sm leading-5 font-bold text-ink\">Ground rules</p>\n        <ul className=\"flex list-disc flex-col gap-2 pl-5 text-sm leading-5 font-medium text-black/87\">\n          <li>Tokens live in <code>app/globals.css</code> (@theme) and are mirrored in <code>lib/design-system/tokens.ts</code>.</li>\n          <li>Montserrat (500/600/700) everywhere; Segoe UI stack only in the Dynamics customer heading.</li>\n          <li>Icons are exported Figma SVGs — never hand-drawn.</li>\n          <li>Figma overlays and duplicate frames are interaction states — components implement them as real behavior.</li>\n        </ul>\n      </div>\n    </div>\n  </div>\n);"
+        }
+      ]
+    },
+    "foundations-colors": {
+      "id": "foundations-colors",
+      "name": "Colors",
+      "path": "./stories/foundations/Colors.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  2 | import { colors, gradients } from \"@/lib/design-system/tokens\";\n  3 |\n> 4 | const meta: Meta = { title: \"Foundations/Colors\", parameters: { layout: \"fullscreen\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  5 | export default meta;\n  6 |\n  7 | export const Palette: StoryObj = {\n\n./stories/foundations/Colors.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { colors, gradients } from \"@/lib/design-system/tokens\";\n\nconst meta: Meta = { title: \"Foundations/Colors\", parameters: { layout: \"fullscreen\" } };\nexport default meta;\n\nexport const Palette: StoryObj = {\n  render: () => (\n    <div className=\"min-h-screen bg-page p-10\">\n      <h1 className=\"mb-6 text-lg leading-6 font-bold text-ink\">Colors</h1>\n      <div className=\"grid max-w-5xl grid-cols-3 gap-4\">\n        {Object.entries(colors).map(([name, token]) => (\n          <div key={name} className=\"flex items-center gap-4 rounded-card bg-paper p-4 shadow-card\">\n            <div\n              className=\"size-14 shrink-0 rounded-lg border border-black/12\"\n              style={{ background: token.value }}\n            />\n            <div className=\"min-w-0\">\n              <p className=\"text-sm leading-5 font-bold text-ink\">{name}</p>\n              <p className=\"truncate font-mono text-xs leading-4 text-secondary-text\">{token.value}</p>\n              <p className=\"text-xs leading-4 font-medium text-secondary-text\">{token.usage}</p>\n            </div>\n          </div>\n        ))}\n      </div>\n      <h2 className=\"mt-10 mb-4 text-lg leading-6 font-bold text-ink\">Gradients</h2>\n      <div className=\"grid max-w-5xl grid-cols-3 gap-4\">\n        {Object.entries(gradients).map(([name, value]) => (\n          <div key={name} className=\"flex items-center gap-4 rounded-card bg-paper p-4 shadow-card\">\n            <div className=\"size-14 shrink-0 rounded-lg\" style={{ background: value }} />\n            <div className=\"min-w-0\">\n              <p className=\"text-sm leading-5 font-bold text-ink\">{name}</p>\n              <p className=\"truncate font-mono text-xs leading-4 text-secondary-text\">{value}</p>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "foundations-colors--palette",
+          "name": "Palette",
+          "snippet": "const Palette = () => (\n  <div className=\"min-h-screen bg-page p-10\">\n    <h1 className=\"mb-6 text-lg leading-6 font-bold text-ink\">Colors</h1>\n    <div className=\"grid max-w-5xl grid-cols-3 gap-4\">\n      {Object.entries(colors).map(([name, token]) => (\n        <div key={name} className=\"flex items-center gap-4 rounded-card bg-paper p-4 shadow-card\">\n          <div\n            className=\"size-14 shrink-0 rounded-lg border border-black/12\"\n            style={{ background: token.value }}\n          />\n          <div className=\"min-w-0\">\n            <p className=\"text-sm leading-5 font-bold text-ink\">{name}</p>\n            <p className=\"truncate font-mono text-xs leading-4 text-secondary-text\">{token.value}</p>\n            <p className=\"text-xs leading-4 font-medium text-secondary-text\">{token.usage}</p>\n          </div>\n        </div>\n      ))}\n    </div>\n    <h2 className=\"mt-10 mb-4 text-lg leading-6 font-bold text-ink\">Gradients</h2>\n    <div className=\"grid max-w-5xl grid-cols-3 gap-4\">\n      {Object.entries(gradients).map(([name, value]) => (\n        <div key={name} className=\"flex items-center gap-4 rounded-card bg-paper p-4 shadow-card\">\n          <div className=\"size-14 shrink-0 rounded-lg\" style={{ background: value }} />\n          <div className=\"min-w-0\">\n            <p className=\"text-sm leading-5 font-bold text-ink\">{name}</p>\n            <p className=\"truncate font-mono text-xs leading-4 text-secondary-text\">{value}</p>\n          </div>\n        </div>\n      ))}\n    </div>\n  </div>\n);"
+        }
+      ]
+    },
+    "foundations-typography": {
+      "id": "foundations-typography",
+      "name": "Typography",
+      "path": "./stories/foundations/Typography.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  2 | import { typography } from \"@/lib/design-system/tokens\";\n  3 |\n> 4 | const meta: Meta = { title: \"Foundations/Typography\", parameters: { layout: \"fullscreen\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  5 | export default meta;\n  6 |\n  7 | export const TypeScale: StoryObj = {\n\n./stories/foundations/Typography.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { typography } from \"@/lib/design-system/tokens\";\n\nconst meta: Meta = { title: \"Foundations/Typography\", parameters: { layout: \"fullscreen\" } };\nexport default meta;\n\nexport const TypeScale: StoryObj = {\n  render: () => (\n    <div className=\"min-h-screen bg-page p-10\">\n      <h1 className=\"mb-2 text-lg leading-6 font-bold text-ink\">Typography</h1>\n      <p className=\"mb-6 text-sm leading-5 font-medium text-secondary-text\">\n        Montserrat via next/font — weights 500 (Medium), 600 (SemiBold), 700 (Bold).\n      </p>\n      <div className=\"flex max-w-3xl flex-col divide-y divide-black/12 rounded-card bg-paper px-6 shadow-card\">\n        {typography.map((style) => (\n          <div key={style.name} className=\"flex items-baseline gap-8 py-5\">\n            <div className=\"w-36 shrink-0\">\n              <p className=\"text-sm leading-5 font-bold text-ink\">{style.name}</p>\n              <p className=\"text-xs leading-4 font-medium text-secondary-text\">{style.spec}</p>\n            </div>\n            <p className={`${style.className} text-black/87`}>Get a WiFi only plan</p>\n          </div>\n        ))}\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "foundations-typography--type-scale",
+          "name": "Type Scale",
+          "snippet": "const TypeScale = () => (\n  <div className=\"min-h-screen bg-page p-10\">\n    <h1 className=\"mb-2 text-lg leading-6 font-bold text-ink\">Typography</h1>\n    <p className=\"mb-6 text-sm leading-5 font-medium text-secondary-text\">\n      Montserrat via next/font — weights 500 (Medium), 600 (SemiBold), 700 (Bold).\n    </p>\n    <div className=\"flex max-w-3xl flex-col divide-y divide-black/12 rounded-card bg-paper px-6 shadow-card\">\n      {typography.map((style) => (\n        <div key={style.name} className=\"flex items-baseline gap-8 py-5\">\n          <div className=\"w-36 shrink-0\">\n            <p className=\"text-sm leading-5 font-bold text-ink\">{style.name}</p>\n            <p className=\"text-xs leading-4 font-medium text-secondary-text\">{style.spec}</p>\n          </div>\n          <p className={`${style.className} text-black/87`}>Get a WiFi only plan</p>\n        </div>\n      ))}\n    </div>\n  </div>\n);"
+        }
+      ]
+    },
+    "foundations-icons": {
+      "id": "foundations-icons",
+      "name": "Icons",
+      "path": "./stories/foundations/Icons.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  1 | import type { Meta, StoryObj } from \"@storybook/react\";\n  2 |\n> 3 | const meta: Meta = { title: \"Foundations/Icons\", parameters: { layout: \"fullscreen\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  4 | export default meta;\n  5 |\n  6 | const ui = [\n\n./stories/foundations/Icons.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nconst meta: Meta = { title: \"Foundations/Icons\", parameters: { layout: \"fullscreen\" } };\nexport default meta;\n\nconst ui = [\n  \"add-document\", \"add-plus\", \"arrow-line-left\", \"arrow-line-right\", \"book-library-filled\", \"box-product\",\n  \"cat-bag\", \"cat-box\", \"cat-headphones\", \"cat-sim\", \"chevron-big-left\", \"chevron-big-right\", \"chevron-big-up\",\n  \"chevron-mini-down\", \"check-white\", \"checkmark-mini\", \"cross-close-mini\", \"delete-trash-bin\",\n  \"discount-offer\", \"discount-offer-blue\", \"discount-offer-dark\", \"discount-offer-red\", \"doc-clipboard-blue\",\n  \"email\", \"email-white\", \"error-alert\", \"filter\", \"filter-configure\", \"filter-simple\", \"hashtag-red\", \"home\",\n  \"info\", \"internet-globe-data\", \"location\", \"menu-gridview-red\", \"menu-hamburger\", \"menu-kebab\",\n  \"mobile-phone\", \"mobile-phone-red\", \"note-bill-paper\", \"note-bill-paper-dark\", \"note-bill-paper-red\",\n  \"note-document\", \"note-document-file\", \"note-mobile-phone\", \"person-avatar-add\", \"person-avatar-circle\",\n  \"person-avatar-dark\", \"puzzle\", \"puzzle-red\", \"refresh\", \"scan\", \"search-16\", \"settings-config-red\",\n  \"shopping-bag\", \"sim-filled\", \"tile-box-product\", \"tile-call-phone\", \"tile-internet-globe\",\n  \"tile-mobile-phone-filled\", \"tile-puzzle-filled\", \"tile-tv-filled\", \"trash-blue\", \"van-red\", \"visa-badge\",\n  \"wallet-money\", \"zoom-in\", \"zoom-plus-white\",\n];\n\nfunction Cell({ dir, name, dark }: { dir: string; name: string; dark?: boolean }) {\n  return (\n    <div className=\"flex flex-col items-center gap-1.5\">\n      <div\n        className={`flex size-12 items-center justify-center rounded-lg border border-black/12 ${\n          dark ? \"bg-ink-card\" : \"bg-paper\"\n        }`}\n      >\n        {/* eslint-disable-next-line @next/next/no-img-element */}\n        <img src={`/telekom-workshop/storybook/icons/${dir}/${name}.svg`} alt={name} className=\"max-h-6 max-w-6\" />\n      </div>\n      <p className=\"max-w-16 truncate text-center text-[10px] leading-3 font-medium text-secondary-text\">{name}</p>\n    </div>\n  );\n}\n\nexport const IconSet: StoryObj = {\n  render: () => (\n    <div className=\"min-h-screen bg-page p-10\">\n      <h1 className=\"mb-2 text-lg leading-6 font-bold text-ink\">Icons</h1>\n      <p className=\"mb-6 text-sm leading-5 font-medium text-secondary-text\">\n        Exported Figma SVGs from <code>public/telekom-workshop/storybook/icons/</code>. White glyphs shown on the dark card color.\n      </p>\n      <h2 className=\"mb-3 text-sm leading-5 font-bold text-ink\">UI</h2>\n      <div className=\"grid max-w-5xl grid-cols-12 gap-3\">\n        {ui.map((name) => (\n          <Cell\n            key={name}\n            dir=\"ui\"\n            name={name}\n            dark={name.includes(\"white\") || name.startsWith(\"tile-\") || [\"note-bill-paper\", \"sim-filled\", \"discount-offer\", \"email-white\", \"wallet-money\", \"note-document\", \"note-mobile-phone\", \"location\", \"note-document-file\", \"cat-bag\", \"cat-box\", \"cat-headphones\", \"cat-sim\", \"home\"].includes(name)}\n          />\n        ))}\n      </div>\n      <h2 className=\"mt-8 mb-3 text-sm leading-5 font-bold text-ink\">Top navigation (white on black)</h2>\n      <div className=\"grid max-w-5xl grid-cols-12 gap-3\">\n        {[\"search\", \"lab-experiment\", \"bulb\", \"add-plus\", \"filter-simple\", \"settings\", \"help-info\", \"person-avatar\"].map(\n          (name) => (\n            <Cell key={name} dir=\"topnav\" name={name} dark />\n          ),\n        )}\n      </div>\n      <h2 className=\"mt-8 mb-3 text-sm leading-5 font-bold text-ink\">Productivity rail</h2>\n      <div className=\"grid max-w-5xl grid-cols-12 gap-3\">\n        {[\"copilot\", \"sms\", \"calls\", \"teams\"].map((name) => (\n          <Cell key={name} dir=\"rail\" name={name} />\n        ))}\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "foundations-icons--icon-set",
+          "name": "Icon Set",
+          "snippet": "const IconSet = () => (\n  <div className=\"min-h-screen bg-page p-10\">\n    <h1 className=\"mb-2 text-lg leading-6 font-bold text-ink\">Icons</h1>\n    <p className=\"mb-6 text-sm leading-5 font-medium text-secondary-text\">\n      Exported Figma SVGs from <code>public/telekom-workshop/storybook/icons/</code>. White glyphs shown on the dark card color.\n    </p>\n    <h2 className=\"mb-3 text-sm leading-5 font-bold text-ink\">UI</h2>\n    <div className=\"grid max-w-5xl grid-cols-12 gap-3\">\n      {ui.map((name) => (\n        <Cell\n          key={name}\n          dir=\"ui\"\n          name={name}\n          dark={name.includes(\"white\") || name.startsWith(\"tile-\") || [\"note-bill-paper\", \"sim-filled\", \"discount-offer\", \"email-white\", \"wallet-money\", \"note-document\", \"note-mobile-phone\", \"location\", \"note-document-file\", \"cat-bag\", \"cat-box\", \"cat-headphones\", \"cat-sim\", \"home\"].includes(name)}\n        />\n      ))}\n    </div>\n    <h2 className=\"mt-8 mb-3 text-sm leading-5 font-bold text-ink\">Top navigation (white on black)</h2>\n    <div className=\"grid max-w-5xl grid-cols-12 gap-3\">\n      {[\"search\", \"lab-experiment\", \"bulb\", \"add-plus\", \"filter-simple\", \"settings\", \"help-info\", \"person-avatar\"].map(\n        (name) => (\n          <Cell key={name} dir=\"topnav\" name={name} dark />\n        ),\n      )}\n    </div>\n    <h2 className=\"mt-8 mb-3 text-sm leading-5 font-bold text-ink\">Productivity rail</h2>\n    <div className=\"grid max-w-5xl grid-cols-12 gap-3\">\n      {[\"copilot\", \"sms\", \"calls\", \"teams\"].map((name) => (\n        <Cell key={name} dir=\"rail\" name={name} />\n      ))}\n    </div>\n  </div>\n);"
+        }
+      ]
+    },
+    "foundations-spacing-radius-shadows": {
+      "id": "foundations-spacing-radius-shadows",
+      "name": "Spacing&Radius&Shadows",
+      "path": "./stories/foundations/SpacingRadius.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  2 | import { spacing, radius, shadows } from \"@/lib/design-system/tokens\";\n  3 |\n> 4 | const meta: Meta = { title: \"Foundations/Spacing & Radius & Shadows\", parameters: { layout: \"fullscreen\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  5 | export default meta;\n  6 |\n  7 | export const Tokens: StoryObj = {\n\n./stories/foundations/SpacingRadius.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { spacing, radius, shadows } from \"@/lib/design-system/tokens\";\n\nconst meta: Meta = { title: \"Foundations/Spacing & Radius & Shadows\", parameters: { layout: \"fullscreen\" } };\nexport default meta;\n\nexport const Tokens: StoryObj = {\n  render: () => (\n    <div className=\"min-h-screen bg-page p-10\">\n      <h1 className=\"mb-4 text-lg leading-6 font-bold text-ink\">Spacing</h1>\n      <div className=\"flex max-w-3xl flex-col gap-3 rounded-card bg-paper p-6 shadow-card\">\n        {spacing.map((s) => (\n          <div key={s.name} className=\"flex items-center gap-4\">\n            <p className=\"w-24 text-sm leading-5 font-bold text-ink\">spacing-{s.name}</p>\n            <p className=\"w-14 text-xs leading-4 font-medium text-secondary-text\">{s.value}px</p>\n            <div className=\"h-4 rounded-sm bg-brand/60\" style={{ width: s.value * 4 }} />\n          </div>\n        ))}\n      </div>\n      <h1 className=\"mt-10 mb-4 text-lg leading-6 font-bold text-ink\">Radius</h1>\n      <div className=\"flex max-w-3xl gap-4\">\n        {Object.entries(radius).map(([name, token]) => (\n          <div key={name} className=\"flex flex-1 flex-col items-center gap-2 rounded-card bg-paper p-4 shadow-card\">\n            <div className=\"size-16 border-2 border-ink bg-surface\" style={{ borderRadius: token.value }} />\n            <p className=\"text-sm leading-5 font-bold text-ink\">{name}</p>\n            <p className=\"text-center text-xs leading-4 font-medium text-secondary-text\">\n              {token.value} — {token.usage}\n            </p>\n          </div>\n        ))}\n      </div>\n      <h1 className=\"mt-10 mb-4 text-lg leading-6 font-bold text-ink\">Shadows</h1>\n      <div className=\"flex max-w-3xl gap-4\">\n        {Object.entries(shadows).map(([name, token]) => (\n          <div key={name} className=\"flex flex-1 flex-col items-center gap-3 rounded-card bg-paper p-6\">\n            <div className=\"h-16 w-32 rounded-card bg-paper\" style={{ boxShadow: token.value }} />\n            <p className=\"text-sm leading-5 font-bold text-ink\">{name}</p>\n            <p className=\"text-center font-mono text-xs leading-4 text-secondary-text\">{token.value}</p>\n          </div>\n        ))}\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "foundations-spacing-radius-shadows--tokens",
+          "name": "Tokens",
+          "snippet": "const Tokens = () => (\n  <div className=\"min-h-screen bg-page p-10\">\n    <h1 className=\"mb-4 text-lg leading-6 font-bold text-ink\">Spacing</h1>\n    <div className=\"flex max-w-3xl flex-col gap-3 rounded-card bg-paper p-6 shadow-card\">\n      {spacing.map((s) => (\n        <div key={s.name} className=\"flex items-center gap-4\">\n          <p className=\"w-24 text-sm leading-5 font-bold text-ink\">spacing-{s.name}</p>\n          <p className=\"w-14 text-xs leading-4 font-medium text-secondary-text\">{s.value}px</p>\n          <div className=\"h-4 rounded-sm bg-brand/60\" style={{ width: s.value * 4 }} />\n        </div>\n      ))}\n    </div>\n    <h1 className=\"mt-10 mb-4 text-lg leading-6 font-bold text-ink\">Radius</h1>\n    <div className=\"flex max-w-3xl gap-4\">\n      {Object.entries(radius).map(([name, token]) => (\n        <div key={name} className=\"flex flex-1 flex-col items-center gap-2 rounded-card bg-paper p-4 shadow-card\">\n          <div className=\"size-16 border-2 border-ink bg-surface\" style={{ borderRadius: token.value }} />\n          <p className=\"text-sm leading-5 font-bold text-ink\">{name}</p>\n          <p className=\"text-center text-xs leading-4 font-medium text-secondary-text\">\n            {token.value} — {token.usage}\n          </p>\n        </div>\n      ))}\n    </div>\n    <h1 className=\"mt-10 mb-4 text-lg leading-6 font-bold text-ink\">Shadows</h1>\n    <div className=\"flex max-w-3xl gap-4\">\n      {Object.entries(shadows).map(([name, token]) => (\n        <div key={name} className=\"flex flex-1 flex-col items-center gap-3 rounded-card bg-paper p-6\">\n          <div className=\"h-16 w-32 rounded-card bg-paper\" style={{ boxShadow: token.value }} />\n          <p className=\"text-sm leading-5 font-bold text-ink\">{name}</p>\n          <p className=\"text-center font-mono text-xs leading-4 text-secondary-text\">{token.value}</p>\n        </div>\n      ))}\n    </div>\n  </div>\n);"
+        }
+      ]
+    },
+    "atoms-buttons": {
+      "id": "atoms-buttons",
+      "name": "Buttons",
+      "path": "./stories/atoms/Buttons.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  2 | import { Icon } from \"@/components/ui/Icon\";\n  3 |\n> 4 | const meta: Meta = { title: \"Atoms/Buttons\", parameters: { layout: \"centered\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  5 | export default meta;\n  6 |\n  7 | const base =\n\n./stories/atoms/Buttons.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { Icon } from \"@/components/ui/Icon\";\n\nconst meta: Meta = { title: \"Atoms/Buttons\", parameters: { layout: \"centered\" } };\nexport default meta;\n\nconst base =\n  \"flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap\";\n\nexport const AllVariants: StoryObj = {\n  render: () => (\n    <div className=\"flex flex-col gap-8 p-8\">\n      <div className=\"flex items-center gap-4\">\n        <button className={`${base} bg-ink text-white hover:bg-black`}>Contained (ink)</button>\n        <button className={`${base} border border-outlined-border text-ink hover:bg-black/5`}>Outlined</button>\n        <button className={`${base} text-info hover:bg-black/5`}>Text (info)</button>\n        <button className={`${base} cursor-default bg-black/10 text-black/40`}>Disabled</button>\n      </div>\n      <div className=\"flex items-center gap-4\">\n        <button className={`${base} bg-paper text-brand`}>\n          <Icon src=\"/telekom-workshop/storybook/icons/ui/home.svg\" inset=\"inset-[8.33%_4.16%]\" />\n          Home (brand text)\n        </button>\n        <button className={`${base} border border-outlined-border text-ink hover:bg-black/5`}>\n          <Icon src=\"/telekom-workshop/storybook/icons/ui/email.svg\" inset=\"inset-[12.5%_4.17%]\" />\n          With icon\n        </button>\n        <div className=\"rounded-lg bg-[linear-gradient(90deg,#f05c62,#e50075)] p-3\">\n          <button className={`${base} border border-outlined-border-on-dark text-white hover:bg-white/10`}>\n            Outlined on dark\n          </button>\n        </div>\n      </div>\n      <div className=\"flex items-center gap-4\">\n        <button className=\"flex cursor-pointer items-center gap-2 rounded-full p-2 hover:bg-black/5\">\n          <Icon src=\"/telekom-workshop/storybook/icons/ui/menu-hamburger.svg\" inset=\"inset-[16.67%_8.33%]\" />\n        </button>\n        <button className=\"flex cursor-pointer items-center rounded-full bg-paper p-1 drop-shadow-[0px_2px_4px_rgba(34,33,46,0.12)]\">\n          <Icon src=\"/telekom-workshop/storybook/icons/ui/arrow-line-left.svg\" inset=\"inset-[12.5%_8.33%]\" />\n        </button>\n        <p className=\"text-xs leading-4 font-medium text-secondary-text\">Icon button · tiny utility button</p>\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "atoms-buttons--all-variants",
+          "name": "All Variants",
+          "snippet": "const AllVariants = () => (\n  <div className=\"flex flex-col gap-8 p-8\">\n    <div className=\"flex items-center gap-4\">\n      <button className={`${base} bg-ink text-white hover:bg-black`}>Contained (ink)</button>\n      <button className={`${base} border border-outlined-border text-ink hover:bg-black/5`}>Outlined</button>\n      <button className={`${base} text-info hover:bg-black/5`}>Text (info)</button>\n      <button className={`${base} cursor-default bg-black/10 text-black/40`}>Disabled</button>\n    </div>\n    <div className=\"flex items-center gap-4\">\n      <button className={`${base} bg-paper text-brand`}>\n        <Icon src=\"/telekom-workshop/storybook/icons/ui/home.svg\" inset=\"inset-[8.33%_4.16%]\" />\n        Home (brand text)\n      </button>\n      <button className={`${base} border border-outlined-border text-ink hover:bg-black/5`}>\n        <Icon src=\"/telekom-workshop/storybook/icons/ui/email.svg\" inset=\"inset-[12.5%_4.17%]\" />\n        With icon\n      </button>\n      <div className=\"rounded-lg bg-[linear-gradient(90deg,#f05c62,#e50075)] p-3\">\n        <button className={`${base} border border-outlined-border-on-dark text-white hover:bg-white/10`}>\n          Outlined on dark\n        </button>\n      </div>\n    </div>\n    <div className=\"flex items-center gap-4\">\n      <button className=\"flex cursor-pointer items-center gap-2 rounded-full p-2 hover:bg-black/5\">\n        <Icon src=\"/telekom-workshop/storybook/icons/ui/menu-hamburger.svg\" inset=\"inset-[16.67%_8.33%]\" />\n      </button>\n      <button className=\"flex cursor-pointer items-center rounded-full bg-paper p-1 drop-shadow-[0px_2px_4px_rgba(34,33,46,0.12)]\">\n        <Icon src=\"/telekom-workshop/storybook/icons/ui/arrow-line-left.svg\" inset=\"inset-[12.5%_8.33%]\" />\n      </button>\n      <p className=\"text-xs leading-4 font-medium text-secondary-text\">Icon button · tiny utility button</p>\n    </div>\n  </div>\n);"
+        }
+      ],
+      "import": "import { Icon } from \"telekom-workshop\";"
+    },
+    "atoms-chips": {
+      "id": "atoms-chips",
+      "name": "Chips",
+      "path": "./stories/atoms/Chips.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  1 | import type { Meta, StoryObj } from \"@storybook/react\";\n  2 |\n> 3 | const meta: Meta = { title: \"Atoms/Chips\", parameters: { layout: \"centered\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  4 | export default meta;\n  5 |\n  6 | const chip = \"flex max-h-6 min-h-6 items-center gap-1 rounded-full px-2 py-1 text-xs leading-4 font-medium text-black\";\n\n./stories/atoms/Chips.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nconst meta: Meta = { title: \"Atoms/Chips\", parameters: { layout: \"centered\" } };\nexport default meta;\n\nconst chip = \"flex max-h-6 min-h-6 items-center gap-1 rounded-full px-2 py-1 text-xs leading-4 font-medium text-black\";\n\nexport const AllVariants: StoryObj = {\n  render: () => (\n    <div className=\"flex items-center gap-4 p-8\">\n      <span className={`${chip} bg-black/10`}>Postpaid</span>\n      <span className={`${chip} bg-chip-green`}>Active</span>\n      <span className={`${chip} bg-chip-green`}>Preferred</span>\n      <span className={`${chip} bg-black/10`}>Closed</span>\n      <span className=\"flex h-9 cursor-pointer items-center rounded-full border-2 border-ink bg-paper px-4 py-2 text-xs leading-4 font-bold text-black/87\">\n        Category (selected pill)\n      </span>\n      <span className=\"flex h-9 cursor-pointer items-center rounded-full border border-gray-300 bg-paper px-4 py-2 text-xs leading-4 font-medium text-black/87\">\n        Category\n      </span>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "atoms-chips--all-variants",
+          "name": "All Variants",
+          "snippet": "const AllVariants = () => (\n  <div className=\"flex items-center gap-4 p-8\">\n    <span className={`${chip} bg-black/10`}>Postpaid</span>\n    <span className={`${chip} bg-chip-green`}>Active</span>\n    <span className={`${chip} bg-chip-green`}>Preferred</span>\n    <span className={`${chip} bg-black/10`}>Closed</span>\n    <span className=\"flex h-9 cursor-pointer items-center rounded-full border-2 border-ink bg-paper px-4 py-2 text-xs leading-4 font-bold text-black/87\">\n      Category (selected pill)\n    </span>\n    <span className=\"flex h-9 cursor-pointer items-center rounded-full border border-gray-300 bg-paper px-4 py-2 text-xs leading-4 font-medium text-black/87\">\n      Category\n    </span>\n  </div>\n);"
+        }
+      ]
+    },
+    "atoms-inputs": {
+      "id": "atoms-inputs",
+      "name": "Inputs",
+      "path": "./stories/atoms/Inputs.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  2 | import { Icon } from \"@/components/ui/Icon\";\n  3 |\n> 4 | const meta: Meta = { title: \"Atoms/Inputs\", parameters: { layout: \"centered\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  5 | export default meta;\n  6 |\n  7 | export const AllVariants: StoryObj = {\n\n./stories/atoms/Inputs.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { Icon } from \"@/components/ui/Icon\";\n\nconst meta: Meta = { title: \"Atoms/Inputs\", parameters: { layout: \"centered\" } };\nexport default meta;\n\nexport const AllVariants: StoryObj = {\n  render: () => (\n    <div className=\"flex w-[400px] flex-col gap-8 p-8\">\n      <div className=\"flex flex-col items-start gap-2\">\n        <div className=\"flex items-start gap-1 text-xs leading-4 font-medium\">\n          <p className=\"text-secondary-text\">Recipient name</p>\n          <p className=\"w-[5px] text-ink\">*</p>\n        </div>\n        <input\n          defaultValue=\"Sai Kumar\"\n          className=\"h-8 w-full rounded-field border border-gray-300 bg-paper px-3 py-2 text-xs leading-4 font-medium text-ink outline-none\"\n        />\n      </div>\n      <div className=\"flex flex-col items-start gap-2\">\n        <p className=\"text-xs leading-4 font-medium text-secondary-text\">Search</p>\n        <div className=\"flex h-8 w-full items-center gap-2 overflow-clip rounded-field border border-gray-300 px-3 py-2\">\n          <Icon src=\"/telekom-workshop/storybook/icons/ui/search-16.svg\" />\n          <input\n            placeholder=\"Search\"\n            className=\"h-4 min-w-0 flex-1 bg-transparent text-xs leading-4 font-medium text-ink outline-none placeholder:text-secondary-text\"\n          />\n        </div>\n      </div>\n      <div className=\"flex flex-col items-start gap-2\">\n        <div className=\"flex items-start gap-1 text-xs leading-4 font-medium\">\n          <p className=\"text-secondary-text\">Shipping method</p>\n          <p className=\"w-[5px] text-ink\">*</p>\n        </div>\n        <div className=\"relative w-full\">\n          <select\n            defaultValue=\"Regular\"\n            className=\"h-8 w-full cursor-pointer appearance-none rounded-field border border-gray-300 bg-paper px-3 py-2 text-xs leading-4 font-medium text-ink outline-none\"\n          >\n            <option>Regular</option>\n            <option>Express</option>\n            <option>Overnight</option>\n          </select>\n          <span className=\"pointer-events-none absolute top-2 right-3 flex\">\n            <Icon src=\"/telekom-workshop/storybook/icons/ui/chevron-mini-down.svg\" inset=\"inset-x-1/4 inset-y-1/3\" />\n          </span>\n        </div>\n      </div>\n      <div className=\"flex flex-col items-start gap-2\">\n        <p className=\"text-xs leading-4 font-medium text-secondary-text\">Note to delivery person</p>\n        <textarea\n          placeholder=\"e.g. Do not use the front door, use the other entrance at the side of the house.\"\n          className=\"h-12 w-full resize-none rounded-field border border-black/12 bg-paper px-3 py-2 text-xs leading-4 font-medium text-ink outline-none placeholder:text-secondary-text\"\n        />\n        <div className=\"flex w-full items-start gap-2 text-xs leading-4 font-medium text-secondary-text\">\n          <p className=\"min-w-0 flex-1 truncate\">This is an helper text</p>\n          <p>0/100</p>\n        </div>\n      </div>\n      <div className=\"flex flex-col items-start gap-2\">\n        <p className=\"text-xs leading-4 font-medium text-secondary-text\">Field with scanner</p>\n        <div className=\"flex w-[262px] items-end gap-2\">\n          <input className=\"h-8 min-w-[180px] flex-1 rounded-field border border-gray-300 bg-paper px-3 py-2 text-xs leading-4 font-medium text-ink outline-none\" />\n          <button className=\"flex cursor-pointer items-center gap-2 rounded-full p-2 hover:bg-black/5\">\n            <Icon src=\"/telekom-workshop/storybook/icons/ui/scan.svg\" inset=\"inset-[8.33%]\" />\n          </button>\n        </div>\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "atoms-inputs--all-variants",
+          "name": "All Variants",
+          "snippet": "const AllVariants = () => (\n  <div className=\"flex w-[400px] flex-col gap-8 p-8\">\n    <div className=\"flex flex-col items-start gap-2\">\n      <div className=\"flex items-start gap-1 text-xs leading-4 font-medium\">\n        <p className=\"text-secondary-text\">Recipient name</p>\n        <p className=\"w-[5px] text-ink\">*</p>\n      </div>\n      <input\n        defaultValue=\"Sai Kumar\"\n        className=\"h-8 w-full rounded-field border border-gray-300 bg-paper px-3 py-2 text-xs leading-4 font-medium text-ink outline-none\"\n      />\n    </div>\n    <div className=\"flex flex-col items-start gap-2\">\n      <p className=\"text-xs leading-4 font-medium text-secondary-text\">Search</p>\n      <div className=\"flex h-8 w-full items-center gap-2 overflow-clip rounded-field border border-gray-300 px-3 py-2\">\n        <Icon src=\"/telekom-workshop/storybook/icons/ui/search-16.svg\" />\n        <input\n          placeholder=\"Search\"\n          className=\"h-4 min-w-0 flex-1 bg-transparent text-xs leading-4 font-medium text-ink outline-none placeholder:text-secondary-text\"\n        />\n      </div>\n    </div>\n    <div className=\"flex flex-col items-start gap-2\">\n      <div className=\"flex items-start gap-1 text-xs leading-4 font-medium\">\n        <p className=\"text-secondary-text\">Shipping method</p>\n        <p className=\"w-[5px] text-ink\">*</p>\n      </div>\n      <div className=\"relative w-full\">\n        <select\n          defaultValue=\"Regular\"\n          className=\"h-8 w-full cursor-pointer appearance-none rounded-field border border-gray-300 bg-paper px-3 py-2 text-xs leading-4 font-medium text-ink outline-none\"\n        >\n          <option>Regular</option>\n          <option>Express</option>\n          <option>Overnight</option>\n        </select>\n        <span className=\"pointer-events-none absolute top-2 right-3 flex\">\n          <Icon src=\"/telekom-workshop/storybook/icons/ui/chevron-mini-down.svg\" inset=\"inset-x-1/4 inset-y-1/3\" />\n        </span>\n      </div>\n    </div>\n    <div className=\"flex flex-col items-start gap-2\">\n      <p className=\"text-xs leading-4 font-medium text-secondary-text\">Note to delivery person</p>\n      <textarea\n        placeholder=\"e.g. Do not use the front door, use the other entrance at the side of the house.\"\n        className=\"h-12 w-full resize-none rounded-field border border-black/12 bg-paper px-3 py-2 text-xs leading-4 font-medium text-ink outline-none placeholder:text-secondary-text\"\n      />\n      <div className=\"flex w-full items-start gap-2 text-xs leading-4 font-medium text-secondary-text\">\n        <p className=\"min-w-0 flex-1 truncate\">This is an helper text</p>\n        <p>0/100</p>\n      </div>\n    </div>\n    <div className=\"flex flex-col items-start gap-2\">\n      <p className=\"text-xs leading-4 font-medium text-secondary-text\">Field with scanner</p>\n      <div className=\"flex w-[262px] items-end gap-2\">\n        <input className=\"h-8 min-w-[180px] flex-1 rounded-field border border-gray-300 bg-paper px-3 py-2 text-xs leading-4 font-medium text-ink outline-none\" />\n        <button className=\"flex cursor-pointer items-center gap-2 rounded-full p-2 hover:bg-black/5\">\n          <Icon src=\"/telekom-workshop/storybook/icons/ui/scan.svg\" inset=\"inset-[8.33%]\" />\n        </button>\n      </div>\n    </div>\n  </div>\n);"
+        }
+      ],
+      "import": "import { Icon } from \"telekom-workshop\";"
+    },
+    "atoms-progress": {
+      "id": "atoms-progress",
+      "name": "Progress",
+      "path": "./stories/atoms/Progress.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  1 | import type { Meta, StoryObj } from \"@storybook/react\";\n  2 |\n> 3 | const meta: Meta = { title: \"Atoms/Progress\", parameters: { layout: \"centered\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  4 | export default meta;\n  5 |\n  6 | export const LinearBar: StoryObj = {\n\n./stories/atoms/Progress.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nconst meta: Meta = { title: \"Atoms/Progress\", parameters: { layout: \"centered\" } };\nexport default meta;\n\nexport const LinearBar: StoryObj = {\n  render: () => (\n    <div className=\"flex w-96 flex-col gap-6 p-8\">\n      {[70, 45, 92].map((pct) => (\n        <div key={pct} className=\"flex flex-col gap-2\">\n          <p className=\"text-sm leading-5 text-black/87\">\n            <span className=\"font-bold\">{(pct / 10).toFixed(1)}/10 </span>\n            <span className=\"font-medium\">GB</span>\n          </p>\n          <div className=\"flex h-1.5 w-full flex-col items-start justify-center overflow-clip rounded-field bg-black/10\">\n            <div className=\"h-full rounded-field bg-ink\" style={{ width: `${pct}%` }} />\n          </div>\n        </div>\n      ))}\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "atoms-progress--linear-bar",
+          "name": "Linear Bar",
+          "snippet": "const LinearBar = () => (\n  <div className=\"flex w-96 flex-col gap-6 p-8\">\n    {[70, 45, 92].map((pct) => (\n      <div key={pct} className=\"flex flex-col gap-2\">\n        <p className=\"text-sm leading-5 text-black/87\">\n          <span className=\"font-bold\">{(pct / 10).toFixed(1)}/10 </span>\n          <span className=\"font-medium\">GB</span>\n        </p>\n        <div className=\"flex h-1.5 w-full flex-col items-start justify-center overflow-clip rounded-field bg-black/10\">\n          <div className=\"h-full rounded-field bg-ink\" style={{ width: `${pct}%` }} />\n        </div>\n      </div>\n    ))}\n  </div>\n);"
+        }
+      ]
+    },
+    "atoms-selection-controls": {
+      "id": "atoms-selection-controls",
+      "name": "SelectionControls",
+      "path": "./stories/atoms/SelectionControls.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  4 | import { Toggle } from \"@/components/ui/Toggle\";\n  5 |\n> 6 | const meta: Meta = { title: \"Atoms/Selection Controls\", parameters: { layout: \"centered\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  7 | export default meta;\n  8 |\n  9 | function Demo() {\n\n./stories/atoms/SelectionControls.stories.tsx:\nimport { useState } from \"react\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { Icon } from \"@/components/ui/Icon\";\nimport { Toggle } from \"@/components/ui/Toggle\";\n\nconst meta: Meta = { title: \"Atoms/Selection Controls\", parameters: { layout: \"centered\" } };\nexport default meta;\n\nfunction Demo() {\n  const [on, setOn] = useState(true);\n  const [radio, setRadio] = useState(\"a\");\n  const [checked, setChecked] = useState(true);\n  return (\n    <div className=\"flex flex-col gap-8 p-8\">\n      <div className=\"flex items-center gap-8\">\n        <Toggle on={on} onChange={setOn} label=\"Set auto-payment\" />\n        <Toggle on={!on} onChange={(v) => setOn(!v)} label=\"Off state\" />\n      </div>\n      <div className=\"flex items-center gap-6\">\n        {([\"a\", \"b\"] as const).map((key) => (\n          <button key={key} onClick={() => setRadio(key)} className=\"flex cursor-pointer items-center gap-2 py-2\">\n            {radio === key ? (\n              <span className=\"flex size-5 items-center justify-center rounded-full bg-ink\">\n                <span className=\"size-2 rounded-full bg-white\" />\n              </span>\n            ) : (\n              <span className=\"size-5 rounded-full border border-gray-300\" />\n            )}\n            <span className=\"text-sm leading-5 font-semibold text-black/87\">\n              {key === \"a\" ? \"Select from a list\" : \"New number\"}\n            </span>\n          </button>\n        ))}\n      </div>\n      <button onClick={() => setChecked((v) => !v)} className=\"flex cursor-pointer items-center gap-2 py-2\">\n        {checked ? (\n          <span className=\"flex size-5 items-center justify-center rounded-field bg-ink p-1\">\n            <Icon src=\"/telekom-workshop/storybook/icons/ui/check-white.svg\" className=\"!size-3\" inset=\"inset-[8%]\" />\n          </span>\n        ) : (\n          <span className=\"size-5 rounded-field border border-gray-300\" />\n        )}\n        <span className=\"text-sm leading-5 font-medium whitespace-nowrap text-black/87\">I hereby accept</span>\n      </button>\n    </div>\n  );\n}\n\nexport const AllVariants: StoryObj = { render: () => <Demo /> };\n"
+      },
+      "stories": [
+        {
+          "id": "atoms-selection-controls--all-variants",
+          "name": "All Variants",
+          "snippet": "const AllVariants = () => <Demo />;"
+        }
+      ],
+      "import": "import { Icon, Toggle } from \"telekom-workshop\";"
+    },
+    "atoms-tabs-segments": {
+      "id": "atoms-tabs-segments",
+      "name": "Tabs&Segments",
+      "path": "./stories/atoms/TabsAndSegments.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  2 | import type { Meta, StoryObj } from \"@storybook/react\";\n  3 |\n> 4 | const meta: Meta = { title: \"Atoms/Tabs & Segments\", parameters: { layout: \"centered\" } };\n    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  5 | export default meta;\n  6 |\n  7 | function Demo() {\n\n./stories/atoms/TabsAndSegments.stories.tsx:\nimport { useState } from \"react\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nconst meta: Meta = { title: \"Atoms/Tabs & Segments\", parameters: { layout: \"centered\" } };\nexport default meta;\n\nfunction Demo() {\n  const [tab, setTab] = useState(0);\n  const [seg, setSeg] = useState(\"12 months\");\n  return (\n    <div className=\"flex flex-col gap-10 p-8\">\n      <div className=\"flex flex-col items-start\">\n        <div className=\"flex items-center\">\n          {[\"Top offers\", \"Mobile\", \"Internet\", \"Bundles\"].map((label, i) => (\n            <button\n              key={label}\n              onClick={() => setTab(i)}\n              className={`flex max-h-8 min-h-8 cursor-pointer items-center gap-2 px-4 py-2 ${\n                tab === i ? \"border-b-2 border-brand\" : \"justify-center\"\n              }`}\n            >\n              <span\n                className={`text-sm leading-5 whitespace-nowrap text-black/87 ${tab === i ? \"font-bold\" : \"font-medium\"}`}\n              >\n                {label}\n              </span>\n            </button>\n          ))}\n        </div>\n        <div className=\"h-px w-full bg-black/12\" />\n      </div>\n      <div className=\"flex items-center rounded-lg border border-black/12 bg-black/5 p-px\">\n        {[\"12 months\", \"24 months\"].map((option) => (\n          <button\n            key={option}\n            onClick={() => setSeg(option)}\n            className={`flex h-8 cursor-pointer items-center gap-1 rounded-[7px] px-3 py-1 text-xs leading-4 font-medium text-black/87 ${\n              seg === option ? \"border border-black/12 bg-paper drop-shadow-[0px_2px_4px_rgba(34,33,46,0.12)]\" : \"\"\n            }`}\n          >\n            {option}\n          </button>\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport const AllVariants: StoryObj = { render: () => <Demo /> };\n"
+      },
+      "stories": [
+        {
+          "id": "atoms-tabs-segments--all-variants",
+          "name": "All Variants",
+          "snippet": "const AllVariants = () => <Demo />;"
+        }
+      ]
+    },
+    "molecules-overview": {
+      "id": "molecules-overview",
+      "name": "Overview",
+      "path": "./stories/molecules/Molecules.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n   5 | import { Icon } from \"@/components/ui/Icon\";\n   6 |\n>  7 | const meta: Meta = { title: \"Molecules/Overview\", parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } } };\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   8 | export default meta;\n   9 |\n  10 | export const SearchFieldsRow: StoryObj = {\n\n./stories/molecules/Molecules.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { SearchFields } from \"@/components/search/SearchFields\";\nimport { OrderStepper } from \"@/components/order/OrderStepper\";\nimport { TabStrip } from \"@/components/chrome/TabStrip\";\nimport { Icon } from \"@/components/ui/Icon\";\n\nconst meta: Meta = { title: \"Molecules/Overview\", parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } } };\nexport default meta;\n\nexport const SearchFieldsRow: StoryObj = {\n  name: \"Search fields (dropdown + search)\",\n  render: () => (\n    <div className=\"bg-page p-8\">\n      <div className=\"rounded-card bg-paper p-6 shadow-card\">\n        <SearchFields placeholder=\"Type here and press ‘Enter’ for search\" />\n      </div>\n    </div>\n  ),\n};\n\nexport const WizardStepper: StoryObj = {\n  render: () => (\n    <div className=\"flex flex-col gap-6 bg-page p-8\">\n      <OrderStepper active={0} />\n      <OrderStepper active={2} />\n      <OrderStepper active={4} />\n    </div>\n  ),\n};\n\nexport const SessionTabs: StoryObj = {\n  render: () => (\n    <div className=\"flex flex-col gap-2 bg-page py-4\">\n      <TabStrip\n        tabs={[\n          { label: \"Agent Dashboard\", icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-circle.svg\", href: \"#\", active: true, closable: true },\n        ]}\n      />\n      <TabStrip\n        tabs={[\n          { label: \"Agent Dashboard\", icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-circle.svg\", href: \"#\" },\n          { label: \"Find Customer\", icon: \"/telekom-workshop/storybook/icons/ui/zoom-in.svg\", href: \"#\" },\n          { label: \"Sai Kumar\", icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-dark.svg\", href: \"#\" },\n          { label: \"Order Flow\", icon: \"/telekom-workshop/storybook/icons/ui/note-bill-paper-dark.svg\", href: \"#\", active: true, closable: true },\n        ]}\n      />\n    </div>\n  ),\n};\n\nexport const PaymentCard: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-8\">\n      <div className=\"flex w-[511px] items-start gap-4 rounded-lg border border-black/12 bg-paper p-4\">\n        <span className=\"flex size-8 items-center justify-center overflow-clip\">\n          {/* eslint-disable-next-line @next/next/no-img-element */}\n          <img src=\"/telekom-workshop/storybook/icons/ui/visa-badge.svg\" alt=\"\" className=\"block size-8\" />\n        </span>\n        <div className=\"flex min-w-0 flex-1 flex-col items-start gap-1\">\n          <p className=\"text-xs leading-4 font-medium text-black/87\">Visa **** 7683</p>\n          <p className=\"text-xs leading-4 font-medium text-secondary-text\">Exp: 08/24</p>\n        </div>\n        <div className=\"flex items-center gap-1\">\n          <span className=\"flex max-h-6 min-h-6 items-center rounded-full bg-chip-green px-2 py-1 text-xs leading-4 font-medium text-black\">\n            Preferred\n          </span>\n        </div>\n      </div>\n    </div>\n  ),\n};\n\nexport const GradientTiles: StoryObj = {\n  render: () => (\n    <div className=\"flex items-center gap-6 bg-page p-8\">\n      <div className=\"flex size-10 items-center justify-center rounded-lg bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)] p-2\">\n        <Icon src=\"/telekom-workshop/storybook/icons/ui/zoom-plus-white.svg\" className=\"!size-[22px]\" />\n      </div>\n      <div className=\"flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)]\">\n        <Icon src=\"/telekom-workshop/storybook/icons/ui/wallet-money.svg\" size={24} inset=\"inset-[12.5%_8.33%]\" />\n      </div>\n      <span className=\"flex items-center justify-center rounded-btn bg-[linear-gradient(-90deg,#fe7a7f_0%,#f05c62_100%)] p-2\">\n        <Icon src=\"/telekom-workshop/storybook/icons/ui/tile-puzzle-filled.svg\" inset=\"inset-[8.33%]\" />\n      </span>\n      <span className=\"relative size-8 rounded-lg bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)] shadow-card\">\n        <span className=\"absolute top-2 left-2 size-4\">\n          {/* eslint-disable-next-line @next/next/no-img-element */}\n          <img src=\"/telekom-workshop/storybook/icons/ui/cat-sim.svg\" alt=\"\" className=\"block size-full\" />\n        </span>\n      </span>\n      <p className=\"text-xs leading-4 font-medium text-secondary-text\">Category / balance / offer / quick-action tiles</p>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "molecules-overview--search-fields-row",
+          "name": "Search fields (dropdown + search)",
+          "snippet": "const SearchFieldsRow = () => (\n  <div className=\"bg-page p-8\">\n    <div className=\"rounded-card bg-paper p-6 shadow-card\">\n      <SearchFields placeholder=\"Type here and press ‘Enter’ for search\" />\n    </div>\n  </div>\n);"
+        },
+        {
+          "id": "molecules-overview--wizard-stepper",
+          "name": "Wizard Stepper",
+          "snippet": "const WizardStepper = () => (\n  <div className=\"flex flex-col gap-6 bg-page p-8\">\n    <OrderStepper active={0} />\n    <OrderStepper active={2} />\n    <OrderStepper active={4} />\n  </div>\n);"
+        },
+        {
+          "id": "molecules-overview--session-tabs",
+          "name": "Session Tabs",
+          "snippet": "const SessionTabs = () => (\n  <div className=\"flex flex-col gap-2 bg-page py-4\">\n    <TabStrip\n      tabs={[\n        { label: \"Agent Dashboard\", icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-circle.svg\", href: \"#\", active: true, closable: true },\n      ]}\n    />\n    <TabStrip\n      tabs={[\n        { label: \"Agent Dashboard\", icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-circle.svg\", href: \"#\" },\n        { label: \"Find Customer\", icon: \"/telekom-workshop/storybook/icons/ui/zoom-in.svg\", href: \"#\" },\n        { label: \"Sai Kumar\", icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-dark.svg\", href: \"#\" },\n        { label: \"Order Flow\", icon: \"/telekom-workshop/storybook/icons/ui/note-bill-paper-dark.svg\", href: \"#\", active: true, closable: true },\n      ]}\n    />\n  </div>\n);"
+        },
+        {
+          "id": "molecules-overview--payment-card",
+          "name": "Payment Card",
+          "snippet": "const PaymentCard = () => (\n  <div className=\"bg-page p-8\">\n    <div className=\"flex w-[511px] items-start gap-4 rounded-lg border border-black/12 bg-paper p-4\">\n      <span className=\"flex size-8 items-center justify-center overflow-clip\">\n        {/* eslint-disable-next-line @next/next/no-img-element */}\n        <img src=\"/telekom-workshop/storybook/icons/ui/visa-badge.svg\" alt=\"\" className=\"block size-8\" />\n      </span>\n      <div className=\"flex min-w-0 flex-1 flex-col items-start gap-1\">\n        <p className=\"text-xs leading-4 font-medium text-black/87\">Visa **** 7683</p>\n        <p className=\"text-xs leading-4 font-medium text-secondary-text\">Exp: 08/24</p>\n      </div>\n      <div className=\"flex items-center gap-1\">\n        <span className=\"flex max-h-6 min-h-6 items-center rounded-full bg-chip-green px-2 py-1 text-xs leading-4 font-medium text-black\">\n          Preferred\n        </span>\n      </div>\n    </div>\n  </div>\n);"
+        },
+        {
+          "id": "molecules-overview--gradient-tiles",
+          "name": "Gradient Tiles",
+          "snippet": "const GradientTiles = () => (\n  <div className=\"flex items-center gap-6 bg-page p-8\">\n    <div className=\"flex size-10 items-center justify-center rounded-lg bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)] p-2\">\n      <Icon src=\"/telekom-workshop/storybook/icons/ui/zoom-plus-white.svg\" className=\"!size-[22px]\" />\n    </div>\n    <div className=\"flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)]\">\n      <Icon src=\"/telekom-workshop/storybook/icons/ui/wallet-money.svg\" size={24} inset=\"inset-[12.5%_8.33%]\" />\n    </div>\n    <span className=\"flex items-center justify-center rounded-btn bg-[linear-gradient(-90deg,#fe7a7f_0%,#f05c62_100%)] p-2\">\n      <Icon src=\"/telekom-workshop/storybook/icons/ui/tile-puzzle-filled.svg\" inset=\"inset-[8.33%]\" />\n    </span>\n    <span className=\"relative size-8 rounded-lg bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)] shadow-card\">\n      <span className=\"absolute top-2 left-2 size-4\">\n        {/* eslint-disable-next-line @next/next/no-img-element */}\n        <img src=\"/telekom-workshop/storybook/icons/ui/cat-sim.svg\" alt=\"\" className=\"block size-full\" />\n      </span>\n    </span>\n    <p className=\"text-xs leading-4 font-medium text-secondary-text\">Category / balance / offer / quick-action tiles</p>\n  </div>\n);"
+        }
+      ],
+      "import": "import { Icon, OrderStepper, SearchFields, TabStrip } from \"telekom-workshop\";"
+    },
+    "organisms-app-chrome": {
+      "id": "organisms-app-chrome",
+      "name": "AppChrome",
+      "path": "./stories/organisms/Chrome.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n   6 | import { OrderHeader } from \"@/components/order/OrderHeader\";\n   7 |\n>  8 | const meta: Meta = { title: \"Organisms/App Chrome\", parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } } };\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   9 | export default meta;\n  10 |\n  11 | export const TopChrome: StoryObj = {\n\n./stories/organisms/Chrome.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { MainHeader } from \"@/components/chrome/MainHeader\";\nimport { TabMenu } from \"@/components/chrome/TabMenu\";\nimport { ProductivityRail } from \"@/components/chrome/ProductivityRail\";\nimport { WorkspaceHeader } from \"@/components/workspace/WorkspaceHeader\";\nimport { OrderHeader } from \"@/components/order/OrderHeader\";\n\nconst meta: Meta = { title: \"Organisms/App Chrome\", parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } } };\nexport default meta;\n\nexport const TopChrome: StoryObj = {\n  render: () => (\n    <div className=\"flex flex-col bg-page pb-8\">\n      <MainHeader />\n      <TabMenu />\n    </div>\n  ),\n};\n\nexport const Rail: StoryObj = {\n  render: () => (\n    <div className=\"relative h-72 bg-page\">\n      <div className=\"absolute inset-y-0 right-0 w-16\">\n        <div className=\"relative h-full\">\n          <ProductivityRail fixed={false} />\n        </div>\n      </div>\n    </div>\n  ),\n};\n\nexport const WorkspaceHeaders: StoryObj = {\n  render: () => (\n    <div className=\"flex flex-col gap-6 bg-page p-6\">\n      <WorkspaceHeader title=\"Find Customer\" icon=\"/telekom-workshop/storybook/icons/ui/zoom-plus-white.svg\" backHref=\"#\" />\n      <WorkspaceHeader title=\"Browse catalog\" icon=\"/telekom-workshop/storybook/icons/ui/book-library-filled.svg\" iconClassName=\"size-6\" backHref=\"#\" />\n      <OrderHeader backHref=\"#\" />\n      <OrderHeader showRefresh={false} backHref=\"#\" />\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "organisms-app-chrome--top-chrome",
+          "name": "Top Chrome",
+          "snippet": "const TopChrome = () => (\n  <div className=\"flex flex-col bg-page pb-8\">\n    <MainHeader />\n    <TabMenu />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-app-chrome--rail",
+          "name": "Rail",
+          "snippet": "const Rail = () => (\n  <div className=\"relative h-72 bg-page\">\n    <div className=\"absolute inset-y-0 right-0 w-16\">\n      <div className=\"relative h-full\">\n        <ProductivityRail fixed={false} />\n      </div>\n    </div>\n  </div>\n);"
+        },
+        {
+          "id": "organisms-app-chrome--workspace-headers",
+          "name": "Workspace Headers",
+          "snippet": "const WorkspaceHeaders = () => (\n  <div className=\"flex flex-col gap-6 bg-page p-6\">\n    <WorkspaceHeader title=\"Find Customer\" icon=\"/telekom-workshop/storybook/icons/ui/zoom-plus-white.svg\" backHref=\"#\" />\n    <WorkspaceHeader title=\"Browse catalog\" icon=\"/telekom-workshop/storybook/icons/ui/book-library-filled.svg\" iconClassName=\"size-6\" backHref=\"#\" />\n    <OrderHeader backHref=\"#\" />\n    <OrderHeader showRefresh={false} backHref=\"#\" />\n  </div>\n);"
+        }
+      ],
+      "import": "import { MainHeader, OrderHeader, ProductivityRail, TabMenu, WorkspaceHeader } from \"telekom-workshop\";"
+    },
+    "organisms-commerce-order-wizard": {
+      "id": "organisms-commerce-order-wizard",
+      "name": "Commerce&OrderWizard",
+      "path": "./stories/organisms/CommerceAndOrder.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  10 | import { offers } from \"@/lib/catalog\";\n  11 |\n> 12 | const meta: Meta = {\n     | ^\n  13 |   title: \"Organisms/Commerce & Order Wizard\",\n  14 |   parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } },\n  15 | };\n\n./stories/organisms/CommerceAndOrder.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { CatalogView } from \"@/components/catalog/CatalogView\";\nimport { OfferCard } from \"@/components/catalog/OfferCard\";\nimport { OfferConfigurator } from \"@/components/offer/OfferConfigurator\";\nimport { OrderItemsCard } from \"@/components/order/OrderItemsCard\";\nimport { DeliveryCard } from \"@/components/order/DeliveryCard\";\nimport { EquipmentCard } from \"@/components/order/EquipmentCard\";\nimport { BillingCard } from \"@/components/order/BillingCard\";\nimport { SummaryCard } from \"@/components/order/SummaryCard\";\nimport { offers } from \"@/lib/catalog\";\n\nconst meta: Meta = {\n  title: \"Organisms/Commerce & Order Wizard\",\n  parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } },\n};\nexport default meta;\n\nexport const CatalogOfferCards: StoryObj = {\n  render: () => (\n    <div className=\"grid grid-cols-4 items-stretch gap-6 bg-page p-6\">\n      {offers.slice(0, 4).map((offer) => (\n        <OfferCard key={offer.id} offer={offer} />\n      ))}\n    </div>\n  ),\n};\n\nexport const CatalogWithFilters: StoryObj = {\n  render: () => (\n    <div className=\"flex flex-col gap-6 bg-page p-6\">\n      <CatalogView header={null} />\n    </div>\n  ),\n};\n\nexport const OfferWizard: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <OfferConfigurator />\n    </div>\n  ),\n};\n\nexport const OrderItems: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <OrderItemsCard />\n    </div>\n  ),\n};\n\nexport const DeliveryMethod: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <DeliveryCard />\n    </div>\n  ),\n};\n\nexport const EquipmentIds: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <EquipmentCard />\n    </div>\n  ),\n};\n\nexport const BillingDetails: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <BillingCard />\n    </div>\n  ),\n};\n\nexport const OrderSummary: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <SummaryCard />\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "organisms-commerce-order-wizard--catalog-offer-cards",
+          "name": "Catalog Offer Cards",
+          "snippet": "const CatalogOfferCards = () => (\n  <div className=\"grid grid-cols-4 items-stretch gap-6 bg-page p-6\">\n    {offers.slice(0, 4).map((offer) => (\n      <OfferCard key={offer.id} offer={offer} />\n    ))}\n  </div>\n);"
+        },
+        {
+          "id": "organisms-commerce-order-wizard--catalog-with-filters",
+          "name": "Catalog With Filters",
+          "snippet": "const CatalogWithFilters = () => (\n  <div className=\"flex flex-col gap-6 bg-page p-6\">\n    <CatalogView header={null} />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-commerce-order-wizard--offer-wizard",
+          "name": "Offer Wizard",
+          "snippet": "const OfferWizard = () => (\n  <div className=\"bg-page p-6\">\n    <OfferConfigurator />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-commerce-order-wizard--order-items",
+          "name": "Order Items",
+          "snippet": "const OrderItems = () => (\n  <div className=\"bg-page p-6\">\n    <OrderItemsCard />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-commerce-order-wizard--delivery-method",
+          "name": "Delivery Method",
+          "snippet": "const DeliveryMethod = () => (\n  <div className=\"bg-page p-6\">\n    <DeliveryCard />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-commerce-order-wizard--equipment-ids",
+          "name": "Equipment Ids",
+          "snippet": "const EquipmentIds = () => (\n  <div className=\"bg-page p-6\">\n    <EquipmentCard />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-commerce-order-wizard--billing-details",
+          "name": "Billing Details",
+          "snippet": "const BillingDetails = () => (\n  <div className=\"bg-page p-6\">\n    <BillingCard />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-commerce-order-wizard--order-summary",
+          "name": "Order Summary",
+          "snippet": "const OrderSummary = () => (\n  <div className=\"bg-page p-6\">\n    <SummaryCard />\n  </div>\n);"
+        }
+      ],
+      "import": "import {\n    BillingCard,\n    CatalogView,\n    DeliveryCard,\n    EquipmentCard,\n    OfferCard,\n    OfferConfigurator,\n    OrderItemsCard,\n    SummaryCard,\n} from \"telekom-workshop\";"
+    },
+    "organisms-dashboard-customer": {
+      "id": "organisms-dashboard-customer",
+      "name": "Dashboard&Customer",
+      "path": "./stories/organisms/DashboardAndCustomer.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  11 | import { getCustomer } from \"@/lib/customers\";\n  12 |\n> 13 | const meta: Meta = {\n     | ^\n  14 |   title: \"Organisms/Dashboard & Customer\",\n  15 |   parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } },\n  16 | };\n\n./stories/organisms/DashboardAndCustomer.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport { BannerCarousel, BannerOverlay } from \"@/components/dashboard/BannerCarousel\";\nimport { SearchCustomerCard } from \"@/components/dashboard/SearchCustomerCard\";\nimport { QuickActions } from \"@/components/dashboard/QuickActions\";\nimport { ResultsCard } from \"@/components/find-customer/ResultsCard\";\nimport { ContactCard } from \"@/components/customer/ContactCard\";\nimport { TimelineCard } from \"@/components/customer/TimelineCard\";\nimport { ProductsCard } from \"@/components/customer/ProductsCard\";\nimport { BillingColumn } from \"@/components/customer/BillingColumn\";\nimport { CustomerHeader } from \"@/components/customer/CustomerHeader\";\nimport { getCustomer } from \"@/lib/customers\";\n\nconst meta: Meta = {\n  title: \"Organisms/Dashboard & Customer\",\n  parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } },\n};\nexport default meta;\n\nconst sai = getCustomer(\"sai-kumar\")!;\nconst chen = getCustomer(\"chen-wei-ling\")!;\n\nexport const Banner: StoryObj = {\n  render: () => (\n    <div className=\"relative bg-page p-6\">\n      <BannerCarousel />\n      <BannerOverlay />\n    </div>\n  ),\n};\n\nexport const SearchCustomer: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <SearchCustomerCard />\n    </div>\n  ),\n};\n\nexport const QuickActionsStrip: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <QuickActions />\n    </div>\n  ),\n};\n\nexport const FindCustomerResults: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <ResultsCard />\n    </div>\n  ),\n};\n\nexport const CustomerHeading: StoryObj = {\n  render: () => (\n    <div className=\"bg-page p-6\">\n      <CustomerHeader name={sai.name} initials={sai.initials} />\n    </div>\n  ),\n};\n\nexport const Customer360Columns: StoryObj = {\n  render: () => (\n    <div className=\"flex items-start gap-4 bg-page p-6\">\n      <div className=\"flex min-w-0 flex-1 flex-col gap-4\">\n        <ContactCard customer={sai} />\n        <TimelineCard by={sai.taskBy} ba={sai.ba} />\n      </div>\n      <div className=\"min-w-0 flex-1\">\n        <ProductsCard customer={sai} />\n      </div>\n      <div className=\"min-w-0 flex-1\">\n        <BillingColumn customer={chen} />\n      </div>\n    </div>\n  ),\n};\n"
+      },
+      "stories": [
+        {
+          "id": "organisms-dashboard-customer--banner",
+          "name": "Banner",
+          "snippet": "const Banner = () => (\n  <div className=\"relative bg-page p-6\">\n    <BannerCarousel />\n    <BannerOverlay />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-dashboard-customer--search-customer",
+          "name": "Search Customer",
+          "snippet": "const SearchCustomer = () => (\n  <div className=\"bg-page p-6\">\n    <SearchCustomerCard />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-dashboard-customer--quick-actions-strip",
+          "name": "Quick Actions Strip",
+          "snippet": "const QuickActionsStrip = () => (\n  <div className=\"bg-page p-6\">\n    <QuickActions />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-dashboard-customer--find-customer-results",
+          "name": "Find Customer Results",
+          "snippet": "const FindCustomerResults = () => (\n  <div className=\"bg-page p-6\">\n    <ResultsCard />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-dashboard-customer--customer-heading",
+          "name": "Customer Heading",
+          "snippet": "const CustomerHeading = () => (\n  <div className=\"bg-page p-6\">\n    <CustomerHeader name={sai.name} initials={sai.initials} />\n  </div>\n);"
+        },
+        {
+          "id": "organisms-dashboard-customer--customer-360-columns",
+          "name": "Customer 360 Columns",
+          "snippet": "const Customer360Columns = () => (\n  <div className=\"flex items-start gap-4 bg-page p-6\">\n    <div className=\"flex min-w-0 flex-1 flex-col gap-4\">\n      <ContactCard customer={sai} />\n      <TimelineCard by={sai.taskBy} ba={sai.ba} />\n    </div>\n    <div className=\"min-w-0 flex-1\">\n      <ProductsCard customer={sai} />\n    </div>\n    <div className=\"min-w-0 flex-1\">\n      <BillingColumn customer={chen} />\n    </div>\n  </div>\n);"
+        }
+      ],
+      "import": "import {\n    BannerCarousel,\n    BannerOverlay,\n    BillingColumn,\n    ContactCard,\n    CustomerHeader,\n    ProductsCard,\n    QuickActions,\n    ResultsCard,\n    SearchCustomerCard,\n    TimelineCard,\n} from \"telekom-workshop\";"
+    },
+    "screens-all-screens": {
+      "id": "screens-all-screens",
+      "name": "AllScreens",
+      "path": "./stories/screens/Screens.stories.tsx",
+      "jsDocTags": {},
+      "error": {
+        "name": "No component found",
+        "message": "We could not detect the component from your story file. Specify meta.component.\n  18 | import { getCustomer } from \"@/lib/customers\";\n  19 |\n> 20 | const meta: Meta = { title: \"Screens/All Screens\", parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } } };\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  21 | export default meta;\n  22 |\n  23 | export const AgentDashboard: StoryObj = { render: () => <AgentDashboardPage /> };\n\n./stories/screens/Screens.stories.tsx:\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport AgentDashboardPage from \"@/app/page\";\nimport FindCustomerPage from \"@/app/find-customer/page\";\nimport BrowseCatalogPage from \"@/app/catalog/page\";\nimport OfferPage from \"@/app/offer/page\";\nimport OrderItemsPage from \"@/app/order/page\";\nimport DeliveryMethodPage from \"@/app/delivery/page\";\nimport EquipmentIdsPage from \"@/app/equipment/page\";\nimport BillingDetailsPage from \"@/app/billing/page\";\nimport OrderSummaryPage from \"@/app/summary/page\";\nimport OrderCompletePage from \"@/app/order-complete/page\";\nimport { AppShell } from \"@/components/chrome/AppShell\";\nimport { CustomerHeader } from \"@/components/customer/CustomerHeader\";\nimport { ContactCard } from \"@/components/customer/ContactCard\";\nimport { TimelineCard } from \"@/components/customer/TimelineCard\";\nimport { ProductsCard } from \"@/components/customer/ProductsCard\";\nimport { BillingColumn } from \"@/components/customer/BillingColumn\";\nimport { getCustomer } from \"@/lib/customers\";\n\nconst meta: Meta = { title: \"Screens/All Screens\", parameters: { layout: \"fullscreen\", nextjs: { appDirectory: true } } };\nexport default meta;\n\nexport const AgentDashboard: StoryObj = { render: () => <AgentDashboardPage /> };\nexport const FindCustomer: StoryObj = { render: () => <FindCustomerPage /> };\n\nconst sai = getCustomer(\"sai-kumar\")!;\nexport const CustomerSummary360: StoryObj = {\n  render: () => (\n    <AppShell\n      tabs={[\n        { label: \"Agent Dashboard\", icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-circle.svg\", href: \"#\" },\n        { label: \"Find Customer\", icon: \"/telekom-workshop/storybook/icons/ui/zoom-in.svg\", href: \"#\" },\n        { label: sai.name, icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-dark.svg\", href: \"#\", active: true, closable: true },\n      ]}\n    >\n      <div className=\"w-full flex-1 pr-16\">\n        <div className=\"flex w-full flex-col items-start gap-7 p-6\">\n          <CustomerHeader name={sai.name} initials={sai.initials} />\n          <div className=\"flex w-full items-start gap-4\">\n            <div className=\"flex min-w-0 flex-1 flex-col items-start gap-4\">\n              <ContactCard customer={sai} />\n              <TimelineCard by={sai.taskBy} ba={sai.ba} />\n            </div>\n            <div className=\"flex min-w-0 flex-1 flex-col items-start gap-4\">\n              <ProductsCard customer={sai} />\n            </div>\n            <div className=\"flex min-w-0 flex-1 flex-col items-start gap-4\">\n              <BillingColumn customer={sai} />\n            </div>\n          </div>\n        </div>\n      </div>\n    </AppShell>\n  ),\n};\n\nexport const BrowseCatalog: StoryObj = { render: () => <BrowseCatalogPage /> };\nexport const OfferConfiguration: StoryObj = { render: () => <OfferPage /> };\nexport const OrderItems: StoryObj = { render: () => <OrderItemsPage /> };\nexport const DeliveryMethod: StoryObj = { render: () => <DeliveryMethodPage /> };\nexport const EquipmentIds: StoryObj = { render: () => <EquipmentIdsPage /> };\nexport const BillingDetails: StoryObj = { render: () => <BillingDetailsPage /> };\nexport const OrderSummary: StoryObj = { render: () => <OrderSummaryPage /> };\nexport const OrderComplete: StoryObj = { render: () => <OrderCompletePage /> };\n"
+      },
+      "stories": [
+        {
+          "id": "screens-all-screens--agent-dashboard",
+          "name": "Agent Dashboard",
+          "snippet": "const AgentDashboard = () => <AgentDashboardPage />;"
+        },
+        {
+          "id": "screens-all-screens--find-customer",
+          "name": "Find Customer",
+          "snippet": "const FindCustomer = () => <FindCustomerPage />;"
+        },
+        {
+          "id": "screens-all-screens--customer-summary-360",
+          "name": "Customer Summary 360",
+          "snippet": "const CustomerSummary360 = () => (\n  <AppShell\n    tabs={[\n      { label: \"Agent Dashboard\", icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-circle.svg\", href: \"#\" },\n      { label: \"Find Customer\", icon: \"/telekom-workshop/storybook/icons/ui/zoom-in.svg\", href: \"#\" },\n      { label: sai.name, icon: \"/telekom-workshop/storybook/icons/ui/person-avatar-dark.svg\", href: \"#\", active: true, closable: true },\n    ]}\n  >\n    <div className=\"w-full flex-1 pr-16\">\n      <div className=\"flex w-full flex-col items-start gap-7 p-6\">\n        <CustomerHeader name={sai.name} initials={sai.initials} />\n        <div className=\"flex w-full items-start gap-4\">\n          <div className=\"flex min-w-0 flex-1 flex-col items-start gap-4\">\n            <ContactCard customer={sai} />\n            <TimelineCard by={sai.taskBy} ba={sai.ba} />\n          </div>\n          <div className=\"flex min-w-0 flex-1 flex-col items-start gap-4\">\n            <ProductsCard customer={sai} />\n          </div>\n          <div className=\"flex min-w-0 flex-1 flex-col items-start gap-4\">\n            <BillingColumn customer={sai} />\n          </div>\n        </div>\n      </div>\n    </div>\n  </AppShell>\n);"
+        },
+        {
+          "id": "screens-all-screens--browse-catalog",
+          "name": "Browse Catalog",
+          "snippet": "const BrowseCatalog = () => <BrowseCatalogPage />;"
+        },
+        {
+          "id": "screens-all-screens--offer-configuration",
+          "name": "Offer Configuration",
+          "snippet": "const OfferConfiguration = () => <OfferPage />;"
+        },
+        {
+          "id": "screens-all-screens--order-items",
+          "name": "Order Items",
+          "snippet": "const OrderItems = () => <OrderItemsPage />;"
+        },
+        {
+          "id": "screens-all-screens--delivery-method",
+          "name": "Delivery Method",
+          "snippet": "const DeliveryMethod = () => <DeliveryMethodPage />;"
+        },
+        {
+          "id": "screens-all-screens--equipment-ids",
+          "name": "Equipment Ids",
+          "snippet": "const EquipmentIds = () => <EquipmentIdsPage />;"
+        },
+        {
+          "id": "screens-all-screens--billing-details",
+          "name": "Billing Details",
+          "snippet": "const BillingDetails = () => <BillingDetailsPage />;"
+        },
+        {
+          "id": "screens-all-screens--order-summary",
+          "name": "Order Summary",
+          "snippet": "const OrderSummary = () => <OrderSummaryPage />;"
+        },
+        {
+          "id": "screens-all-screens--order-complete",
+          "name": "Order Complete",
+          "snippet": "const OrderComplete = () => <OrderCompletePage />;"
+        }
+      ],
+      "import": "import {\n    AgentDashboardPage,\n    AppShell,\n    BillingColumn,\n    BillingDetailsPage,\n    BrowseCatalogPage,\n    ContactCard,\n    CustomerHeader,\n    DeliveryMethodPage,\n    EquipmentIdsPage,\n    FindCustomerPage,\n    OfferPage,\n    OrderCompletePage,\n    OrderItemsPage,\n    OrderSummaryPage,\n    ProductsCard,\n    TimelineCard,\n} from \"telekom-workshop\";"
+    }
+  },
+  "meta": {
+    "docgen": "react-docgen",
+    "durationMs": 211
+  }
+}

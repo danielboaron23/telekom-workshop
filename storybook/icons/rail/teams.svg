@@ -1,0 +1,33 @@
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="44" height="44" fill="#F5F5F5"/>
+<g id="Section 1">
+<path d="M-1360 -574C-1360 -575.105 -1359.1 -576 -1358 -576H34331C34332.1 -576 34333 -575.105 34333 -574V2588C34333 2589.1 34332.1 2590 34331 2590H-1358C-1359.1 2590 -1360 2589.1 -1360 2588V-574Z" fill="white"/>
+<path d="M-1358 -576V-575H34331V-576V-577H-1358V-576ZM34333 -574H34332V2588H34333H34334V-574H34333ZM34331 2590V2589H-1358V2590V2591H34331V2590ZM-1360 2588H-1359V-574H-1360H-1361V2588H-1360ZM-1358 2590V2589C-1358.55 2589 -1359 2588.55 -1359 2588H-1360H-1361C-1361 2589.66 -1359.66 2591 -1358 2591V2590ZM34333 2588H34332C34332 2588.55 34331.6 2589 34331 2589V2590V2591C34332.7 2591 34334 2589.66 34334 2588H34333ZM34331 -576V-575C34331.6 -575 34332 -574.552 34332 -574H34333H34334C34334 -575.657 34332.7 -577 34331 -577V-576ZM-1358 -576V-577C-1359.66 -577 -1361 -575.657 -1361 -574H-1360H-1359C-1359 -574.552 -1358.55 -575 -1358 -575V-576Z" fill="black" fill-opacity="0.1"/>
+<g id="Buy Internet_Agent dashboard" clip-path="url(#clip0_604_41)">
+<rect width="1312" height="889" transform="translate(-1258 -176)" fill="#FAF9F8"/>
+<g id="Menu">
+<rect width="64" height="1005" transform="translate(-10 -132)" fill="#EEEEEE"/>
+<g id="Productivity pane">
+<rect width="64" height="1070" transform="translate(-10 -132)" fill="#FAF9F8"/>
+<g id="ProductivityPane">
+<g id="Control.PaneNav">
+<rect width="64" height="1070" transform="translate(-10 -132)" fill="#F0F0F0"/>
+<g id="Frame 3465487">
+<g id="Teams">
+<g id="Icon">
+<path id="String-icon" d="M16 17H32V28H21.7109L18 31.7109V28H16V17ZM31 27V18H17V27H19V29.2891L21.2891 27H31Z" fill="#323130"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_604_41">
+<rect width="1312" height="889" fill="white" transform="translate(-1258 -176)"/>
+</clipPath>
+</defs>
+</svg>
