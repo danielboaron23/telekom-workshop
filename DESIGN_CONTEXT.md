@@ -109,7 +109,7 @@ Current nav graph:
   name/phone/email/method are filled — exactly the B→C Figma states.
   Previous steps / back arrow → `/order`. Stepper shows step 1 with a
   checkmark. Next step reserved for Equipment IDs.
-- `scripts/flow-test.mjs` — Playwright nav+data test (37 checks); run
+- `scripts/flow-test.mjs` — Playwright nav+data test (39 checks); run
   after wiring each new screen.
 - Note: the Find Customer table intentionally deviates from the Figma
   (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people
