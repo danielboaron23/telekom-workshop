@@ -5,7 +5,13 @@ import { ContactCard } from "@/components/customer/ContactCard";
 import { TimelineCard } from "@/components/customer/TimelineCard";
 import { ProductsCard } from "@/components/customer/ProductsCard";
 import { BillingColumn } from "@/components/customer/BillingColumn";
-import { getCustomer } from "@/lib/customers";
+import { customers, getCustomer } from "@/lib/customers";
+
+/* Pre-render every mock customer for the static export. */
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return customers.map((c) => ({ id: c.id }));
+}
 
 /* Summary — customer 360. Figma node 2958:205890 (1312x1295). */
 export default async function CustomerSummaryPage({ params }: PageProps<"/customers/[id]">) {

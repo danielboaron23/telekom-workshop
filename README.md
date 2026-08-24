@@ -9,6 +9,19 @@ Built with **Next.js 16 · React 19 · Tailwind CSS v4 · Storybook 10**.
 
 ![flow](public/images/banner-desktop.png)
 
+## Live demo
+
+| | |
+| --- | --- |
+| 🖥️ **App prototype** | https://danielboaron23.github.io/telekom-workshop/ |
+| 📚 **Storybook design system** | https://danielboaron23.github.io/telekom-workshop/storybook/ |
+
+Both are static builds published to GitHub Pages. To redeploy after changes:
+
+```bash
+./scripts/deploy-pages.sh --push
+```
+
 ## Quick start
 
 ```bash
@@ -43,6 +56,7 @@ proportionally from the 1312px design frame (resize the window).
 | End-to-end flow (61 checks, incl. drawing the signature) | `node scripts/flow-test.mjs` |
 | Screenshot for pixel-diff vs Figma | `node scripts/shot.mjs <url> <out.png> [w] [h]` |
 | Storybook smoke (all 44 stories render) | `node scripts/sb-smoke.mjs` |
+| Build + deploy to GitHub Pages | `./scripts/deploy-pages.sh [--push]` |
 
 Every screen was verified against its Figma frame with a Playwright
 screenshot + PIL pixel diff during development; deviations (all
