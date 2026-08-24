@@ -224,6 +224,45 @@ await page.getByRole("link", { name: "Previous Step" }).click();
 await page.waitForURL("**/equipment");
 check("billing Previous Step → /equipment", page.url().endsWith("/equipment"));
 
+// 34. billing Next Step → summary
+await page.goto(base + "/billing", { waitUntil: "networkidle" });
+await page.locator("button", { hasText: "BillingAccount_25829163" }).first().click();
+await page.getByRole("button", { name: "Next Step" }).click();
+await page.waitForURL("**/summary");
+check("billing Next Step → /summary", page.url().endsWith("/summary"));
+
+// 35. summary accordions expand with details
+await page.locator("button", { hasText: "Delivery method" }).first().click();
+check("summary delivery expands", await page.locator("text=Standard shipping 5-7 business days").isVisible());
+await page.locator("button", { hasText: "Billing details" }).first().click();
+check("summary billing expands", await page.locator("text=Name on bill").isVisible());
+
+// 36. submit gating: checkboxes + signature
+check("Submit order disabled initially", !(await page.getByRole("button", { name: "Submit order" }).isEnabled()));
+await page.locator("button", { hasText: "I hereby accept" }).first().click();
+await page.locator("button", { hasText: "I hereby accept that I have read" }).click();
+check("still disabled without signature", !(await page.getByRole("button", { name: "Submit order" }).isEnabled()));
+const pad = await page.locator("canvas").boundingBox();
+await page.mouse.move(pad.x + 60, pad.y + 80);
+await page.mouse.down();
+await page.mouse.move(pad.x + 180, pad.y + 40, { steps: 12 });
+await page.mouse.move(pad.x + 300, pad.y + 100, { steps: 12 });
+await page.mouse.up();
+check("signature drawn → Submit order enabled", await page.getByRole("button", { name: "Submit order" }).isEnabled());
+
+// 37. submit → order complete; buttons navigate
+await page.getByRole("button", { name: "Submit order" }).click();
+await page.waitForURL("**/order-complete");
+check("Submit order → /order-complete", page.url().endsWith("/order-complete"));
+check("confirmation shows order id", await page.locator("text=ProductOrder_12345678909876").isVisible());
+await page.getByRole("link", { name: "Continue shopping" }).click();
+await page.waitForURL("**/catalog");
+check("Continue shopping → /catalog", page.url().endsWith("/catalog"));
+await page.goto(base + "/order-complete", { waitUntil: "networkidle" });
+await page.getByRole("link", { name: "Go to customer 360" }).click();
+await page.waitForURL("**/customers/sai-kumar");
+check("Go to customer 360 → Sai Kumar", page.url().endsWith("/customers/sai-kumar"));
+
 console.log(results.join("\n"));
 await browser.close();
 process.exit(results.some((r) => r.startsWith("FAIL")) ? 1 : 0);

@@ -17,7 +17,9 @@ plus a Storybook design system (built after the screens are done).
 | Delivery Method | `2958:206479` (toggle) / `2958:206612` (form empty) / `2969:66848` (form filled) — one step, three states | 1287×1058 | ✅ built (`/delivery`) |
 | ID Settings / Equipment IDs | `2958:206729` (empty) / `2969:67222` (filled) | 1287×1058 | ✅ built (`/equipment`) |
 | Billing Details | `2958:206873` (existing, unselected) / `2969:67670` (selected) / `2958:207491` (New account form) | 1287×1058+ | ✅ built (`/billing`) |
-| Summary variants | `2969:68198` … `2958:208338` | various | — |
+| Summary (wizard step 5) | `2969:68198` (collapsed) / `2958:207260` / `2969:70026` / `2969:71171` (sections expanded) | 1287×1891+ | ✅ built (`/summary`) |
+| Order placed confirmation | `2958:207186` | 1287×1058 | ✅ built (`/order-complete`) |
+| Post-order Summary variants (customer 360 refresh etc.) | `2958:207953` / `2958:208183` / `2969:72324` / `2958:208338` | 1312×… | — |
 | sizes_dialog / dialog overlays | `2958:207941` etc. | overlay | interactions, never static |
 
 Daniel picks the next screen — build them one at a time, in his order.
@@ -123,8 +125,18 @@ Current nav graph:
   Default billing address toggle). Previous Step / back → `/equipment`.
   Next Step reserved for Summary. Header keeps the app's $30/$900 order
   totals (these frames show $10/$300 — Figma mock inconsistency).
-- `scripts/flow-test.mjs` — Playwright nav+data test (51 checks); run
-  after wiring each new screen.
+- `/summary` (Summary — order wizard step 5): reached from Billing
+  details' "Next Step". Order-summary accordion + collapsible
+  Delivery/Equipment/Billing sections (expanded contents from the
+  taller state frames), totals with Shipping row, pay-now banner, and
+  Customer acceptance: a REAL drawable signature canvas (+ Clear) and
+  two checkboxes — Submit order enables only with signature + both
+  checks. Submit → `/order-complete`.
+- `/order-complete` (order placed): celebration photo, order id,
+  "Go to customer 360" → `/customers/sai-kumar`, "Continue shopping" →
+  `/catalog`.
+- `scripts/flow-test.mjs` — Playwright nav+data test (61 checks incl.
+  drawing the signature); run after wiring each new screen.
 - Note: the Find Customer table intentionally deviates from the Figma
   (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people
   so the demo behaves like a real product.
@@ -223,3 +235,13 @@ Current nav graph:
   wrapper (inline spans don't take size) — give such wrappers `flex`.
 - Frame wobble again: this frame's card sits 7px higher than Order
   Items' — accepted, in-card spacing verified instead.
+
+## Gotchas learned on screen 10 (Summary + confirmation)
+
+- The five Summary frames are one screen: the taller ones just have
+  more accordions expanded. The 1058-tall "Summary" (2958:207186) is
+  actually the order-placed confirmation.
+- Signature is a mock image in Figma — built as a real canvas pad
+  (pointer events) since it's an interaction, per the overlay rule.
+- Section icons export in wrong colors again; van/settings came red,
+  billing icon recolored from note-bill-paper.
