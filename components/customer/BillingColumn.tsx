@@ -1,21 +1,7 @@
 /* Indicators + billing info + recent bills chart — Figma nodes 2958:206012 / 2958:206019 */
 
 import { Icon } from "@/components/ui/Icon";
-
-const bills = [
-  { value: "$40.00", month: "01/2022", height: 168 },
-  { value: "$140.00", month: "02/2022", height: 392 },
-  { value: "$40.00", month: "03/2022", height: 168 },
-  { value: "$160.00", month: "Apr 2022", height: 367 },
-  { value: "$20.00", month: "May 2022", height: 127 },
-  { value: "$60.00", month: "Jun 2022", height: 252 },
-  { value: "$30.00", month: "Jul 2022", height: 168 },
-  { value: "$100.00", month: "Aug 2022", height: 300 },
-  { value: "$50.00", month: "Sep 2022", height: 392 },
-  { value: "$15.00", month: "Oct 2022", height: 107 },
-  { value: "$150.00", month: "Nov 2022", height: 351 },
-  { value: "$25.00", month: "Dec 2022", height: 152 },
-];
+import type { Customer } from "@/lib/customers";
 
 function IndicatorRow({ icon, inset, label }: { icon: string; inset: string; label: string }) {
   return (
@@ -30,12 +16,21 @@ function IndicatorRow({ icon, inset, label }: { icon: string; inset: string; lab
   );
 }
 
-export function BillingColumn() {
+export function BillingColumn({ customer }: { customer: Customer }) {
+  const bills = customer.bills;
   return (
     <div className="flex w-full flex-col items-start gap-4">
       <div className="flex w-full flex-col items-center justify-center gap-3 overflow-clip rounded-card bg-paper p-4 shadow-card">
-        <IndicatorRow icon="/icons/ui/note-bill-paper.svg" inset="inset-[4.17%_12.5%]" label="Pending orders (3)" />
-        <IndicatorRow icon="/icons/ui/note-document-file.svg" inset="inset-[8.33%_16.67%]" label="Active cases (3)" />
+        <IndicatorRow
+          icon="/icons/ui/note-bill-paper.svg"
+          inset="inset-[4.17%_12.5%]"
+          label={`Pending orders (${customer.pendingOrders})`}
+        />
+        <IndicatorRow
+          icon="/icons/ui/note-document-file.svg"
+          inset="inset-[8.33%_16.67%]"
+          label={`Active cases (${customer.activeCases})`}
+        />
       </div>
       <div className="flex h-[790px] w-full flex-col items-start gap-4 overflow-clip rounded-card bg-paper p-4 shadow-card">
         <div className="flex w-full flex-col items-start gap-3">
@@ -60,18 +55,22 @@ export function BillingColumn() {
                 <span className="flex size-11 items-center justify-center rounded-xl bg-[linear-gradient(-90deg,#f05c62_0%,#e50075_100%)]">
                   <Icon src="/icons/ui/wallet-money.svg" size={24} inset="inset-[12.5%_8.33%]" />
                 </span>
-                <p className="text-[30px] leading-10 font-semibold whitespace-nowrap text-black/87">$120.00</p>
+                <p className="text-[30px] leading-10 font-semibold whitespace-nowrap text-black/87">
+                  {customer.balance}
+                </p>
               </div>
               <div className="flex w-full flex-wrap content-start items-start gap-x-4 gap-y-2">
                 <p className="text-xs leading-4 font-medium whitespace-nowrap text-secondary-text">
-                  Due date: 10/09/2021
+                  Due date: {customer.dueDate}
                 </p>
-                <div className="flex items-center gap-2">
-                  <Icon src="/icons/ui/error-alert.svg" inset="inset-[8.33%]" />
-                  <p className="text-xs leading-4 font-medium whitespace-nowrap text-black/87">
-                    Amount past due ($120.00)
-                  </p>
-                </div>
+                {customer.pastDue && (
+                  <div className="flex items-center gap-2">
+                    <Icon src="/icons/ui/error-alert.svg" inset="inset-[8.33%]" />
+                    <p className="text-xs leading-4 font-medium whitespace-nowrap text-black/87">
+                      Amount past due ({customer.pastDue})
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

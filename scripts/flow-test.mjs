@@ -43,7 +43,7 @@ await page.getByRole("link", { name: "Home" }).click();
 await page.waitForURL(base + "/");
 check("Home button → dashboard", page.url() === base + "/");
 
-// 7. customer row click → customer summary
+// 7. customer row click → that customer's summary
 await page.goto(base + "/find-customer", { waitUntil: "networkidle" });
 await page.locator("button", { hasText: "Sai Kumar" }).first().click();
 await page.waitForURL("**/customers/sai-kumar");
@@ -53,6 +53,19 @@ check("row click → /customers/sai-kumar", page.url().endsWith("/customers/sai-
 await page.getByRole("button", { name: "Close Sai Kumar" }).click();
 await page.waitForURL("**/find-customer");
 check("close customer tab → /find-customer", page.url().endsWith("/find-customer"));
+
+// 8b. a different row opens a different person with their own data
+await page.locator("button", { hasText: "Chen Wei Ling" }).first().click();
+await page.waitForURL("**/customers/chen-wei-ling");
+const headerName = await page.locator("p.font-segoe").first().textContent();
+const balance = await page.locator("text=$215.00").first().isVisible();
+const email = await page.locator("text=weiling.chen@gmail.com").first().isVisible();
+check(`row click → Chen Wei Ling page (header "${headerName}")`, headerName === "Chen Wei Ling");
+check("Chen's own balance ($215.00) shown", balance);
+check("Chen's own email shown", email);
+await page.getByRole("button", { name: "Close Chen Wei Ling" }).click();
+await page.waitForURL("**/find-customer");
+check("close Chen tab → /find-customer", page.url().endsWith("/find-customer"));
 
 // 9. from customer page, Find Customer tab navigates back
 await page.goto(base + "/customers/sai-kumar", { waitUntil: "networkidle" });

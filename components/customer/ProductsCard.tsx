@@ -1,6 +1,7 @@
 /* Products + Allowance card — Figma nodes 2958:205993 / 2958:206001 */
 
 import { Icon, IconButton } from "@/components/ui/Icon";
+import type { Customer } from "@/lib/customers";
 
 function OfferItemCard({
   icon,
@@ -29,7 +30,7 @@ function OfferItemCard({
   );
 }
 
-function AllowanceItem() {
+function AllowanceItem({ used }: { used: number }) {
   return (
     <div className="flex w-full flex-col items-start gap-2">
       <div className="flex w-full items-center gap-2">
@@ -39,18 +40,18 @@ function AllowanceItem() {
         </p>
       </div>
       <p className="text-sm leading-5 whitespace-nowrap text-black/87">
-        <span className="font-bold">5.5/10 </span>
+        <span className="font-bold">{(used / 10).toFixed(1)}/10 </span>
         <span className="font-medium">GB</span>
       </p>
       <div className="flex h-1.5 w-full flex-col items-start justify-center overflow-clip rounded-field bg-black/10">
-        <div className="h-full w-[70%] rounded-field bg-ink" />
+        <div className="h-full rounded-field bg-ink" style={{ width: `${used}%` }} />
       </div>
       <p className="text-sm leading-5 font-medium text-black/87">Expires 30/08/2024</p>
     </div>
   );
 }
 
-export function ProductsCard() {
+export function ProductsCard({ customer }: { customer: Customer }) {
   return (
     <div className="flex w-full flex-col items-start gap-4 overflow-clip rounded-card bg-paper p-4 shadow-card">
       <div className="flex w-full flex-col items-start gap-4 overflow-clip">
@@ -80,13 +81,17 @@ export function ProductsCard() {
             <div className="flex max-h-8 min-h-8 items-center gap-2 border-b-2 border-brand px-4 py-2">
               <div className="flex items-center gap-1">
                 <Icon src="/icons/ui/mobile-phone.svg" inset="inset-[8.33%_25%]" />
-                <p className="text-sm leading-5 font-bold whitespace-nowrap text-black/87">Mobile (3)</p>
+                <p className="text-sm leading-5 font-bold whitespace-nowrap text-black/87">
+                  Mobile ({customer.mobileCount})
+                </p>
               </div>
             </div>
             <div className="flex max-h-8 min-h-8 items-center justify-center gap-2 px-4 py-2">
               <div className="flex items-center gap-1">
                 <Icon src="/icons/ui/internet-globe-data.svg" />
-                <p className="text-sm leading-5 font-medium whitespace-nowrap text-black/87">Internet (1)</p>
+                <p className="text-sm leading-5 font-medium whitespace-nowrap text-black/87">
+                  Internet ({customer.internetCount})
+                </p>
               </div>
             </div>
             <button
@@ -101,8 +106,8 @@ export function ProductsCard() {
         <div className="flex w-full flex-col gap-2">
           <div className="flex w-full items-center">
             <div className="flex min-w-0 flex-1 items-center gap-1">
-              <button className="cursor-pointer text-base font-bold whitespace-nowrap text-black/87 underline decoration-solid decoration-from-font">
-                (569) 273 1882 Sai Kumar
+              <button className="cursor-pointer truncate text-base font-bold whitespace-nowrap text-black/87 underline decoration-solid decoration-from-font">
+                {customer.line.number}
               </button>
               <Icon src="/icons/ui/chevron-mini-down.svg" size={24} inset="inset-x-1/4 inset-y-1/3" />
             </div>
@@ -113,7 +118,7 @@ export function ProductsCard() {
               <span className="text-center text-xs leading-4 font-medium text-black">Active</span>
             </span>
             <p className="min-w-0 flex-1 text-right text-sm leading-5 whitespace-nowrap text-black/87">
-              <span className="font-bold">$40.00</span>
+              <span className="font-bold">{customer.line.price}</span>
               <span className="font-medium"> /mo.</span>
             </p>
           </div>
@@ -134,9 +139,9 @@ export function ProductsCard() {
           <p className="truncate text-sm leading-5 font-bold text-ink">Allowance</p>
         </div>
         <div className="flex w-full flex-col gap-8">
-          <AllowanceItem />
-          <AllowanceItem />
-          <AllowanceItem />
+          <AllowanceItem used={customer.allowanceUsed} />
+          <AllowanceItem used={customer.allowanceUsed} />
+          <AllowanceItem used={customer.allowanceUsed} />
         </div>
       </div>
     </div>

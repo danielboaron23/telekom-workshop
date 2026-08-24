@@ -4,16 +4,16 @@
 
 import { useRouter } from "next/navigation";
 import { SearchFields } from "@/components/search/SearchFields";
-import { searchResults, type CustomerRow } from "@/lib/customers";
+import { customers, type Customer } from "@/lib/customers";
 
 const columns = ["Personal ID", "Name", "Phone #", "MSISDN", "Customer ID", "Owners name", "Status"];
 
-function Row({ row }: { row: CustomerRow }) {
+function Row({ row }: { row: Customer }) {
   const router = useRouter();
   const cells = [row.personalId, row.name, row.phone, row.msisdn, row.customerId];
   return (
     <button
-      onClick={() => router.push("/customers/sai-kumar")}
+      onClick={() => router.push(`/customers/${row.id}`)}
       className="flex h-12 w-[1380px] cursor-pointer items-center border-b border-black/12 text-left hover:bg-[#fef2f3]"
     >
       {cells.map((value, i) => (
@@ -42,7 +42,9 @@ export function ResultsCard() {
       <div className="flex w-full flex-col items-start gap-6">
         <SearchFields placeholder="Search" />
         <div className="h-px w-full bg-black/12" />
-        <p className="text-sm leading-5 font-bold whitespace-nowrap text-black/87">Search results (10)</p>
+        <p className="text-sm leading-5 font-bold whitespace-nowrap text-black/87">
+          Search results ({customers.length})
+        </p>
         <div className="w-full overflow-x-auto">
           <div className="flex flex-col items-start">
             <div className="flex h-[52px] w-[1380px] items-center border-b border-black/12">
@@ -52,8 +54,8 @@ export function ResultsCard() {
                 </span>
               ))}
             </div>
-            {searchResults.map((row, i) => (
-              <Row key={i} row={row} />
+            {customers.map((row) => (
+              <Row key={row.id} row={row} />
             ))}
           </div>
         </div>

@@ -1,31 +1,334 @@
-export type CustomerRow = {
-  personalId: string;
+export type Bill = { value: string; month: string; height: number };
+
+export type Customer = {
+  id: string;
   name: string;
+  initials: string;
+  title: string;
+  personalId: string;
   phone: string;
   msisdn: string;
   customerId: string;
   owner: string;
   /* Row 1 in the Figma renders its owner cell at 14px — kept as-is. */
   bigOwner?: boolean;
+  passport: string;
+  email: string;
+  address: string;
+  /* Figma truncates Sai's address with an ellipsis at this width */
+  addressClamp?: number;
+  avatar?: string;
+  line: { number: string; price: string };
+  mobileCount: number;
+  internetCount: number;
+  allowanceUsed: number; // % of the progress bar
+  pendingOrders: number;
+  activeCases: number;
+  balance: string;
+  dueDate: string;
+  pastDue: string;
+  taskBy: string;
+  ba: string;
+  bills: Bill[];
 };
 
-const saiKumar: CustomerRow = {
-  personalId: "025098788",
-  name: "Sai Kumar",
-  phone: "(555) 4440 317",
-  msisdn: "4959952100",
-  customerId: "Owner",
-  owner: "Sai Kumar",
-  bigOwner: true,
-};
+/* Sai Kumar's chart copied verbatim from the Figma mock. */
+const figmaBills: Bill[] = [
+  { value: "$40.00", month: "01/2022", height: 168 },
+  { value: "$140.00", month: "02/2022", height: 392 },
+  { value: "$40.00", month: "03/2022", height: 168 },
+  { value: "$160.00", month: "Apr 2022", height: 367 },
+  { value: "$20.00", month: "May 2022", height: 127 },
+  { value: "$60.00", month: "Jun 2022", height: 252 },
+  { value: "$30.00", month: "Jul 2022", height: 168 },
+  { value: "$100.00", month: "Aug 2022", height: 300 },
+  { value: "$50.00", month: "Sep 2022", height: 392 },
+  { value: "$15.00", month: "Oct 2022", height: 107 },
+  { value: "$150.00", month: "Nov 2022", height: 351 },
+  { value: "$25.00", month: "Dec 2022", height: 152 },
+];
 
-const sarahPulman: CustomerRow = {
-  personalId: "025098788",
-  name: "Sarah Pulman",
-  phone: "(555) 4440 317",
-  msisdn: "4959952100",
-  customerId: "Owner",
-  owner: "Sarah Pulman",
-};
+const months = [
+  "01/2022", "02/2022", "03/2022", "Apr 2022", "May 2022", "Jun 2022",
+  "Jul 2022", "Aug 2022", "Sep 2022", "Oct 2022", "Nov 2022", "Dec 2022",
+];
 
-export const searchResults: CustomerRow[] = [saiKumar, ...Array.from({ length: 9 }, () => sarahPulman)];
+/* Bar height scales with the amount so the chart reads realistically. */
+function makeBills(amounts: number[]): Bill[] {
+  const max = Math.max(...amounts);
+  return amounts.map((amount, i) => ({
+    value: `$${amount.toFixed(2)}`,
+    month: months[i],
+    height: Math.round(90 + (amount / max) * 300),
+  }));
+}
+
+export const customers: Customer[] = [
+  {
+    id: "sai-kumar",
+    name: "Sai Kumar",
+    initials: "SK",
+    title: "Mr. Sai Kumar",
+    personalId: "025098788",
+    phone: "(555) 4440 317",
+    msisdn: "4959952100",
+    customerId: "Owner",
+    owner: "Sai Kumar",
+    bigOwner: true,
+    passport: "Passport: C05066558805988",
+    email: "Sai.Kumar@hotmail.com",
+    address: "16 Sandilands Road, Kovan, Singapore 546080",
+    addressClamp: 288,
+    avatar: "/images/avatar-sai.png",
+    line: { number: "(569) 273 1882 Sai Kumar", price: "$40.00" },
+    mobileCount: 3,
+    internetCount: 1,
+    allowanceUsed: 70,
+    pendingOrders: 3,
+    activeCases: 3,
+    balance: "$120.00",
+    dueDate: "10/09/2021",
+    pastDue: "$120.00",
+    taskBy: "Efrain Megido",
+    ba: "BA 1234567890",
+    bills: figmaBills,
+  },
+  {
+    id: "sarah-pulman",
+    name: "Sarah Pulman",
+    initials: "SP",
+    title: "Ms. Sarah Pulman",
+    personalId: "031475962",
+    phone: "(555) 2210 984",
+    msisdn: "4959913377",
+    customerId: "Owner",
+    owner: "Sarah Pulman",
+    passport: "Passport: E88213467105442",
+    email: "sarah.pulman@gmail.com",
+    address: "42 Orchard Boulevard, Singapore 238879",
+    line: { number: "(569) 402 7719 Sarah Pulman", price: "$35.00" },
+    mobileCount: 2,
+    internetCount: 1,
+    allowanceUsed: 45,
+    pendingOrders: 1,
+    activeCases: 2,
+    balance: "$86.50",
+    dueDate: "22/10/2021",
+    pastDue: "$46.50",
+    taskBy: "Efrain Megido",
+    ba: "BA 2209841135",
+    bills: makeBills([35, 35, 52.5, 35, 70, 35, 35, 42, 35, 88, 35, 35]),
+  },
+  {
+    id: "marcus-webb",
+    name: "Marcus Webb",
+    initials: "MW",
+    title: "Mr. Marcus Webb",
+    personalId: "047812305",
+    phone: "(555) 8821 440",
+    msisdn: "4959928466",
+    customerId: "Owner",
+    owner: "Marcus Webb",
+    passport: "Passport: K10457882236901",
+    email: "m.webb@outlook.com",
+    address: "8 Marina View, Asia Square, Singapore 018960",
+    line: { number: "(569) 118 4402 Marcus Webb", price: "$55.00" },
+    mobileCount: 4,
+    internetCount: 2,
+    allowanceUsed: 85,
+    pendingOrders: 2,
+    activeCases: 0,
+    balance: "$0.00",
+    dueDate: "01/11/2021",
+    pastDue: "",
+    taskBy: "Lena Fischer",
+    ba: "BA 8821440276",
+    bills: makeBills([55, 55, 61, 55, 55, 96, 55, 55, 55, 120, 55, 55]),
+  },
+  {
+    id: "priya-nair",
+    name: "Priya Nair",
+    initials: "PN",
+    title: "Ms. Priya Nair",
+    personalId: "058236471",
+    phone: "(555) 6754 209",
+    msisdn: "4959977215",
+    customerId: "Owner",
+    owner: "Priya Nair",
+    passport: "Passport: M55082347719064",
+    email: "priya.nair@yahoo.com",
+    address: "23 Serangoon Central, Singapore 556083",
+    line: { number: "(569) 675 4209 Priya Nair", price: "$30.00" },
+    mobileCount: 1,
+    internetCount: 1,
+    allowanceUsed: 30,
+    pendingOrders: 0,
+    activeCases: 1,
+    balance: "$30.00",
+    dueDate: "15/09/2021",
+    pastDue: "",
+    taskBy: "Efrain Megido",
+    ba: "BA 6754209813",
+    bills: makeBills([30, 30, 30, 44, 30, 30, 58, 30, 30, 30, 71, 30]),
+  },
+  {
+    id: "chen-wei-ling",
+    name: "Chen Wei Ling",
+    initials: "CW",
+    title: "Ms. Chen Wei Ling",
+    personalId: "069584213",
+    phone: "(555) 3308 671",
+    msisdn: "4959934582",
+    customerId: "Owner",
+    owner: "Chen Wei Ling",
+    passport: "Passport: S77120945538216",
+    email: "weiling.chen@gmail.com",
+    address: "150 Bishan Street 11, Singapore 570150",
+    line: { number: "(569) 330 8671 Chen Wei Ling", price: "$45.00" },
+    mobileCount: 3,
+    internetCount: 0,
+    allowanceUsed: 92,
+    pendingOrders: 4,
+    activeCases: 2,
+    balance: "$215.00",
+    dueDate: "05/08/2021",
+    pastDue: "$215.00",
+    taskBy: "Diego Alvarez",
+    ba: "BA 3308671904",
+    bills: makeBills([45, 90, 45, 45, 45, 135, 45, 62, 45, 45, 180, 45]),
+  },
+  {
+    id: "daniel-osei",
+    name: "Daniel Osei",
+    initials: "DO",
+    title: "Mr. Daniel Osei",
+    personalId: "072149863",
+    phone: "(555) 9902 358",
+    msisdn: "4959961247",
+    customerId: "Owner",
+    owner: "Daniel Osei",
+    passport: "Passport: G31298764405173",
+    email: "daniel.osei@hotmail.com",
+    address: "77 Tanjong Pagar Road, Singapore 088496",
+    line: { number: "(569) 990 2358 Daniel Osei", price: "$50.00" },
+    mobileCount: 2,
+    internetCount: 2,
+    allowanceUsed: 60,
+    pendingOrders: 1,
+    activeCases: 1,
+    balance: "$50.00",
+    dueDate: "30/09/2021",
+    pastDue: "",
+    taskBy: "Lena Fischer",
+    ba: "BA 9902358441",
+    bills: makeBills([50, 50, 75, 50, 50, 50, 110, 50, 50, 65, 50, 50]),
+  },
+  {
+    id: "elena-petrova",
+    name: "Elena Petrova",
+    initials: "EP",
+    title: "Ms. Elena Petrova",
+    personalId: "083657294",
+    phone: "(555) 1147 820",
+    msisdn: "4959945903",
+    customerId: "Owner",
+    owner: "Elena Petrova",
+    passport: "Passport: P66904128837455",
+    email: "e.petrova@gmail.com",
+    address: "5 Stadium Walk, Kallang, Singapore 397693",
+    line: { number: "(569) 114 7820 Elena Petrova", price: "$38.00" },
+    mobileCount: 1,
+    internetCount: 1,
+    allowanceUsed: 25,
+    pendingOrders: 0,
+    activeCases: 0,
+    balance: "$0.00",
+    dueDate: "12/10/2021",
+    pastDue: "",
+    taskBy: "Diego Alvarez",
+    ba: "BA 1147820569",
+    bills: makeBills([38, 38, 38, 38, 57, 38, 38, 38, 84, 38, 38, 46]),
+  },
+  {
+    id: "tomas-rivera",
+    name: "Tomás Rivera",
+    initials: "TR",
+    title: "Mr. Tomás Rivera",
+    personalId: "094312758",
+    phone: "(555) 5563 092",
+    msisdn: "4959958614",
+    customerId: "Owner",
+    owner: "Tomás Rivera",
+    passport: "Passport: R44571209916380",
+    email: "tomas.rivera@outlook.com",
+    address: "31 Jurong East Avenue 1, Singapore 609775",
+    line: { number: "(569) 556 3092 Tomás Rivera", price: "$42.00" },
+    mobileCount: 5,
+    internetCount: 1,
+    allowanceUsed: 78,
+    pendingOrders: 2,
+    activeCases: 3,
+    balance: "$168.00",
+    dueDate: "18/08/2021",
+    pastDue: "$126.00",
+    taskBy: "Efrain Megido",
+    ba: "BA 5563092187",
+    bills: makeBills([42, 84, 42, 42, 126, 42, 42, 42, 42, 168, 42, 55]),
+  },
+  {
+    id: "amira-haddad",
+    name: "Amira Haddad",
+    initials: "AH",
+    title: "Ms. Amira Haddad",
+    personalId: "105874236",
+    phone: "(555) 7716 483",
+    msisdn: "4959982031",
+    customerId: "Owner",
+    owner: "Amira Haddad",
+    passport: "Passport: L09283746651928",
+    email: "amira.haddad@gmail.com",
+    address: "12 Telok Blangah Crescent, Singapore 090012",
+    line: { number: "(569) 771 6483 Amira Haddad", price: "$36.00" },
+    mobileCount: 2,
+    internetCount: 0,
+    allowanceUsed: 50,
+    pendingOrders: 1,
+    activeCases: 0,
+    balance: "$36.00",
+    dueDate: "25/10/2021",
+    pastDue: "",
+    taskBy: "Lena Fischer",
+    ba: "BA 7716483350",
+    bills: makeBills([36, 36, 54, 36, 36, 36, 36, 79, 36, 36, 43, 36]),
+  },
+  {
+    id: "jonas-berg",
+    name: "Jonas Berg",
+    initials: "JB",
+    title: "Mr. Jonas Berg",
+    personalId: "116428357",
+    phone: "(555) 2489 671",
+    msisdn: "4959919478",
+    customerId: "Owner",
+    owner: "Jonas Berg",
+    passport: "Passport: N72641058823094",
+    email: "jonas.berg@hotmail.com",
+    address: "88 Punggol Field, Singapore 828815",
+    line: { number: "(569) 248 9671 Jonas Berg", price: "$48.00" },
+    mobileCount: 3,
+    internetCount: 2,
+    allowanceUsed: 40,
+    pendingOrders: 5,
+    activeCases: 1,
+    balance: "$96.00",
+    dueDate: "08/09/2021",
+    pastDue: "$48.00",
+    taskBy: "Diego Alvarez",
+    ba: "BA 2489671023",
+    bills: makeBills([48, 48, 48, 96, 48, 48, 48, 48, 144, 48, 48, 60]),
+  },
+];
+
+export function getCustomer(id: string): Customer | undefined {
+  return customers.find((c) => c.id === id);
+}

@@ -12,7 +12,7 @@ function InitialsAvatar({ initials }: { initials: string }) {
   );
 }
 
-export function CustomerHeader({ name = "Sai Kumar", initials = "SK" }: { name?: string; initials?: string }) {
+export function CustomerHeader({ name, initials }: { name: string; initials: string }) {
   return (
     <div className="flex w-full flex-col rounded-field">
       <div className="flex h-[92px] w-full flex-col items-start justify-center rounded-t-lg border-b border-black/12 bg-paper px-4 drop-shadow-[0px_2px_4px_rgba(34,33,46,0.12)]">

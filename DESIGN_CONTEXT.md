@@ -79,10 +79,18 @@ Current nav graph:
   Home all → `/`. Table rows hover `#fef2f3` (that's Figma frame
   `2958:205695` — a state, not a separate screen). Row click →
   `/customers/sai-kumar`.
-- `/customers/sai-kumar` (Summary / customer 360): third session tab
-  "Sai Kumar"; closing it → `/find-customer`; other tabs navigate.
-- `scripts/flow-test.mjs` — Playwright nav test (10 checks); run after
-  wiring each new screen.
+- `/customers/[id]` (Summary / customer 360): **dynamic** — every row in
+  Find Customer opens that person's 360 with their own mock data
+  (contact, products, allowance, orders/cases, balance, bills chart).
+  Mock store: `lib/customers.ts` (10 people; `sai-kumar` keeps the exact
+  Figma values so the Figma pixel diff still holds; the other 9 are
+  invented but internally consistent). Third session tab shows the
+  person's name; closing it → `/find-customer`. Unknown id → 404.
+- `scripts/flow-test.mjs` — Playwright nav+data test (14 checks); run
+  after wiring each new screen.
+- Note: the Find Customer table intentionally deviates from the Figma
+  (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people
+  so the demo behaves like a real product.
 
 ## Gotchas learned on screen 2
 

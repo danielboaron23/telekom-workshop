@@ -2,12 +2,12 @@
 
 import { Icon, IconButton } from "@/components/ui/Icon";
 
-function TaskItem({ last = false }: { last?: boolean }) {
+function TaskItem({ by, ba, last = false }: { by: string; ba: string; last?: boolean }) {
   return (
     <div className="flex w-full flex-col items-start gap-4">
       <div className="flex w-full flex-col items-start gap-2">
-        <p className="w-full truncate text-sm leading-5 font-medium text-ink">Task modified by: Efrain Megido</p>
-        <p className="w-full text-xs leading-4 font-medium text-secondary-text">BA 1234567890</p>
+        <p className="w-full truncate text-sm leading-5 font-medium text-ink">Task modified by: {by}</p>
+        <p className="w-full text-xs leading-4 font-medium text-secondary-text">{ba}</p>
         <div className="flex w-full items-center gap-2">
           <span className="flex max-h-6 min-h-6 items-center gap-1 rounded-full bg-black/10 px-2 py-1">
             <span className="text-center text-xs leading-4 font-medium text-black">Active</span>
@@ -33,7 +33,7 @@ function TaskItem({ last = false }: { last?: boolean }) {
   );
 }
 
-export function TimelineCard() {
+export function TimelineCard({ by, ba }: { by: string; ba: string }) {
   return (
     <div className="flex h-[698px] w-full flex-col overflow-clip rounded-card bg-paper shadow-card">
       <div className="flex w-full flex-col items-start gap-4 p-4">
@@ -58,9 +58,9 @@ export function TimelineCard() {
             className="h-4 min-w-0 flex-1 bg-transparent text-xs leading-4 font-medium text-ink outline-none placeholder:text-secondary-text"
           />
         </div>
-        <TaskItem />
-        <TaskItem />
-        <TaskItem last />
+        <TaskItem by={by} ba={ba} />
+        <TaskItem by={by} ba={ba} />
+        <TaskItem by={by} ba={ba} last />
       </div>
     </div>
   );
