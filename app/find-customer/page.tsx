@@ -1,5 +1,5 @@
 import { AppShell } from "@/components/chrome/AppShell";
-import { HeaderCard } from "@/components/find-customer/HeaderCard";
+import { WorkspaceHeader } from "@/components/workspace/WorkspaceHeader";
 import { ResultsCard } from "@/components/find-customer/ResultsCard";
 
 /* Workspace_Desktop — Find Customer. Figma node 2960:223625 (1312x1078). */
@@ -21,7 +21,7 @@ export default function FindCustomerPage() {
       <div className="w-full flex-1 pr-16">
         <div className="flex w-full flex-col items-center gap-6 overflow-clip bg-page p-6">
           <div className="flex w-full flex-col items-start gap-4">
-            <HeaderCard />
+            <WorkspaceHeader title="Find Customer" icon="/icons/ui/zoom-plus-white.svg" backHref="/" />
           </div>
           <ResultsCard />
         </div>

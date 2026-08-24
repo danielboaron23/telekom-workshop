@@ -1,5 +1,7 @@
 /* Carousel + promo banner — Figma nodes 2958:205635 / 2958:205647 */
 
+import Link from "next/link";
+
 function ArrowButton({ dir }: { dir: "left" | "right" }) {
   return (
     <button
@@ -70,9 +72,12 @@ export function BannerOverlay() {
         <button className="cursor-pointer text-center text-sm leading-5 font-medium whitespace-nowrap text-white underline decoration-solid decoration-from-font">
           More details
         </button>
-        <button className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn border border-outlined-border-on-dark px-3 py-2 hover:bg-white/10">
+        <Link
+          href="/catalog"
+          className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn border border-outlined-border-on-dark px-3 py-2 hover:bg-white/10"
+        >
           <span className="text-center text-sm leading-5 font-medium whitespace-nowrap text-white">Shop now</span>
-        </button>
+        </Link>
       </div>
     </div>
   );

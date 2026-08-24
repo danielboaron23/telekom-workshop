@@ -37,6 +37,7 @@ function Row({ row }: { row: Customer }) {
 }
 
 export function ResultsCard() {
+  const router = useRouter();
   return (
     <div className="flex w-full flex-col overflow-clip rounded-lg bg-paper p-4 shadow-card">
       <div className="flex w-full flex-col items-start gap-6">
@@ -60,7 +61,10 @@ export function ResultsCard() {
           </div>
         </div>
         <div className="flex w-full items-start justify-end gap-4">
-          <button className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn border border-outlined-border px-3 py-2 hover:bg-black/5">
+          <button
+            onClick={() => router.push("/catalog")}
+            className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn border border-outlined-border px-3 py-2 hover:bg-black/5"
+          >
             <span className="text-center text-sm leading-5 font-medium whitespace-nowrap text-ink">Shop</span>
           </button>
           <button className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn bg-ink px-3 py-2 hover:bg-black">

@@ -11,7 +11,7 @@ plus a Storybook design system (built after the screens are done).
 | Buy Internet — Agent dashboard | `2958:205590` | 1312×889 | ✅ built (`/`) |
 | Workspace_Desktop (Find Customer) | `2960:223625` (base) / `2958:205695` (row-hover state) | 1312×1078 | ✅ built (`/find-customer`) |
 | Summary — customer 360 | `2958:205890` | 1312×1295 | ✅ built (`/customers/sai-kumar`) |
-| Browse Catalog | `2958:206096` / `2958:208592` | 1312×1438 | — |
+| Browse Catalog | `2958:206096` (base) / `2958:208592` (Mobile-tab state) | 1312×1438 | ✅ built (`/catalog`) |
 | Offer | `2960:222429` / `2958:207616` / `2960:223002` | 1287×1058 | — |
 | Order Items | `2958:206268` | 1287×1257 | — |
 | Delivery Method | `2958:206479` / `2958:206612` | 1287×1058 | — |
@@ -86,7 +86,12 @@ Current nav graph:
   Figma values so the Figma pixel diff still holds; the other 9 are
   invented but internally consistent). Third session tab shows the
   person's name; closing it → `/find-customer`. Unknown id → 404.
-- `scripts/flow-test.mjs` — Playwright nav+data test (14 checks); run
+- `/catalog` (Browse Catalog / "Order Flow" session tab): reached from
+  the dashboard quick actions + banner "Shop now" + Find Customer's
+  "Shop". Category tabs (Top offers/Mobile/Internet/Bundles) really
+  filter the offer grid (`lib/catalog.ts`); the dropdown mirrors the
+  active tab. Back arrow / tab close → `/customers/sai-kumar`.
+- `scripts/flow-test.mjs` — Playwright nav+data test (19 checks); run
   after wiring each new screen.
 - Note: the Find Customer table intentionally deviates from the Figma
   (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people
@@ -129,3 +134,19 @@ Current nav graph:
 - Dark-card icons need the white SVG exports (topnav versions or
   dedicated white assets like `email-white.svg`) — a 404'd icon renders
   as a broken-image box that's easy to misread as a style bug.
+
+## Gotchas learned on screen 4 (Browse Catalog)
+
+- Offer-card header: title→chip gap is 16 and header→body gap is 16
+  (not the component's declared 8/24) — net height matches but the chip
+  sits 8px lower. Image cards' media block is 108px (matches the
+  80×108 Product Image), not the visual ~150px impression.
+- Figma raster fills sometimes export as a white-rect "SVG"
+  (`Rectangle 6`) — the real bitmap comes from `download_assets`
+  `rawImages` (router photo, Netflix logo). A fully-transparent PNG is
+  the same failure in disguise — check averages, not just file size.
+- Section spacing around the category tabs: header card→tabs 16,
+  tabs→results card 24 — group header+tabs in a gap-4 wrapper inside
+  the page's gap-6 column.
+- Offer tile gradients use the light coral pair (#fe7a7f→#f05c62),
+  not the brand tile gradient.

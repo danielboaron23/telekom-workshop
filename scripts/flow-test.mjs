@@ -79,6 +79,31 @@ await page.getByRole("link", { name: "Agent Dashboard" }).click();
 await page.waitForURL(base + "/");
 check("Agent Dashboard tab from customer page", page.url() === base + "/");
 
+// 11. dashboard quick action → catalog (Order Flow tab)
+await page.goto(base + "/", { waitUntil: "networkidle" });
+await page.getByRole("link", { name: "Browse Catalog" }).click();
+await page.waitForURL("**/catalog");
+check("quick action → /catalog", page.url().endsWith("/catalog"));
+
+// 12. category tab switch filters offers
+await page.getByRole("button", { name: "Mobile", exact: true }).click();
+const resultsText = await page.locator("text=/\\d+ Results/").first().textContent();
+const cardCount = await page.locator("text=Postpaid").count();
+check(`Mobile tab filters (\"${resultsText}\", ${cardCount} cards)`, resultsText === "4 Results" && cardCount === 4);
+await page.getByRole("button", { name: "Top offers" }).click();
+check("Top offers tab restores 8 cards", (await page.locator("text=Postpaid").count()) === 8);
+
+// 13. close Order Flow tab → customer page
+await page.getByRole("button", { name: "Close Order Flow" }).click();
+await page.waitForURL("**/customers/sai-kumar");
+check("close Order Flow → /customers/sai-kumar", page.url().endsWith("/customers/sai-kumar"));
+
+// 14. find-customer Shop button → catalog
+await page.goto(base + "/find-customer", { waitUntil: "networkidle" });
+await page.getByRole("button", { name: "Shop", exact: true }).click();
+await page.waitForURL("**/catalog");
+check("Shop button → /catalog", page.url().endsWith("/catalog"));
+
 console.log(results.join("\n"));
 await browser.close();
 process.exit(results.some((r) => r.startsWith("FAIL")) ? 1 : 0);
