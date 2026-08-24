@@ -9,7 +9,7 @@ plus a Storybook design system (built after the screens are done).
 | Screen | Node | Size | Status |
 | --- | --- | --- | --- |
 | Buy Internet — Agent dashboard | `2958:205590` | 1312×889 | ✅ built (`/`) |
-| Workspace_Desktop | `2960:223625` / `2958:205695` | 1312×1078 | — |
+| Workspace_Desktop (Find Customer) | `2960:223625` (base) / `2958:205695` (row-hover state) | 1312×1078 | ✅ built (`/find-customer`) |
 | Summary (first) | `2958:205890` | 1312×1295 | — |
 | Browse Catalog | `2958:206096` / `2958:208592` | 1312×1438 | — |
 | Offer | `2960:222429` / `2958:207616` / `2960:223002` | 1287×1058 | — |
@@ -67,3 +67,33 @@ Daniel picks the next screen — build them one at a time, in his order.
   exported the whole 44px nodes as SVGs instead (`public/icons/rail`).
 - Next dev badge polluted screenshots → `devIndicators: false` in
   `next.config.ts`.
+
+## Live-app wiring (screen 2 onward)
+
+This is a **navigable product, not static pages**. `AppShell` renders the
+shared chrome; each route passes its session-tab config to `TabStrip`.
+Current nav graph:
+
+- `/` (Agent Dashboard): search field Enter → `/find-customer`.
+- `/find-customer`: back arrow, "Agent Dashboard" tab, tab close ×, and
+  Home all → `/`. Table rows hover `#fef2f3` (that's Figma frame
+  `2958:205695` — a state, not a separate screen). Rows will navigate to
+  the customer/summary screen when it's built.
+- `scripts/flow-test.mjs` — Playwright nav test; run after wiring each
+  new screen.
+
+## Gotchas learned on screen 2
+
+- Duplicate frames of a screen are usually **states** (hover/selected),
+  not new screens — compare screenshots before building a second route.
+- Figma reference code lied about table paddings: body cells are px-16
+  except Name (px-12); header row is 52px tall (double py-8); body rows
+  48px **including** the 1px border (Tailwind border-box → use `h-12`,
+  not `py-2`).
+- Red dashed marks at row right-edges in Figma renders are **annotation
+  artifacts** — don't reproduce. Same for the stray `#971c1c` rect
+  (node `2960:223718`) which doesn't render.
+- The top bar's "Refresh" strip in the Figma layer tree does **not**
+  render — screenshot ground truth wins over the node tree.
+- Row 1's "Owners name" cell renders at 14px vs 12px elsewhere —
+  deliberate quirk, kept (`bigOwner`).

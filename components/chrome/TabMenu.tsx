@@ -1,5 +1,7 @@
 /* TabMenu (app-level nav row) — Figma node 2958:205606 */
 
+import Link from "next/link";
+
 export function TabMenu() {
   return (
     <div className="flex w-full shrink-0 items-start gap-3 bg-chrome px-4 py-2">
@@ -14,7 +16,7 @@ export function TabMenu() {
           </span>
         </span>
       </button>
-      <button className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn bg-paper px-3 py-2">
+      <Link href="/" className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn bg-paper px-3 py-2">
         <span className="relative size-4">
           <span className="absolute inset-[8.33%_4.16%]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -22,7 +24,7 @@ export function TabMenu() {
           </span>
         </span>
         <span className="text-center text-xs leading-4 font-medium whitespace-nowrap text-brand">Home</span>
-      </button>
+      </Link>
       <button className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn border border-outlined-border px-3 py-2 hover:bg-black/5">
         <span className="relative size-4">
           <span className="absolute inset-[12.5%_4.17%]">
