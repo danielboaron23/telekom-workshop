@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AppShell } from "@/components/chrome/AppShell";
 import { OfferHeader } from "@/components/offer/OfferHeader";
 import { OfferConfigurator } from "@/components/offer/OfferConfigurator";
@@ -27,9 +28,12 @@ export default function OfferPage() {
           <OfferConfigurator />
         </div>
         <div className="sticky bottom-0 flex w-full items-center justify-end bg-paper py-4 pr-6">
-          <button className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn bg-ink px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap text-white hover:bg-black">
+          <Link
+            href="/order"
+            className="flex h-8 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn bg-ink px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap text-white hover:bg-black"
+          >
             Continue to order
-          </button>
+          </Link>
         </div>
       </div>
     </AppShell>

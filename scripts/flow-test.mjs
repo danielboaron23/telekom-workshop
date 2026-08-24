@@ -136,6 +136,24 @@ await page.getByRole("button", { name: "Close Order Flow" }).click();
 await page.waitForURL("**/customers/sai-kumar");
 check("close Order Flow (offer) → customer", page.url().endsWith("/customers/sai-kumar"));
 
+// 20. offer Continue to order → order items
+await page.goto(base + "/offer", { waitUntil: "networkidle" });
+await page.getByRole("link", { name: "Continue to order" }).click();
+await page.waitForURL("**/order");
+check("Continue to order → /order", page.url().endsWith("/order"));
+
+// 21. item accordion collapses and re-expands
+check("order item expanded", await page.locator("text=Standard Mobile Charge").isVisible());
+await page.locator("button", { hasText: "Mobile (888) 888 8888" }).first().click();
+check("order item collapses", !(await page.locator("text=Standard Mobile Charge").isVisible()));
+await page.locator("button", { hasText: "Mobile (888) 888 8888" }).first().click();
+check("order item re-expands", await page.locator("text=Standard Mobile Charge").isVisible());
+
+// 22. order Back link → offer
+await page.getByRole("link", { name: "Back" }).click();
+await page.waitForURL("**/offer");
+check("order Back → /offer", page.url().endsWith("/offer"));
+
 console.log(results.join("\n"));
 await browser.close();
 process.exit(results.some((r) => r.startsWith("FAIL")) ? 1 : 0);

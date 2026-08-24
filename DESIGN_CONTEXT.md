@@ -13,7 +13,7 @@ plus a Storybook design system (built after the screens are done).
 | Summary — customer 360 | `2958:205890` | 1312×1295 | ✅ built (`/customers/sai-kumar`) |
 | Browse Catalog | `2958:206096` (base) / `2958:208592` (Mobile-tab state) | 1312×1438 | ✅ built (`/catalog`) |
 | Offer configuration | `2960:222429` (Plan) / `2958:207616` (Add-ons) / `2960:223002` (Select number) — one wizard, three step-states | 1287×1058 | ✅ built (`/offer`) |
-| Order Items | `2958:206268` | 1287×1257 | — |
+| Order Items | `2958:206268` | 1287×1257 | ✅ built (`/order`) |
 | Delivery Method | `2958:206479` / `2958:206612` | 1287×1058 | — |
 | ID Settings | `2958:206729` | 1287×1058 | — |
 | Billing Details | `2958:206873` / `2958:207491` | 1287×1058+ | — |
@@ -98,7 +98,11 @@ Current nav graph:
   sections show summaries only after their step is completed (matches
   the three Figma frames). Back → `/catalog`, close tab → customer.
   Sticky "Continue to order" bar reserved for the Order Items screen.
-- `scripts/flow-test.mjs` — Playwright nav+data test (27 checks); run
+- `/order` (Order Items — step 1 of the 5-step order wizard): reached
+  from the offer page's "Continue to order". Collapsible item accordion,
+  totals card, pay-now banner, sticky Back/Next Step footer (Back →
+  `/offer`; Next Step reserved for Delivery Method).
+- `scripts/flow-test.mjs` — Playwright nav+data test (31 checks); run
   after wiring each new screen.
 - Note: the Find Customer table intentionally deviates from the Figma
   (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people
@@ -172,3 +176,17 @@ Current nav graph:
   rather than hand-drawing.
 - Figma shows all accordion chevrons pointing up regardless of state;
   the build rotates them closed — deliberate live-app deviation.
+
+## Gotchas learned on screen 6 (Order Items)
+
+- The 1287-wide frames use a 1152px content column (right gap 48) vs
+  1200 on the 1312 frames — the app keeps its consistent 24px padding,
+  so price columns sit ~25px right of these frames. Frame-width
+  artifact, documented deviation.
+- The order stepper row is exactly 24px tall (no extra padding) and the
+  page column gap on this screen is 24, not 28.
+- Item sub-rows sit at the box padding (no indent under the chevron);
+  the "Parental Control Add-on" section carries 24px of extra bottom
+  space before its divider.
+- First "Total"/"Tax" labels in the totals card are secondary gray;
+  only the final Total is ink.
