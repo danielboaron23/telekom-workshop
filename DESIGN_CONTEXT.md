@@ -12,7 +12,7 @@ plus a Storybook design system (built after the screens are done).
 | Workspace_Desktop (Find Customer) | `2960:223625` (base) / `2958:205695` (row-hover state) | 1312×1078 | ✅ built (`/find-customer`) |
 | Summary — customer 360 | `2958:205890` | 1312×1295 | ✅ built (`/customers/sai-kumar`) |
 | Browse Catalog | `2958:206096` (base) / `2958:208592` (Mobile-tab state) | 1312×1438 | ✅ built (`/catalog`) |
-| Offer | `2960:222429` / `2958:207616` / `2960:223002` | 1287×1058 | — |
+| Offer configuration | `2960:222429` (Plan) / `2958:207616` (Add-ons) / `2960:223002` (Select number) — one wizard, three step-states | 1287×1058 | ✅ built (`/offer`) |
 | Order Items | `2958:206268` | 1287×1257 | — |
 | Delivery Method | `2958:206479` / `2958:206612` | 1287×1058 | — |
 | ID Settings | `2958:206729` | 1287×1058 | — |
@@ -91,7 +91,14 @@ Current nav graph:
   "Shop". Category tabs (Top offers/Mobile/Internet/Bundles) really
   filter the offer grid (`lib/catalog.ts`); the dropdown mirrors the
   active tab. Back arrow / tab close → `/customers/sai-kumar`.
-- `scripts/flow-test.mjs` — Playwright nav+data test (19 checks); run
+- `/offer` (Offer configuration wizard): reached from any catalog card's
+  "Select". Accordion state machine — Plan settings (commitment toggle)
+  → Continue → Add-ons (category pills, Select↔Remove cards) →
+  Continue → Select number (tabs, radios, number chips). Collapsed
+  sections show summaries only after their step is completed (matches
+  the three Figma frames). Back → `/catalog`, close tab → customer.
+  Sticky "Continue to order" bar reserved for the Order Items screen.
+- `scripts/flow-test.mjs` — Playwright nav+data test (27 checks); run
   after wiring each new screen.
 - Note: the Find Customer table intentionally deviates from the Figma
   (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people
@@ -150,3 +157,18 @@ Current nav graph:
   the page's gap-6 column.
 - Offer tile gradients use the light coral pair (#fe7a7f→#f05c62),
   not the brand tile gradient.
+
+## Gotchas learned on screen 5 (Offer wizard)
+
+- Multiple same-named frames in a row can be a **wizard**: diff their
+  screenshots pairwise — each frame expands a different accordion step.
+- Figma toggle/summary states contradict each other across frames
+  (A selects 24 months, B/C say 12) — live app picks one coherent
+  default and derives summaries from real state.
+- Accordion: header 52px (py-15px + border), keeps its bottom border
+  when open; body px-24 py-16; sections gap-16; footer bar 64px.
+- Some instance icons export in the wrong color — recolor the SVG fill
+  (`tile-puzzle-filled` → white, `discount-offer-blue` → #0070c9)
+  rather than hand-drawing.
+- Figma shows all accordion chevrons pointing up regardless of state;
+  the build rotates them closed — deliberate live-app deviation.

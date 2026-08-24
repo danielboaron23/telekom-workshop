@@ -1,5 +1,6 @@
 /* Catalog offer card — Figma "toggle-area" variants inside 2958:206150 */
 
+import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import type { Offer } from "@/lib/catalog";
 
@@ -101,9 +102,12 @@ export function OfferCard({ offer }: { offer: Offer }) {
           <button className="min-w-0 flex-1 cursor-pointer text-left text-sm leading-5 font-medium text-info">
             Details
           </button>
-          <button className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn border border-outlined-border px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap text-ink hover:bg-black/5">
+          <Link
+            href="/offer"
+            className="flex h-8 min-w-20 cursor-pointer items-center justify-center gap-2 overflow-clip rounded-btn border border-outlined-border px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap text-ink hover:bg-black/5"
+          >
             Select
-          </button>
+          </Link>
         </div>
       </div>
     </div>

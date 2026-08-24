@@ -104,6 +104,38 @@ await page.getByRole("button", { name: "Shop", exact: true }).click();
 await page.waitForURL("**/catalog");
 check("Shop button → /catalog", page.url().endsWith("/catalog"));
 
+// 15. catalog Select → offer configuration
+await page.goto(base + "/catalog", { waitUntil: "networkidle" });
+await page.getByRole("link", { name: "Select" }).first().click();
+await page.waitForURL("**/offer");
+check("catalog Select → /offer", page.url().endsWith("/offer"));
+
+// 16. wizard: plan Continue collapses plan with summary, opens add-ons
+await page.getByRole("button", { name: "24 months" }).click();
+await page.getByRole("button", { name: "Continue", exact: true }).click();
+check("plan summary shows chosen commitment", await page.locator("text=Commitment: 24 months").isVisible());
+check("add-ons opened", await page.locator("text=Category name can be long").isVisible());
+
+// 17. add-on select toggles to Remove, appears in summary after Continue
+await page.getByRole("button", { name: "Select", exact: true }).first().click();
+check("add-on Select → Remove", (await page.getByRole("button", { name: "Remove" }).count()) === 2);
+await page.getByRole("button", { name: "Continue", exact: true }).click();
+check("number section opened", await page.locator("text=Request a new number").isVisible());
+
+// 18. pick a number chip
+await page.getByRole("button", { name: "(777) 777 7777" }).click();
+const chipClass = await page.getByRole("button", { name: "(777) 777 7777" }).getAttribute("class");
+check("number chip selects", (chipClass ?? "").includes("border-2"));
+
+// 19. offer back arrow → catalog, close tab → customer
+await page.getByRole("button", { name: "Back" }).click();
+await page.waitForURL("**/catalog");
+check("offer back → /catalog", page.url().endsWith("/catalog"));
+await page.goto(base + "/offer", { waitUntil: "networkidle" });
+await page.getByRole("button", { name: "Close Order Flow" }).click();
+await page.waitForURL("**/customers/sai-kumar");
+check("close Order Flow (offer) → customer", page.url().endsWith("/customers/sai-kumar"));
+
 console.log(results.join("\n"));
 await browser.close();
 process.exit(results.some((r) => r.startsWith("FAIL")) ? 1 : 0);
