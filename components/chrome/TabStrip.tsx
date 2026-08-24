@@ -33,7 +33,7 @@ export function TabStrip({ tabs }: { tabs: SessionTab[] }) {
         tab.active ? (
           <div
             key={tab.label}
-            className="flex h-8 items-center gap-4 rounded-t-lg border-t-2 border-brand bg-paper px-3 py-2 not-first:ml-[18px]"
+            className="flex h-8 items-center gap-4 rounded-t-lg border-t-2 border-brand bg-paper px-3 py-2"
           >
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
@@ -58,7 +58,7 @@ export function TabStrip({ tabs }: { tabs: SessionTab[] }) {
           <Link
             key={tab.label}
             href={tab.href}
-            className="flex h-8 items-center justify-center gap-2 rounded-btn py-2 pr-3 pl-[18px] hover:bg-black/5"
+            className="flex h-8 items-center justify-center gap-2 rounded-btn px-3 py-2 hover:bg-black/5"
           >
             <TabIcon src={tab.icon} />
             <span className="text-center text-xs leading-4 font-medium whitespace-nowrap text-ink">{tab.label}</span>

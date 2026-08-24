@@ -10,7 +10,7 @@ plus a Storybook design system (built after the screens are done).
 | --- | --- | --- | --- |
 | Buy Internet — Agent dashboard | `2958:205590` | 1312×889 | ✅ built (`/`) |
 | Workspace_Desktop (Find Customer) | `2960:223625` (base) / `2958:205695` (row-hover state) | 1312×1078 | ✅ built (`/find-customer`) |
-| Summary (first) | `2958:205890` | 1312×1295 | — |
+| Summary — customer 360 | `2958:205890` | 1312×1295 | ✅ built (`/customers/sai-kumar`) |
 | Browse Catalog | `2958:206096` / `2958:208592` | 1312×1438 | — |
 | Offer | `2960:222429` / `2958:207616` / `2960:223002` | 1287×1058 | — |
 | Order Items | `2958:206268` | 1287×1257 | — |
@@ -77,10 +77,12 @@ Current nav graph:
 - `/` (Agent Dashboard): search field Enter → `/find-customer`.
 - `/find-customer`: back arrow, "Agent Dashboard" tab, tab close ×, and
   Home all → `/`. Table rows hover `#fef2f3` (that's Figma frame
-  `2958:205695` — a state, not a separate screen). Rows will navigate to
-  the customer/summary screen when it's built.
-- `scripts/flow-test.mjs` — Playwright nav test; run after wiring each
-  new screen.
+  `2958:205695` — a state, not a separate screen). Row click →
+  `/customers/sai-kumar`.
+- `/customers/sai-kumar` (Summary / customer 360): third session tab
+  "Sai Kumar"; closing it → `/find-customer`; other tabs navigate.
+- `scripts/flow-test.mjs` — Playwright nav test (10 checks); run after
+  wiring each new screen.
 
 ## Gotchas learned on screen 2
 
@@ -97,3 +99,25 @@ Current nav graph:
   render — screenshot ground truth wins over the node tree.
 - Row 1's "Owners name" cell renders at 14px vs 12px elsewhere —
   deliberate quirk, kept (`bigOwner`).
+
+## Gotchas learned on screen 3 (customer 360)
+
+- Figma strokes are **inner**; CSS borders add to the box. For bordered
+  elements sized by content, subtract the border from the padding
+  (`p-[15px]`/`p-[7px]`) or heights inflate 2px per element and drift
+  accumulates down the column.
+- The customer heading bar uses **Segoe UI** (Dynamics chrome) — built
+  with `--font-segoe` system stack; glyphs differ slightly on macOS.
+- Montserrat SemiBold (600) needed for the $120.00 balance — added to
+  the next/font weights.
+- The tab strip x-positions wobble ±7px between Figma screens (designer
+  inconsistency); standardized on screen 3's spacing (px-12/gap-12)
+  across all routes.
+- Recent-bills chart: 12 bars exist in Figma (only ~3 visible, clipped);
+  built as `overflow-x-auto` with hidden scrollbar + Figma's decorative
+  scroll pill. Bar heights/values copied verbatim from the mock.
+- Allowance items: "5.5/10 GB" wraps to its own line (min-width forces
+  it); no divider under the "Allowance" header; progress fill is 70%.
+- Dark-card icons need the white SVG exports (topnav versions or
+  dedicated white assets like `email-white.svg`) — a 404'd icon renders
+  as a broken-image box that's easy to misread as a style bug.

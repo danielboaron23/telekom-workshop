@@ -2,15 +2,20 @@
 
 /* Find Customer search + results table — Figma node 2960:223675 */
 
+import { useRouter } from "next/navigation";
 import { SearchFields } from "@/components/search/SearchFields";
 import { searchResults, type CustomerRow } from "@/lib/customers";
 
 const columns = ["Personal ID", "Name", "Phone #", "MSISDN", "Customer ID", "Owners name", "Status"];
 
 function Row({ row }: { row: CustomerRow }) {
+  const router = useRouter();
   const cells = [row.personalId, row.name, row.phone, row.msisdn, row.customerId];
   return (
-    <button className="flex h-12 w-[1380px] cursor-pointer items-center border-b border-black/12 text-left hover:bg-[#fef2f3]">
+    <button
+      onClick={() => router.push("/customers/sai-kumar")}
+      className="flex h-12 w-[1380px] cursor-pointer items-center border-b border-black/12 text-left hover:bg-[#fef2f3]"
+    >
       {cells.map((value, i) => (
         <span
           key={i}

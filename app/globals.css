@@ -33,6 +33,13 @@
 
   /* typography */
   --font-sans: var(--font-montserrat), Montserrat, sans-serif;
+  /* Dynamics/MS365 chrome text (Figma uses Segoe UI; closest system stack) */
+  --font-segoe: "Segoe UI", -apple-system, "Helvetica Neue", sans-serif;
+
+  /* feedback */
+  --color-info: #0070c9;
+  --color-chip-green: rgb(205, 232, 213);
+  --color-ink-card: rgb(57, 57, 61);
 
   /* brand gradient (tile background, right→left coral→magenta) */
   --gradient-primary: linear-gradient(-90deg, #f05c62 0%, #e50075 100%);
