@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Design tokens extracted from Figma "Flow for Workshop with Daniel"
+  (fileKey dFg3nUfY5hqdsKZiLgPgfb) — Amdocs/Telekom design system.
+*/
+@theme {
+  /* colors */
+  --color-brand: #f05c62;
+  --color-magenta: #e50075;
+  --color-ink: #131318;
+  --color-paper: #ffffff;
+  --color-surface: #f4f4f4;
+  --color-page: #faf9f8;
+  --color-chrome: #f0f0f0;
+  --color-chrome-dark: #eeeeee;
+  --color-secondary-text: rgba(0, 0, 0, 0.6);
+  --color-gray-300: rgba(0, 0, 0, 0.3);
+  --color-outlined-border: rgba(19, 19, 24, 0.5);
+  --color-outlined-border-on-dark: rgba(255, 255, 255, 0.5);
+  --color-header-secondary: #f6f8f9;
+  --color-rail-line: #d8d8d8;
+  --color-fluent-ink: #323130;
+
+  /* radius */
+  --radius-btn: 8px;
+  --radius-card: 12px;
+  --radius-field: 4px;
+
+  /* shadows */
+  --shadow-card: 0px 2px 8px 0px rgba(34, 33, 46, 0.12);
+  --shadow-tiny-btn: 0px 2px 4px rgba(34, 33, 46, 0.12);
+
+  /* typography */
+  --font-sans: var(--font-montserrat), Montserrat, sans-serif;
+
+  /* brand gradient (tile background, right→left coral→magenta) */
+  --gradient-primary: linear-gradient(-90deg, #f05c62 0%, #e50075 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/*
+  Layout contract: the whole app zooms proportionally from the 1312px
+  Figma frame so every screen keeps identical proportions on any monitor.
+  Screen roots use h-full / flex-1 (vh is not divided by zoom).
+*/
+.app-zoom {
+  zoom: clamp(0.6, calc(100vw / 1312px), 10);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
 }
