@@ -180,6 +180,24 @@ await page.getByRole("link", { name: "Previous steps" }).click();
 await page.waitForURL("**/order");
 check("Previous steps → /order", page.url().endsWith("/order"));
 
+// 27. delivery Next step (pickup mode) → equipment
+await page.goto(base + "/delivery", { waitUntil: "networkidle" });
+await page.getByRole("button", { name: "Next step" }).click();
+await page.waitForURL("**/equipment");
+check("delivery Next step → /equipment", page.url().endsWith("/equipment"));
+
+// 28. equipment validation: empty disabled, scan buttons fill, then enabled
+check("equipment Next Step disabled when empty", !(await page.getByRole("button", { name: "Next Step" }).isEnabled()));
+await page.getByRole("button", { name: "Scan Serial number" }).click();
+await page.getByRole("button", { name: "Scan SIM number" }).click();
+check("scan buttons fill values", (await page.locator("input").nth(0).inputValue()) === "3e6435y34");
+check("filled equipment → Next Step enabled", await page.getByRole("button", { name: "Next Step" }).isEnabled());
+
+// 29. Previous Step → delivery
+await page.getByRole("link", { name: "Previous Step" }).click();
+await page.waitForURL("**/delivery");
+check("equipment Previous Step → /delivery", page.url().endsWith("/delivery"));
+
 console.log(results.join("\n"));
 await browser.close();
 process.exit(results.some((r) => r.startsWith("FAIL")) ? 1 : 0);

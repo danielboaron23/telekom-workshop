@@ -15,7 +15,7 @@ plus a Storybook design system (built after the screens are done).
 | Offer configuration | `2960:222429` (Plan) / `2958:207616` (Add-ons) / `2960:223002` (Select number) — one wizard, three step-states | 1287×1058 | ✅ built (`/offer`) |
 | Order Items | `2958:206268` | 1287×1257 | ✅ built (`/order`) |
 | Delivery Method | `2958:206479` (toggle) / `2958:206612` (form empty) / `2969:66848` (form filled) — one step, three states | 1287×1058 | ✅ built (`/delivery`) |
-| ID Settings | `2958:206729` | 1287×1058 | — |
+| ID Settings / Equipment IDs | `2958:206729` (empty) / `2969:67222` (filled) | 1287×1058 | ✅ built (`/equipment`) |
 | Billing Details | `2958:206873` / `2958:207491` | 1287×1058+ | — |
 | Summary variants | `2969:68198` … `2958:208338` | various | — |
 | sizes_dialog / dialog overlays | `2958:207941` etc. | overlay | interactions, never static |
@@ -109,7 +109,13 @@ Current nav graph:
   name/phone/email/method are filled — exactly the B→C Figma states.
   Previous steps / back arrow → `/order`. Stepper shows step 1 with a
   checkmark. Next step reserved for Equipment IDs.
-- `scripts/flow-test.mjs` — Playwright nav+data test (39 checks); run
+- `/equipment` (Equipment IDs — order wizard step 3): reached from
+  Delivery Method's "Next step". Serial + SIM number fields with scan
+  icon-buttons (clicking a scan button fills the Figma sample value);
+  Next Step disabled until both are filled — the two Figma frames are
+  the empty/filled states. Previous Step / back arrow → `/delivery`.
+  Next Step reserved for Billing details.
+- `scripts/flow-test.mjs` — Playwright nav+data test (44 checks); run
   after wiring each new screen.
 - Note: the Find Customer table intentionally deviates from the Figma
   (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people

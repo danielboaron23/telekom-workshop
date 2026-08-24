@@ -6,6 +6,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Icon } from "@/components/ui/Icon";
 
 function Field({
@@ -36,6 +37,7 @@ function Field({
 }
 
 export function DeliveryCard() {
+  const router = useRouter();
   const [mode, setMode] = useState<"pickup" | "shipping">("pickup");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -191,6 +193,7 @@ export function DeliveryCard() {
           </Link>
           <button
             disabled={!nextEnabled}
+            onClick={() => router.push("/equipment")}
             className={`flex h-8 min-w-20 items-center justify-center gap-2 overflow-clip rounded-btn px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap ${
               nextEnabled ? "cursor-pointer bg-ink text-white hover:bg-black" : "cursor-default bg-black/10 text-black/40"
             }`}
