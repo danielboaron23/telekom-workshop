@@ -16,7 +16,7 @@ plus a Storybook design system (built after the screens are done).
 | Order Items | `2958:206268` | 1287×1257 | ✅ built (`/order`) |
 | Delivery Method | `2958:206479` (toggle) / `2958:206612` (form empty) / `2969:66848` (form filled) — one step, three states | 1287×1058 | ✅ built (`/delivery`) |
 | ID Settings / Equipment IDs | `2958:206729` (empty) / `2969:67222` (filled) | 1287×1058 | ✅ built (`/equipment`) |
-| Billing Details | `2958:206873` / `2958:207491` | 1287×1058+ | — |
+| Billing Details | `2958:206873` (existing, unselected) / `2969:67670` (selected) / `2958:207491` (New account form) | 1287×1058+ | ✅ built (`/billing`) |
 | Summary variants | `2969:68198` … `2958:208338` | various | — |
 | sizes_dialog / dialog overlays | `2958:207941` etc. | overlay | interactions, never static |
 
@@ -115,7 +115,15 @@ Current nav graph:
   Next Step disabled until both are filled — the two Figma frames are
   the empty/filled states. Previous Step / back arrow → `/delivery`.
   Next Step reserved for Billing details.
-- `scripts/flow-test.mjs` — Playwright nav+data test (44 checks); run
+- `/billing` (Billing details — order wizard step 4): reached from
+  Equipment IDs' "Next Step". Existing account tab = billing-accounts
+  table with radio selection (gates Next Step); New account tab = full
+  form with defaults (owner/policy/cycle selects, Set auto-payment
+  toggle showing the saved Visa card, Email/Post mail bill media,
+  Default billing address toggle). Previous Step / back → `/equipment`.
+  Next Step reserved for Summary. Header keeps the app's $30/$900 order
+  totals (these frames show $10/$300 — Figma mock inconsistency).
+- `scripts/flow-test.mjs` — Playwright nav+data test (51 checks); run
   after wiring each new screen.
 - Note: the Find Customer table intentionally deviates from the Figma
   (which repeats "Sarah Pulman" ×9) — Daniel asked for distinct people

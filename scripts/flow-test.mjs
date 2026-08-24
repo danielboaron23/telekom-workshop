@@ -198,6 +198,32 @@ await page.getByRole("link", { name: "Previous Step" }).click();
 await page.waitForURL("**/delivery");
 check("equipment Previous Step → /delivery", page.url().endsWith("/delivery"));
 
+// 30. equipment Next Step (after scan) → billing
+await page.goto(base + "/equipment", { waitUntil: "networkidle" });
+await page.getByRole("button", { name: "Scan Serial number" }).click();
+await page.getByRole("button", { name: "Scan SIM number" }).click();
+await page.getByRole("button", { name: "Next Step" }).click();
+await page.waitForURL("**/billing");
+check("equipment Next Step → /billing", page.url().endsWith("/billing"));
+
+// 31. existing account: Next disabled until a row is selected
+check("billing Next Step disabled (no selection)", !(await page.getByRole("button", { name: "Next Step" }).isEnabled()));
+await page.locator("button", { hasText: "BillingAccount_25829163" }).first().click();
+check("row selected → Next Step enabled", await page.getByRole("button", { name: "Next Step" }).isEnabled());
+
+// 32. New account tab: form with defaults, Next enabled; toggles work
+await page.getByRole("button", { name: "New account" }).click();
+check("new-account form shows Visa card", await page.locator("text=Visa **** 7683").isVisible());
+check("new-account Next Step enabled", await page.getByRole("button", { name: "Next Step" }).isEnabled());
+await page.getByRole("button", { name: "Set auto-payment" }).click();
+check("auto-payment off hides card", !(await page.locator("text=Visa **** 7683").isVisible()));
+await page.getByRole("button", { name: "Set auto-payment" }).click();
+
+// 33. Previous Step → equipment
+await page.getByRole("link", { name: "Previous Step" }).click();
+await page.waitForURL("**/equipment");
+check("billing Previous Step → /equipment", page.url().endsWith("/equipment"));
+
 console.log(results.join("\n"));
 await browser.close();
 process.exit(results.some((r) => r.startsWith("FAIL")) ? 1 : 0);

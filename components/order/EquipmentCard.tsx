@@ -5,6 +5,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Icon, IconButton } from "@/components/ui/Icon";
 
 function ScannedField({
@@ -38,6 +39,7 @@ function ScannedField({
 }
 
 export function EquipmentCard() {
+  const router = useRouter();
   const [serial, setSerial] = useState("");
   const [sim, setSim] = useState("");
   const valid = serial.trim() !== "" && sim.trim() !== "";
@@ -85,6 +87,7 @@ export function EquipmentCard() {
           </Link>
           <button
             disabled={!valid}
+            onClick={() => router.push("/billing")}
             className={`flex h-8 min-w-20 items-center justify-center gap-2 overflow-clip rounded-btn px-3 py-2 text-center text-sm leading-5 font-medium whitespace-nowrap ${
               valid ? "cursor-pointer bg-ink text-white hover:bg-black" : "cursor-default bg-black/10 text-black/40"
             }`}
