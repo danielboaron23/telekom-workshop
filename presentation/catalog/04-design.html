@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design — Browse Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../deck.css" />
+<style>
+  /* ───────── deck 04 · local patterns ───────── */
+  .build{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center;margin-top:10px;}
+  .build .shot img{max-height:540px;object-fit:cover;object-position:top;}
+  .build ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px;}
+  .build ul li{display:flex;gap:11px;font-size:14px;line-height:1.5;color:var(--secondary-text);}
+  .build ul li b{color:var(--ink);font-weight:600;}
+  .build ul li .tick{
+    flex:none;width:20px;height:20px;border-radius:50%;background:var(--chip-green);color:#1c5132;
+    display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:1px;
+  }
+
+  .attempts{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:18px;}
+  .attempts .a{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:16px 15px;box-shadow:var(--shadow-card);
+  }
+  .attempts .a.dead{border-color:rgba(240,92,98,.3);background:rgba(240,92,98,.05);box-shadow:none;}
+  .attempts .a.win{border-color:var(--magenta-line);background:var(--magenta-wash);box-shadow:none;}
+  .attempts .n{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:700;}
+  .attempts .t{font-size:16px;font-weight:700;color:var(--ink);margin-top:8px;line-height:1.28;}
+  .attempts .d{font-size:13px;color:var(--secondary-text);margin-top:9px;line-height:1.48;}
+  .attempts .d b{color:var(--ink);font-weight:600;}
+  .attempts .said{
+    margin-top:11px;font-family:var(--font-mono);font-size:11.5px;line-height:1.45;
+    color:var(--ink);background:var(--surface);border:1px solid var(--line-soft);
+    border-radius:var(--radius-field);padding:8px 10px;
+  }
+
+  .verify{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:20px;}
+  .verify .v{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:15px 14px;box-shadow:var(--shadow-card);text-align:center;
+  }
+  .verify .v .num{font-size:27px;font-weight:700;color:var(--magenta);line-height:1;letter-spacing:-.02em;}
+  .verify .v .k{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-top:8px;line-height:1.35;}
+  .cmdlist{
+    font-family:var(--font-mono);font-size:12.5px;line-height:1.85;color:var(--secondary-text);
+    background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:15px 18px;margin:18px 0 0;white-space:pre-wrap;
+  }
+  .cmdlist b{color:var(--ink);font-weight:600;}
+  .cmdlist i{color:#1c5132;font-style:normal;font-weight:600;}
+</style>
+</head>
+<body data-brand="Browse Catalog · Run 2">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Run 02</span> · <span class="stage">Stage 04</span> · the build</p>
+      <h1 class="title" data-stagger="2">Two builds,<br>one brief<em>.</em></h1>
+      <p class="lead" data-stagger="3">
+        The spec produced <b><code>/catalog-v2</code></b> — the catalog rebuilt as an agent's tool, inside the
+        Telekom design system. Then came a second ask: <b>do it again, off the design system</b>, the way a
+        competitor would. That became <b><code>/catalog-studio</code></b>, and it took three attempts.
+      </p>
+      <p class="note-strip" data-stagger="4">
+        Both are live. Neither one touched <code>/catalog</code>. <b>Three catalogs now exist side by side</b> —
+        which is the whole point of the Comparison tab.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · WHAT SHIPPED IN V2 ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Build 1 · inside the design system · zero new tokens</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:2px"><code style="font-size:.72em">/catalog-v2</code> — every control on it is <em>real</em></h2>
+      <div class="build">
+        <div class="shot" data-stagger="2">
+          <img src="shots/v2-catalog.png" alt="/catalog-v2: a customer strip naming Sai Kumar with the Singapore address, six named offers with real prices, the current plan chipped" />
+          <div class="shot-cap"><b>/catalog-v2</b> — the strip names Sai Kumar and his Singapore address; the count is <b>6 offers</b>, and there are six cards.</div>
+        </div>
+        <div>
+          <ul>
+            <li data-stagger="3"><span class="tick">✓</span><span><b>The customer is on the screen.</b> Name, initials, the real address, mobile and internet counts, the <code>$40.00</code> line — no tab flip.</span></li>
+            <li data-stagger="3"><span class="tick">✓</span><span><b>Search filters the grid</b> as you type, across titles and body copy.</span></li>
+            <li data-stagger="4"><span class="tick">✓</span><span><b>The count is the truth.</b> “6 offers”, not “100 Results” — and it follows every filter.</span></li>
+            <li data-stagger="4"><span class="tick">✓</span><span><b>Twelve named offers</b> at real prices: Magenta Mobile S/M/L, Fiber 100/500, TV Plus, bundles, prepaid packs. No lorem, no <code>$18.99</code>.</span></li>
+            <li data-stagger="5"><span class="tick">✓</span><span><b>The current plan is a card</b>, chipped <em>Current</em>, its action disabled — Sai's <code>$40.00</code> Magenta Mobile M.</span></li>
+            <li data-stagger="5"><span class="tick">✓</span><span><b>Details opens a panel</b> and the grid stays put. Select still starts the existing <code>/offer</code> wizard.</span></li>
+            <li data-stagger="6"><span class="tick">✓</span><span><b>Two offers state a reason</b> for being on screen — the Uxcel line, in our words: “Covers the 3 mobile lines already on this account.”</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · THE SECOND ASK ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Build 2 · the second ask, in the user's own words</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:12px">“not conected to the design system”</h2>
+      <div class="prompt-card" data-stagger="2">
+        <div class="pc-top">
+          <span class="pc-avatar">D</span>
+          <span class="pc-who">Daniel, after v2 shipped</span>
+          <span class="cmd">/ui-ux-pro-max</span>
+        </div>
+        <div class="pc-body">
+          now i want to create anoter version that not conected to the design system and somthing new
+          use the /ui-ux-pro-max and make more better version like our cometitors or more inovate and
+          delitful in new route
+        </div>
+        <div class="pc-foot">
+          A different job from v2, and worth being explicit about it: v2 answers <b>“can CEP's own catalog
+          become an agent's tool?”</b> — the studio answers <b>“what would this look like if a product company
+          shipped it?”</b>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="3">
+        New route <code>/catalog-studio</code>, isolated CSS, its own fonts, <b>zero CEP tokens</b>. The same
+        <code>lib/catalog-v2.ts</code> data underneath — so any difference you can see is a
+        <b>design</b> difference, not a data one.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · THREE ATTEMPTS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The honest version of “off the design system”</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">It took <em>three</em> attempts, and two of them were rejected</h2>
+      <div class="attempts">
+        <div class="a dead" data-stagger="2">
+          <span class="badge reject">Rejected</span>
+          <div class="n">Attempt 1</div>
+          <div class="t">The editorial magazine</div>
+          <div class="d">Linen background, serif headlines, an offer <b>list</b> with an inspector. Beautiful, and completely wrong for someone holding a phone.</div>
+          <div class="said">“dont like it. !!! i want it better !”</div>
+        </div>
+        <div class="a dead" data-stagger="3">
+          <span class="badge reject">Rejected</span>
+          <div class="n">Attempt 2</div>
+          <div class="t">The OLED switchboard</div>
+          <div class="d">Dark UI, lime accent, <b>current vs candidate</b> compare with live price and GB deltas, a keyboard-driven filmstrip. Sharp — but it read as a <b>dashboard</b>, not a place you buy something.</div>
+          <div class="said">“its not look realstic at all i want it to be like real marketplace”</div>
+        </div>
+        <div class="a win" data-stagger="4">
+          <span class="badge mag">Shipped</span>
+          <div class="n">Attempt 3</div>
+          <div class="t">A real storefront</div>
+          <div class="d">Navy marketplace chrome, <b>Deliver to → For Sai Kumar</b>, department nav, a filter sidebar, <b>product photography</b>, star ratings and review counts, list prices, <b>Add to cart</b>, and a sticky cart bar that starts the order.</div>
+          <div class="said">Rubik / Nunito Sans · marketplace palette · 5 generated product shots</div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        Both rejections were the <b>same</b> correction: the design was answering “is this attractive?” when
+        the question was <b>“does this look like a shop an agent can sell from?”</b> Taste feedback got
+        specific the moment there was something running to point at.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · WHAT SHIPPED IN STUDIO ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Build 2 · outside the design system · its own everything</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:2px"><code style="font-size:.72em">/catalog-studio</code> — an actual <em>marketplace</em></h2>
+      <div class="build">
+        <div class="shot" data-stagger="2">
+          <img src="shots/studio-shop.png" alt="/catalog-studio: a navy marketplace header, department nav, filter sidebar and product cards with photos, ratings and Add to cart" />
+          <div class="shot-cap"><b>/catalog-studio</b> — the same twelve offers as v2, sold like products: photos, ratings, list prices, <b>Add to cart</b>, sticky cart.</div>
+        </div>
+        <div>
+          <ul>
+            <li data-stagger="3"><span class="tick">✓</span><span><b>Marketplace chrome</b> — “Deliver to · <b>For Sai Kumar</b> · 16 Sandilands Road” in the header, the Amazon placement from reference 04, doing a real job.</span></li>
+            <li data-stagger="3"><span class="tick">✓</span><span><b>Department nav + filter rail</b> — categories twice over, plan-type radios, and the customer's current plan restated in the sidebar.</span></li>
+            <li data-stagger="4"><span class="tick">✓</span><span><b>Products, not tiles</b> — generated product photography, star ratings with review counts, <code>$49</code><sup>99</sup> price treatment, struck-through list prices, “Best seller” and “Deal” flags.</span></li>
+            <li data-stagger="4"><span class="tick">✓</span><span><b>A cart, not a Select</b> — Add to cart, an “In cart” state, and a sticky bar that names who you're shopping for before <b>Start order</b>.</span></li>
+            <li data-stagger="5"><span class="tick">✓</span><span><b>Current plan still can't be bought</b> — it renders as <em>On this plan</em>. The one thing every build kept.</span></li>
+            <li data-stagger="5"><span class="tick">✓</span><span><b>Sort by</b> Featured / price / name, and a real no-results state with a way out.</span></li>
+            <li data-stagger="6"><span class="tick">✓</span><span><b>Completely isolated</b> — <code>[data-studio]</code> scoping, its own CSS variables, and CEP's viewport zoom explicitly switched off.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · VERIFICATION ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Two new screens, one old screen that must not move</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">How we know nothing broke</h2>
+      <div class="verify">
+        <div class="v" data-stagger="2"><div class="num">111</div><div class="k">assertions passing</div></div>
+        <div class="v" data-stagger="2"><div class="num">3</div><div class="k">catalogs live at once</div></div>
+        <div class="v" data-stagger="3"><div class="num">0</div><div class="k">changes to /catalog</div></div>
+        <div class="v" data-stagger="3"><div class="num">0</div><div class="k">new CEP tokens</div></div>
+      </div>
+      <pre class="cmdlist" data-stagger="4"><b>npx tsc --noEmit</b>                              <i>clean</i>
+<b>node scripts/flow-test.mjs http://localhost:3001</b>   <i>111 PASS · 0 FAIL</i>
+  ├─ v1 still shows <b>100 Results</b> on Top offers      <i>the lie is preserved on purpose</i>
+  ├─ v1 still shows the <b>Seattle</b> address            <i>untouched</i>
+  ├─ Mobile tab still filters to <b>4 Results</b>          <i>pre-existing assertion</i>
+  ├─ Add new → <b>/catalog-v2</b>, strip names Sai Kumar
+  ├─ v2 search changes the count · nonsense → no-results
+  ├─ v2 Details opens a panel · Select → <b>/offer</b>
+  ├─ v2 current plan control is <b>disabled</b>
+  └─ studio names the customer · <b>On this plan</b> · Start order → <b>/offer</b></pre>
+      <p class="note-strip" data-stagger="5">
+        The most valuable assertions in the file are the ones that check the <b>old</b> screen still lies to
+        you. “100 Results” staying wrong on <code>/catalog</code> is proof the redesign lived in a sibling
+        route instead of leaking into a pixel-verified screen.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="../deck.js"></script>
+</body>
+</html>

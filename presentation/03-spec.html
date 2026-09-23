@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spec · the PRD — Telekom CEP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="deck.css" />
+<style>
+  /* ───────── deck 03 · local patterns ───────── */
+  .choice{
+    display:grid;grid-template-columns:auto 1fr 1fr;gap:0 22px;align-items:start;
+    padding:15px 0;border-bottom:1px solid var(--line-soft);
+  }
+  .choice:last-of-type{border-bottom:0;}
+  .choice .q{display:flex;gap:12px;align-items:center;}
+  .choice .n{
+    flex:none;width:24px;height:24px;border-radius:50%;background:var(--gradient-primary);
+    color:#fff;display:grid;place-items:center;font-size:11.5px;font-weight:700;
+  }
+  .choice .lbl{font-size:14.5px;font-weight:700;color:var(--ink);white-space:nowrap;}
+  .choice .pick{font-size:13.5px;color:var(--ink);line-height:1.45;}
+  .choice .pick .chosen{
+    display:inline-block;font-weight:600;background:var(--magenta-wash);color:var(--magenta);
+    border:1px solid var(--magenta-line);border-radius:999px;padding:2px 9px;font-size:12.5px;margin-bottom:5px;
+  }
+  .choice .trade{font-size:12.5px;color:var(--secondary-text);line-height:1.45;}
+
+  /* code → consequence pairs */
+  .revealed{display:grid;gap:13px;margin-top:14px;}
+  .revealed .r{
+    display:grid;grid-template-columns:1.15fr auto 1fr;gap:18px;align-items:center;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:15px 17px;box-shadow:var(--shadow-card);
+  }
+  .revealed .code{font-family:var(--font-mono);font-size:12.5px;line-height:1.55;color:var(--secondary-text);}
+  .revealed .code b{color:var(--ink);font-weight:600;}
+  .revealed .code .f{display:block;color:var(--faint);font-size:11px;margin-bottom:4px;}
+  .revealed .arrow{color:var(--rail-line);font-size:20px;}
+  .revealed .out{font-size:13.5px;line-height:1.5;color:var(--secondary-text);}
+  .revealed .out b{color:var(--ink);font-weight:600;}
+  .revealed .out .tag{
+    display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    border-radius:999px;padding:3px 9px;margin-bottom:6px;
+  }
+  .revealed .out .tag.stop{background:rgba(240,92,98,.15);color:#a3323c;}
+  .revealed .out .tag.win{background:var(--chip-green);color:#1c5132;}
+
+  .gatebar{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:20px;}
+  .gatebar .g{
+    border-radius:var(--radius-card);padding:14px 13px;border:1px solid var(--line-soft);
+    background:var(--paper);box-shadow:var(--shadow-card);
+  }
+  .gatebar .g .t{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);}
+  .gatebar .g .c{font-size:26px;font-weight:700;color:var(--magenta);margin-top:7px;line-height:1;}
+  .gatebar .g .d{font-size:11.5px;color:var(--faint);margin-top:6px;line-height:1.35;}
+  .gatebar .g.zero .c{color:var(--rail-line);}
+</style>
+</head>
+<body data-brand="Spec · the PRD">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Stage 03</span> · <span class="cmd">/cep-product-manager</span></p>
+      <h1 class="title" data-stagger="2">From four decisions<br>to something <em>buildable</em></h1>
+      <p class="lead" data-stagger="3">
+        Research decides <b>what</b> to build. The codebase decides <b>whether it can be built</b> —
+        and it changed three of this spec's decisions after the research was already approved.
+      </p>
+      <hr class="rule" data-stagger="4" />
+      <p class="sub" data-stagger="4">The checkpoint · what the code said · the invent gate · the weak sections we named</p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · THE CHECKPOINT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Checkpoint · verification #2</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:10px">Four choices, each with its trade named</h2>
+      <p class="lead" data-stagger="2" style="margin-bottom:8px">
+        Before drafting, the PM put its recommendations to me as explicit choices — not a finished
+        document to nod at. All four approved.
+      </p>
+      <div data-stagger="3">
+        <div class="choice">
+          <div class="q"><span class="n">1</span><span class="lbl">Surface</span></div>
+          <div class="pick"><span class="chosen">A route at /create-customer</span><br />With its own session tab, like every other screen.</div>
+          <div class="trade">Costs a route. Buys survival across an interruption — which a modal cannot do.</div>
+        </div>
+        <div class="choice">
+          <div class="q"><span class="n">2</span><span class="lbl">Required fields</span></div>
+          <div class="pick"><span class="chosen">Name + Personal ID + one reachable number</span><br />Phone or MSISDN, either satisfies it.</div>
+          <div class="trade">Three fields instead of one. Buys a record that's findable and billable.</div>
+        </div>
+        <div class="choice">
+          <div class="q"><span class="n">3</span><span class="lbl">Fix Find Customer search</span></div>
+          <div class="pick"><span class="chosen">Yes — minimally</span><br />Wire <code>onSubmit</code> to filter the mock list, add a no-results state.</div>
+          <div class="trade">Two one-line fixes. Without them the entry point to this feature isn't reachable.</div>
+        </div>
+        <div class="choice">
+          <div class="q"><span class="n">4</span><span class="lbl">Success destination</span></div>
+          <div class="pick"><span class="chosen">Land on the Customer 360</span><br />With a confirmation on arrival.</div>
+          <div class="trade">No dedicated confirmation screen. <b>Approving this is what exposed the blocker.</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · WHAT THE CODE SAID ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The part worth the whole workshop</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">Three things the code said that the research couldn't</h2>
+      <div class="revealed">
+        <div class="r" data-stagger="2">
+          <div class="code">
+            <span class="f">app/customers/[id]/page.tsx</span>
+            export const dynamicParams = <b>false</b>;<br />
+            generateStaticParams() → <b>the 10 mock customers</b>
+          </div>
+          <div class="arrow">→</div>
+          <div class="out">
+            <span class="tag stop">would have shipped a 404</span>
+            Your approved success destination <b>404s for every new customer</b>. Solved with a static sibling route <code>/customers/new</code>, which takes precedence and needs no build-time entry. <code>[id]</code> is never touched.
+          </div>
+        </div>
+        <div class="r" data-stagger="3">
+          <div class="code">
+            <span class="f">components/customer/BillingColumn.tsx:68</span>
+            <b>error-alert.svg</b> already ships <b>#D32F2F</b><br />
+            <span class="f" style="margin-top:6px">components/customer/DeliveryCard.tsx:119</span>
+            a bordered callout <b>already exists</b>
+          </div>
+          <div class="arrow">→</div>
+          <div class="out">
+            <span class="tag win">INVENT became COMPOSE</span>
+            The research called the duplicate banner "the one genuinely new component". It turned out to be <b>three shipping patterns and zero new colour tokens</b>.
+          </div>
+        </div>
+        <div class="r" data-stagger="4">
+          <div class="code">
+            <span class="f">components/dashboard/SearchCustomerCard.tsx:17</span>
+            onSubmit={() =&gt; router.push("/find-customer")}<br />
+            <b>the typed value is thrown away</b>
+          </div>
+          <div class="arrow">→</div>
+          <div class="out">
+            <span class="tag stop">pattern was unbuildable</span>
+            folk's "carry what they typed" needs <b>two one-line fixes in two different files</b> before the pattern is even possible.
+          </div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        The 404 was confirmed against <b>this repo's bundled Next 16.3.2 docs</b>, not from memory.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · THE INVENT GATE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The invent gate · result</p>
+      <h2 class="head" data-stagger="1">Nothing was tagged <em>INVENT</em></h2>
+      <p class="lead" data-stagger="2">
+        Every element gets exactly one tag, and you stop at the first that works. The count is the
+        headline: four new files, three of them pure composition, one recoloured icon.
+      </p>
+      <div class="gatebar">
+        <div class="g" data-stagger="3"><div class="t">Reuse</div><div class="c">most</div><div class="d">Existing components, untouched</div></div>
+        <div class="g" data-stagger="3"><div class="t">Compose</div><div class="c">3</div><div class="d">New files from shipping patterns</div></div>
+        <div class="g" data-stagger="4"><div class="t">Extend</div><div class="c">1</div><div class="d">One icon, recoloured white</div></div>
+        <div class="g zero" data-stagger="4"><div class="t">Invent</div><div class="c">0</div><div class="d">Nothing genuinely new</div></div>
+        <div class="g zero" data-stagger="5"><div class="t">New tokens</div><div class="c">0</div><div class="d">The theme is unchanged</div></div>
+      </div>
+      <p class="note-strip" data-stagger="6">
+        That's the gate doing its job. The skill made the agent <b>check <code>DeliveryCard</code> and
+        <code>BillingColumn</code> before declaring anything new</b> — and both times, something already existed.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · WHAT SHIPPED ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The artifacts</p>
+      <h2 class="head" data-stagger="1">Two documents, no meeting required</h2>
+      <div class="cards cols-2" style="align-items:start;margin-top:12px">
+        <div class="card" data-stagger="2">
+          <p class="k">workshop/submissions/daniel/PRD.md</p>
+          <h3>Whether, and why</h3>
+          <p>Problem · user and moment · goals · <b>non-goals</b> · prior art from the research · the flow · four requirement areas · states · copy · data · design-system impact.</p>
+          <p style="margin-top:10px"><b>21 acceptance criteria</b>, each observable and naming a real command. Then the scope cut, six risks, six open questions.</p>
+        </div>
+        <div class="card" data-stagger="3">
+          <p class="k">workshop/submissions/daniel/SCREEN_SPEC.md</p>
+          <h3>What's actually on it</h3>
+          <p>Anatomy with <b>real class strings</b> · token usage · field-by-field validation and error copy · tab order · <b>11 states</b> · build order.</p>
+          <p style="margin-top:10px">Written second, on purpose: the PRD decides <i>whether</i>, the screen spec decides <i>what</i>.</p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="4">
+        Every acceptance criterion names something you can run — <code>node scripts/flow-test.mjs</code>,
+        <code>node scripts/sb-smoke.mjs</code>. <b>"Feels fast" and "is intuitive" are not criteria.</b>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · ARGUING WITH ITSELF ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The rule that keeps a spec honest</p>
+      <h2 class="head" data-stagger="1">It had to name its own <em>weak</em> sections</h2>
+      <p class="lead" data-stagger="2">
+        The skill requires naming what's thin, instead of handing over something polished and vague.
+        Four went in:
+      </p>
+      <ul class="takeaways" style="margin-top:18px">
+        <li data-stagger="3"><span class="b">1</span><span><b>The workaround is unknown.</b> "What do agents do today when the customer isn't in the system" has no answer — no agent research exists. Filed as an open question and <b>labelled the weakest part of the document</b>, rather than filled with a plausible invention.</span></li>
+        <li data-stagger="4"><span class="b">2</span><span><b>No success measure is possible here.</b> No backend, no telemetry, no baseline. The PRD says so and lists what <i>would</i> be instrumented later — instead of inventing a percentage.</span></li>
+        <li data-stagger="5"><span class="b">3</span><span><b>Risk 1 is unbudgeted work.</b> A brand-new customer's 360 has no products, bills or history — and those three cards were never designed empty. A direct consequence of the approved destination, landing on the designer.</span></li>
+        <li data-stagger="6"><span class="b">4</span><span><b>The duplicate design is inferred, not observed.</b> Stated in the research, the deck, and again here.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═════ 7 · TAKEAWAY ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Stage 03 · takeaway</p>
+      <h2 class="head" data-stagger="1">Research decides <em>what</em>. The codebase decides <em>whether</em>.</h2>
+      <p class="lead" data-stagger="2" style="font-size:20px">
+        Three of this spec's decisions changed after reading real files: a 404 that would have shipped,
+        a component that turned out to already exist, and a search field that silently discards what the
+        agent types.
+      </p>
+      <p class="lead" data-stagger="3" style="font-size:20px;margin-top:18px">
+        A PRD written from the research alone would have looked <b>just as convincing</b> — and been
+        wrong three times.
+      </p>
+      <hr class="rule" data-stagger="4" />
+      <p class="note-strip" data-stagger="4">
+        <b>Next:</b> the designer takes it. Four new files, zero new tokens — and three bugs that only
+        appear once something is actually running.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="deck.js"></script>
+</body>
+</html>

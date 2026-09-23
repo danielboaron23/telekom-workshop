@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Comparison — Browse Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../deck.css" />
+<style>
+  /* ───────── deck 05 · live side-by-side ─────────
+     Each pane frames a real route at 1312px — the design width — and
+     scales it down with a transform, so what's on the slide is the
+     running app, not a screenshot. */
+  .pair{display:grid;gap:16px;margin-top:12px;}
+  .pair.two{grid-template-columns:1fr 1fr;}
+  .pair.three{grid-template-columns:repeat(3,1fr);}
+
+  .pane{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);overflow:hidden;
+    background:var(--paper);box-shadow:var(--shadow-card);display:flex;flex-direction:column;
+  }
+  .pane.hero{border-color:var(--magenta-line);box-shadow:0 6px 22px rgba(229,0,117,.14);}
+
+  /* browser-ish chrome so the URL is unmistakable */
+  .urlbar{
+    display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--surface);
+    border-bottom:1px solid var(--line-soft);flex:none;
+  }
+  .urlbar .dots{display:flex;gap:4px;flex:none;}
+  .urlbar .dots i{width:8px;height:8px;border-radius:50%;background:var(--rail-line);display:block;}
+  .urlbar .u{
+    font-family:var(--font-mono);font-size:11.5px;color:var(--ink);background:var(--paper);
+    border:1px solid var(--line-soft);border-radius:999px;padding:3px 10px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0;
+  }
+  .urlbar .tag{
+    font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    border-radius:999px;padding:3px 8px;flex:none;
+  }
+  .urlbar .tag.old{background:rgba(240,92,98,.15);color:#a3323c;}
+  .urlbar .tag.new{background:var(--magenta-wash);color:var(--magenta);}
+  .urlbar .tag.alt{background:var(--info-wash);color:var(--info);}
+  .urlbar .pop{
+    flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+    border:1px solid var(--line-soft);background:var(--paper);color:var(--secondary-text);
+  }
+  .urlbar .pop:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .urlbar .pop svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;}
+
+  /* the live viewport — --s is set from the real pane width at runtime,
+     so the framed route always fits exactly instead of guessing at breakpoints */
+  .live{
+    --w:1312; --h:980; --s:.435;
+    width:100%; height:calc(var(--h) * var(--s) * 1px);
+    overflow:hidden; position:relative; background:var(--page); flex:none;
+  }
+  .live iframe{
+    width:calc(var(--w) * 1px); height:calc(var(--h) * 1px); border:0; display:block;
+    transform:scale(var(--s)); transform-origin:0 0;
+  }
+
+  .panecap{
+    padding:9px 12px;border-top:1px solid var(--line-soft);background:var(--surface);
+    font-size:12px;line-height:1.4;color:var(--secondary-text);flex:1;
+  }
+  .panecap b{color:var(--ink);font-weight:700;}
+  .panecap .l{display:block;font-size:11px;color:var(--faint);margin-top:2px;}
+
+  /* difference chips under a pair */
+  .diffs{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;align-items:center;}
+  .diffs .lb{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:700;}
+  .diff{
+    font-size:12.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);
+    border-radius:999px;padding:6px 12px;
+  }
+  .diff b{color:var(--magenta);font-weight:700;}
+  .diff.was{color:var(--secondary-text);background:var(--surface);border-color:transparent;}
+  .diff.was b{color:#a3323c;}
+
+  .cmp td.f{width:19%;}
+  .cmp td.v1{color:var(--secondary-text);}
+  .cmp td.v1 b{color:#a3323c;font-weight:600;}
+  .cmp th.h1{color:#a3323c;} .cmp th.h2{color:var(--magenta);} .cmp th.h3{color:var(--info);}
+
+  .verdict{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px;}
+  .verdict .v{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:19px 18px;box-shadow:var(--shadow-card);
+  }
+  .verdict .v.ship{border-color:var(--magenta-line);background:var(--magenta-wash);box-shadow:none;}
+  .verdict .v.probe{border-color:rgba(0,112,201,.28);background:var(--info-wash);box-shadow:none;}
+  .verdict .v .rt{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;}
+  .verdict .v.ship .rt{color:var(--magenta);} .verdict .v.probe .rt{color:var(--info);}
+  .verdict .v h3{font-size:19px;font-weight:700;color:var(--ink);margin:9px 0 0;line-height:1.25;}
+  .verdict .v h3 code{font-size:.82em;}
+  .verdict .v p{font-size:13.5px;line-height:1.52;color:var(--secondary-text);margin:10px 0 0;}
+  .verdict .v p b{color:var(--ink);font-weight:600;}
+  .verdict .v ul{list-style:none;padding:0;margin:11px 0 0;display:grid;gap:7px;}
+  .verdict .v ul li{font-size:13px;line-height:1.45;color:var(--secondary-text);padding-inline-start:15px;position:relative;}
+  .verdict .v ul li::before{content:"";position:absolute;inset-inline-start:0;top:7px;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.45;}
+  .verdict .v ul li b{color:var(--ink);font-weight:600;}
+
+</style>
+</head>
+<body data-brand="Browse Catalog · Run 2">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Run 02</span> · <span class="stage">Comparison</span> · the pages in this deck are live</p>
+      <h1 class="title" data-stagger="2">Three catalogs,<br>running at <em>once</em>.</h1>
+      <p class="lead" data-stagger="3">
+        Every frame from here on is <b>the real route in an iframe</b>, not a screenshot — you can scroll it,
+        type in its search, open its panels. Same repo, same mock customer, same twelve offers.
+        <b>Any difference you see is a design decision.</b>
+      </p>
+      <div class="pills" data-stagger="4" style="margin-top:26px">
+        <span class="pill">/catalog <span style="color:#a3323c;font-weight:700">· the original</span></span>
+        <span class="pill mag">/catalog-v2 · in the design system</span>
+        <span class="pill">/catalog-studio <span style="color:var(--info);font-weight:700">· off the design system</span></span>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        Nothing was migrated and nothing was deleted. <b>A sibling route per direction</b> is what makes a
+        comparison like this possible at all — and what kept a pixel-verified screen safe while we argued.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · V1 vs V2 — THE FIRST IMPROVEMENT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Improvement 1 · same design system</p>
+      <h2 class="head" data-stagger="1" style="font-size:clamp(22px,2.5vw,32px);margin-bottom:4px">
+        What changed when the catalog stopped being a <em>shop window</em>
+      </h2>
+      <div class="pair two" data-stagger="2">
+        <div class="pane">
+          <div class="urlbar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="u" data-url="/catalog/"></span>
+            <span class="tag old">Before</span>
+            <a class="pop" data-live="/catalog/" target="_blank" rel="noopener" aria-label="Open /catalog in a new tab"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="live"><iframe data-live="/catalog/" title="The original /catalog" loading="lazy"></iframe></div>
+          <div class="panecap"><b>Eight identical tiles.</b> “100 Results” over 8 offers, every price <code>$18.99</code>, lorem body copy, a Seattle address for a Singapore customer — and six controls that do nothing.<span class="l">Untouched by this run. Still passing its original assertions.</span></div>
+        </div>
+        <div class="pane hero">
+          <div class="urlbar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="u" data-url="/catalog-v2/?customer=sai-kumar"></span>
+            <span class="tag new">After</span>
+            <a class="pop" data-live="/catalog-v2/?customer=sai-kumar" target="_blank" rel="noopener" aria-label="Open /catalog-v2 in a new tab"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="live"><iframe data-live="/catalog-v2/?customer=sai-kumar" title="The rebuilt /catalog-v2" loading="lazy"></iframe></div>
+          <div class="panecap"><b>An agent's tool.</b> Sai Kumar named with his real address and current line, twelve real offers, live search, an honest count, the current plan chipped and un-buyable, Details in a panel.<span class="l">Try it: type “fiber” in its search — the count follows the cards.</span></div>
+        </div>
+      </div>
+      <div class="diffs" data-stagger="3">
+        <span class="lb">What moved</span>
+        <span class="diff was">Seattle <b>→ the wrong customer</b></span>
+        <span class="diff">Sai Kumar · Singapore · <b>$40.00 /mo</b></span>
+        <span class="diff was">“100 Results” over <b>8 cards</b></span>
+        <span class="diff"><b>6 offers</b>, and six cards</span>
+        <span class="diff was">Search and Details <b>dead</b></span>
+        <span class="diff"><b>Live</b>, with a Details panel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · V2 vs STUDIO — THE TWO DIRECTIONS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The two directions · identical data</p>
+      <h2 class="head" data-stagger="1" style="font-size:clamp(22px,2.5vw,32px);margin-bottom:4px">
+        Inside the design system, and <em>outside</em> it
+      </h2>
+      <div class="pair two" data-stagger="2">
+        <div class="pane hero">
+          <div class="urlbar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="u" data-url="/catalog-v2/?customer=sai-kumar"></span>
+            <span class="tag new">Direction A</span>
+            <a class="pop" data-live="/catalog-v2/?customer=sai-kumar" target="_blank" rel="noopener" aria-label="Open /catalog-v2 in a new tab"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="live"><iframe data-live="/catalog-v2/?customer=sai-kumar" title="/catalog-v2 in the design system" loading="lazy"></iframe></div>
+          <div class="panecap"><b>Zero new tokens.</b> CEP header, session tabs, productivity rail, Montserrat, magenta. It is unmistakably the same product — an agent can't tell they changed screens, only that this one works.<span class="l">Ships as-is. Nothing to negotiate with the design system.</span></div>
+        </div>
+        <div class="pane">
+          <div class="urlbar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="u" data-url="/catalog-studio/?customer=sai-kumar"></span>
+            <span class="tag alt">Direction B</span>
+            <a class="pop" data-live="/catalog-studio/?customer=sai-kumar" target="_blank" rel="noopener" aria-label="Open /catalog-studio in a new tab"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="live"><iframe data-live="/catalog-studio/?customer=sai-kumar" title="/catalog-studio off the design system" loading="lazy"></iframe></div>
+          <div class="panecap"><b>Its own everything.</b> Navy marketplace chrome, Rubik / Nunito Sans, product photography, ratings, list prices, Add to cart, a sticky cart. No CEP token appears anywhere in it.<span class="l">Try it: add something to the cart — the bar names who you're shopping for.</span></div>
+        </div>
+      </div>
+      <div class="diffs" data-stagger="3">
+        <span class="lb">Where they disagree</span>
+        <span class="diff">Select an offer <b>vs</b> add to a cart</span>
+        <span class="diff">Icon tiles <b>vs</b> product photos</span>
+        <span class="diff">Details panel <b>vs</b> all on the card</span>
+        <span class="diff">Agent chrome <b>vs</b> storefront chrome</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · ALL THREE, SIDE BY SIDE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">One brief · three answers · all live</p>
+      <h2 class="head" data-stagger="1" style="font-size:clamp(22px,2.5vw,32px);margin-bottom:4px">The whole argument, in one row</h2>
+      <div class="pair three" data-stagger="2">
+        <div class="pane">
+          <div class="urlbar">
+            <span class="u">/catalog</span>
+            <span class="tag old">Original</span>
+            <a class="pop" data-live="/catalog/" target="_blank" rel="noopener" aria-label="Open /catalog in a new tab"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="live"><iframe data-live="/catalog/" title="/catalog" loading="lazy"></iframe></div>
+          <div class="panecap"><b>Designed for a shopper.</b> Handed to a professional.</div>
+        </div>
+        <div class="pane hero">
+          <div class="urlbar">
+            <span class="u">/catalog-v2</span>
+            <span class="tag new">In-system</span>
+            <a class="pop" data-live="/catalog-v2/?customer=sai-kumar" target="_blank" rel="noopener" aria-label="Open /catalog-v2 in a new tab"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="live"><iframe data-live="/catalog-v2/?customer=sai-kumar" title="/catalog-v2" loading="lazy"></iframe></div>
+          <div class="panecap"><b>Designed for the agent.</b> Built from what already existed.</div>
+        </div>
+        <div class="pane">
+          <div class="urlbar">
+            <span class="u">/catalog-studio</span>
+            <span class="tag alt">Off-system</span>
+            <a class="pop" data-live="/catalog-studio/?customer=sai-kumar" target="_blank" rel="noopener" aria-label="Open /catalog-studio in a new tab"><svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a>
+          </div>
+          <div class="live"><iframe data-live="/catalog-studio/?customer=sai-kumar" title="/catalog-studio" loading="lazy"></iframe></div>
+          <div class="panecap"><b>Designed like a product.</b> Sells, rather than lists.</div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="3">
+        Left to right is not “worse to better” — it's <b>three different answers to “who is this screen for?”</b>
+        The middle one is the answer to the brief. The right one is the argument for what the design system
+        could borrow next.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · THE DIFFERENCE TABLE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The same nine questions, asked of each build</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:12px">What is actually different</h2>
+      <table class="t cmp" data-stagger="2">
+        <thead>
+          <tr>
+            <th style="width:17%"></th>
+            <th class="h1" style="width:27%">/catalog · original</th>
+            <th class="h2" style="width:28%">/catalog-v2 · in-system</th>
+            <th class="h3">/catalog-studio · off-system</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Who it's for</b></td><td class="v1">A shopper</td><td><b>A care agent, mid-call</b></td><td>A care agent, mid-call</td></tr>
+          <tr><td><b>The customer</b></td><td class="v1"><b>Wrong</b> — a hardcoded Seattle address</td><td><b>Strip</b>: name, Singapore address, holdings, <code>$40.00</code> line</td><td><b>“Deliver to · For Sai Kumar”</b> in the header + sidebar recap</td></tr>
+          <tr><td><b>Offer data</b></td><td class="v1">Lorem ipsum, every price <b>$18.99</b></td><td>12 named offers, real prices, 1 flagged current</td><td>Same 12 offers + photos, ratings, review counts</td></tr>
+          <tr><td><b>Search</b></td><td class="v1"><b>Dead input</b></td><td>Live, over titles and body</td><td>Live, with a marketplace search button</td></tr>
+          <tr><td><b>The count</b></td><td class="v1"><b>“100 Results”</b> over 8 cards</td><td>“6 offers” — the number of cards</td><td>“1-6 of 6 results”</td></tr>
+          <tr><td><b>Current plan</b></td><td class="v1">Not shown at all</td><td>A card, chipped <em>Current</em>, action disabled</td><td>A product, badged <em>Current plan</em>, <em>On this plan</em></td></tr>
+          <tr><td><b>Deciding</b></td><td class="v1">Details button with no handler</td><td><b>Details panel</b>; the grid stays behind it</td><td>Everything on the card; ratings and list price do the work</td></tr>
+          <tr><td><b>Committing</b></td><td class="v1">Select → <code>/offer</code></td><td>Select → <code>/offer</code> <b>(unchanged)</b></td><td><b>Add to cart</b> → sticky bar → Start order → <code>/offer</code></td></tr>
+          <tr class="us"><td><b>Design system</b></td><td class="v1">CEP tokens</td><td>CEP tokens · <b>0 new tokens, 0 new icons</b></td><td><b>None.</b> Isolated CSS, own fonts, own palette</td></tr>
+        </tbody>
+      </table>
+      <p class="sub" data-stagger="3" style="margin-top:12px">
+        Both new routes read the same <code>lib/catalog-v2.ts</code>. <code>lib/catalog.ts</code> — the file
+        with the lorem in it — was never opened for writing.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · THE VERDICT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">What to do with two directions</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:2px">One of these ships. The other one is an <em>argument</em>.</h2>
+      <div class="verdict">
+        <div class="v ship" data-stagger="2">
+          <div class="rt">Recommendation · ship</div>
+          <h3><code>/catalog-v2</code> — inside the design system</h3>
+          <p>It answers the brief with <b>zero new tokens</b>, keeps the agent inside one product, and can be adopted by repointing links rather than retraining anyone.</p>
+          <ul>
+            <li>The chrome, tabs and rail are the ones agents already use</li>
+            <li><b>Nothing else in the app has to change</b> for it to be correct</li>
+            <li>Every claim on it is covered by an assertion in the flow test</li>
+            <li>Remaining work is a <b>product</b> decision — which of the six entry points move</li>
+          </ul>
+        </div>
+        <div class="v probe" data-stagger="3">
+          <div class="rt">Recommendation · keep as a probe</div>
+          <h3><code>/catalog-studio</code> — off the design system</h3>
+          <p>Not a shipping candidate — it's a <b>deliberate control group</b>. It shows what the catalog gains when the design system stops being a constraint, so the gains can be argued for one at a time.</p>
+          <ul>
+            <li><b>Product photography</b> instead of icon tiles — the biggest single readability win</li>
+            <li><b>Ratings and list prices</b> give the agent something to say out loud on the call</li>
+            <li><b>A cart</b> models multi-item orders that <code>/offer</code> can't express today</li>
+            <li>Each of those can be proposed to the design system <b>with a running example</b></li>
+          </ul>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="4">
+        This is the real value of building both: the off-system version turns “our design system feels dated”
+        into <b>three specific, demonstrable requests</b>. An opinion you can open in a browser is much harder
+        to dismiss than a moodboard.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="../deck.js"></script>
+<script>
+/* Resolve the live frames against whatever is serving the app.
+   The site root is whatever sits in front of /presentation/ — "" on a dev server,
+   "/telekom-workshop" on GitHub Pages. Opened from disk or a bare static server
+   (deck-check), fall back to the dev server. */
+(function () {
+  var root = location.pathname.match(/^(.*?)\/presentation\//);
+  var base = location.protocol.indexOf('http') === 0 && root
+    ? location.origin + root[1]
+    : 'http://localhost:3001';
+
+  [].forEach.call(document.querySelectorAll('[data-live]'), function (el) {
+    var url = base + el.getAttribute('data-live');
+    if (el.tagName === 'IFRAME') el.setAttribute('src', url);
+    else el.setAttribute('href', url);
+  });
+
+  /* The chrome bar should show where the frame really points, wherever this is hosted. */
+  [].forEach.call(document.querySelectorAll('[data-url]'), function (el) {
+    el.textContent = (base + el.getAttribute('data-url')).replace(/^https?:\/\//, '');
+  });
+
+  /* Fit each framed route to its pane exactly, at any window size. */
+  var panes = [].slice.call(document.querySelectorAll('.live'));
+  function fit() {
+    panes.forEach(function (p) {
+      var w = parseFloat(getComputedStyle(p).getPropertyValue('--w'));
+      if (p.clientWidth) p.style.setProperty('--s', p.clientWidth / w);
+    });
+  }
+  fit();
+  addEventListener('resize', fit);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(document.body);
+})();
+</script>
+</body>
+</html>

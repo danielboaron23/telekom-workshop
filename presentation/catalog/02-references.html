@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>All 16 references — Browse Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../deck.css" />
+<style>
+  /* scrolling page, not a slide deck */
+  body{overflow:auto;background:var(--page);}
+  .page{max-width:1180px;margin:0 auto;padding:44px 40px 72px;}
+  .phead{margin-bottom:34px;}
+  .phead h1{font-size:38px;font-weight:700;color:var(--ink);margin:8px 0 12px;letter-spacing:-.02em;}
+  .phead .lead{font-size:16px;}
+  .group{margin-top:38px;}
+  .gtitle{
+    font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:700;
+    display:flex;align-items:center;gap:10px;margin:0 0 16px;
+    padding-bottom:11px;border-bottom:1px solid var(--line-soft);
+  }
+  .gtitle span{
+    font-size:11px;background:var(--magenta-wash);color:var(--magenta);
+    border:1px solid var(--magenta-line);border-radius:999px;padding:2px 8px;letter-spacing:0;
+  }
+  .reflist{display:grid;gap:14px;}
+  .ref{
+    display:grid;grid-template-columns:248px 1fr;gap:20px;align-items:start;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:15px;box-shadow:var(--shadow-card);
+  }
+  .thumb{display:block;border-radius:var(--radius-btn);overflow:hidden;border:1px solid var(--line-soft);background:var(--surface);}
+  .thumb img{display:block;width:100%;height:auto;}
+  .meta .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .meta .num{font-family:var(--font-mono);font-size:12px;color:var(--magenta);font-weight:600;}
+  .meta h3{font-size:18px;font-weight:700;color:var(--ink);margin:0;}
+  .meta .pat{
+    font-size:11.5px;color:var(--secondary-text);background:var(--surface);
+    border:1px solid var(--line-soft);border-radius:999px;padding:3px 9px;
+  }
+  .meta p{font-size:14px;line-height:1.55;color:var(--secondary-text);margin:11px 0 0;}
+  .meta p b{color:var(--ink);font-weight:600;}
+  .row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:13px;}
+  .link{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;
+    border:1px solid var(--line);border-radius:var(--radius-btn);padding:7px 12px;
+    background:var(--paper);transition:all .22s var(--ease);
+  }
+  .link:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8;}
+  .foot{
+    margin-top:44px;padding-top:20px;border-top:1px solid var(--line-soft);
+    font-size:13px;color:var(--faint);line-height:1.6;
+  }
+  @media(max-width:820px){ .ref{grid-template-columns:1fr;} .page{padding:28px 20px 56px;} }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="phead">
+    <p class="eyebrow">Run 02 · Stage 02 · the reference pack</p>
+    <h1>All 16 references</h1>
+    <p class="lead">
+      Every screen kept for the <b>Browse Catalog</b> redesign, grouped by the decision it settles. All images
+      are stored locally in <code>refs/</code> — Mobbin's own URLs expire, and this folder is what gets dragged
+      into Figma. Each card links back to the original.
+      <br /><br />
+      <b>These are adjacent patterns, not competitors.</b> Amdocs CES, Salesforce Industries, Ericsson and
+      Netcracker are not in the library. Everything below is labelled with what transfers and what doesn't.
+    </p>
+  </header>
+
+  <section class="group">
+    <h2 class="gtitle">Decision 1 · whose catalog is it <span>4</span></h2>
+    <div class="reflist">
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/8107b322-1796-423c-a081-401dbcb7aa61" target="_blank" rel="noopener"><img src="refs/01-navan.jpg" alt="Navan flight booking with a traveler chip above the search fields" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">01</span><h3>Navan</h3><span class="pat">named person before the catalog</span></div>
+          <p>Book a flight. The traveler is a chip — <b>“Traveler: John Smith Jr”</b> — sitting above From / To / dates. The catalog is not searched until the person is named.</p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/8107b322-1796-423c-a081-401dbcb7aa61" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/fd6bc4b7-b164-4b38-b44d-4915fe475f85" target="_blank" rel="noopener"><img src="refs/02-navan.jpg" alt="Navan traveler list with an empty state reading New trip for Vania" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">02</span><h3>Navan</h3><span class="pat">shopping for a named other</span></div>
+          <p>Traveler list on the left. The empty state for Vania reads <b>“New trip for Vania”</b> — even the empty state names who the next action is for.</p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/fd6bc4b7-b164-4b38-b44d-4915fe475f85" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/53d5fabe-fee1-4f68-84fe-9165ec91e282" target="_blank" rel="noopener"><img src="refs/03-deel.jpg" alt="Deel create order page titled Order for Adriana Costa with a details panel" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">03</span><h3>Deel</h3><span class="pat">order-for + details panel</span></div>
+          <p>Header: <b>“Order for Adriana Costa”</b>. A 19-item product list stays visible; clicking an item opens a right panel with Order / Product tabs and Add to basket. <b>Details never navigate away from the list.</b></p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/53d5fabe-fee1-4f68-84fe-9165ec91e282" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/948e767f-de19-49ee-8537-4267588d6a85" target="_blank" rel="noopener"><img src="refs/14-hubspot.jpg" alt="HubSpot quote editor step one, associate with a deal" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">14</span><h3>HubSpot</h3><span class="pat">customer before catalog items</span></div>
+          <p>Editing a quote, step 1 of 7. The first job is <b>Associate with a deal</b>; line items come three steps later. <b>The catalog is not the first surface — the customer is.</b></p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/948e767f-de19-49ee-8537-4267588d6a85" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/ace833cd-b503-42e6-a317-16c4a2d3a126" target="_blank" rel="noopener"><img src="refs/04-amazon.jpg" alt="Amazon results page with Deliver to Alex Menlo Park in the header and a Rufus overlay" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">04</span><h3>Amazon</h3><span class="pat">serviceability in the chrome</span></div>
+          <p><b>“Deliver to Alex · Menlo Park 94025”</b> lives in the header — not as a dead string in the results bar, which is exactly where ours was. The Rufus overlay recommends with a reason.</p>
+          <div class="row"><span class="badge take">Take the placement</span><span class="badge reject">Reject the chatbot</span><a class="link" href="https://mobbin.com/screens/ace833cd-b503-42e6-a317-16c4a2d3a126" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="group">
+    <h2 class="gtitle">Decision 3 · current vs available — 5 of 5 mark current <span>5</span></h2>
+    <div class="reflist">
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/e135b4bc-d2ee-453c-99f7-48573ceac0e5" target="_blank" rel="noopener"><img src="refs/05-peec-ai.jpg" alt="Peec AI plans and billing with Your plan Current above four plan cards" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">05</span><h3>Peec AI</h3><span class="pat">current above available</span></div>
+          <p>Top row: <b>“Your plan · Current · Starter $75/mo”</b>. Below it, four plan cards — the current one outlined, the others offering Upgrade. Current is a first-class object, not one of a grid of equals.</p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/e135b4bc-d2ee-453c-99f7-48573ceac0e5" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/5e1fb742-919a-4370-980a-e4923d2967d8" target="_blank" rel="noopener"><img src="refs/06-quickbooks.jpg" alt="QuickBooks upgrade modal with CURRENT PLAN as the first column" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">06</span><h3>QuickBooks</h3><span class="pat">current as a column</span></div>
+          <p>Upgrade modal, feature table. The first column is <b>CURRENT PLAN</b> with “Stay on plan”; the rest say Choose plan. <b>Comparison is against what they have now</b>, not only among new options.</p>
+          <div class="row"><span class="badge take">Take the model</span><span class="badge reject">Reject the matrix</span><a class="link" href="https://mobbin.com/screens/5e1fb742-919a-4370-980a-e4923d2967d8" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/dead34b5-d119-47ef-95d0-b35acb569b38" target="_blank" rel="noopener"><img src="refs/07-framer.jpg" alt="Framer plan cards with a CURRENT pill on the Basic plan" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">07</span><h3>Framer</h3><span class="pat">current as a badge</span></div>
+          <p>Three plan cards; Basic carries a <b>CURRENT</b> pill and its primary action becomes Cancel. Same card anatomy, <b>different verb because of current state</b> — which is what our offer card does now.</p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/dead34b5-d119-47ef-95d0-b35acb569b38" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/c4e8d9c4-4c7d-4bf5-b64f-c0bb64ea4ed7" target="_blank" rel="noopener"><img src="refs/08-bonsai.jpg" alt="Bonsai pricing with a disabled Current Plan button on the Starter card" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">08</span><h3>Bonsai</h3><span class="pat">current action disabled, not hidden</span></div>
+          <p>The Starter card's button is outlined and labelled <b>“Current Plan”</b>, inactive. They did not remove the current plan from the grid — <b>they changed its affordance</b>. This is the exact pattern <code>/catalog-v2</code> ships.</p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/c4e8d9c4-4c7d-4bf5-b64f-c0bb64ea4ed7" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/ff01e3c7-e545-45ba-b76a-faf4ed5745e5" target="_blank" rel="noopener"><img src="refs/09-juicebox.jpg" alt="Juicebox plan and billing modal headed Current Plan Free Plan" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">09</span><h3>Juicebox</h3><span class="pat">current named in the chrome</span></div>
+          <p>Header: <b>“Current Plan (Free Plan)”</b>, above three columns. Current is stated <b>even when the current tier isn't one of the cards</b> — the weakest version of the pattern, and still present.</p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/ff01e3c7-e545-45ba-b76a-faf4ed5745e5" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="group">
+    <h2 class="gtitle">Decision 2 · finding, counting, and empty states <span>5</span></h2>
+    <div class="reflist">
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/ef056956-334f-48c1-8385-6137a5cb1307" target="_blank" rel="noopener"><img src="refs/10-faire.jpg" alt="Faire wholesale marketplace with a partial search term and a live count" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">10</span><h3>Faire</h3><span class="pat">working search + honest count</span></div>
+          <p>The search field contains <code>acc</code> and <b>the grid has already changed</b>. Sort-by is a real control. <b>22,184 participating brands</b> is printed, and it's the real number. Wholesale B2B — closer to an operator than any consumer store in the set.</p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/ef056956-334f-48c1-8385-6137a5cb1307" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/aa6ea472-fe2c-4619-a171-c13624554838" target="_blank" rel="noopener"><img src="refs/11-stripe.jpg" alt="Stripe product catalogue with summary chips and a four results footer" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">11</span><h3>Stripe</h3><span class="pat">honest results count</span></div>
+          <p>Summary chips — All 4 · Active 3 · Archived 1 — and a footer reading <b>“4 results”</b> above four rows. Merchant admin, not a selling surface: <b>take the count honesty, reject the table</b>.</p>
+          <div class="row"><span class="badge take">Take the count</span><span class="badge reject">Reject the table</span><a class="link" href="https://mobbin.com/screens/aa6ea472-fe2c-4619-a171-c13624554838" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/d72b2baa-d912-49d2-9583-5c260fdadd56" target="_blank" rel="noopener"><img src="refs/15-shopify.jpg" alt="Shopify inventory empty state with Clear search and filters" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">15</span><h3>Shopify</h3><span class="pat">no-results with a way out</span></div>
+          <p><b>“No inventory found — try changing the filters or search term”</b>, and the primary action is <b>Clear search and filters</b>. An operator empty state, not a marketing illustration.</p>
+          <div class="row"><span class="badge take">Take</span><a class="link" href="https://mobbin.com/screens/d72b2baa-d912-49d2-9583-5c260fdadd56" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/696e2e97-8ac7-4b7e-b21a-3af79b7ee6ee" target="_blank" rel="noopener"><img src="refs/16-salesforce.jpg" alt="Salesforce commerce products with zero items and two filters applied" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">16</span><h3>Salesforce</h3><span class="pat">empty + applied filters named</span></div>
+          <p><b>“0 items · 2 Filters Applied”</b> with the filter chips visible. The closest thing in the set to a real CRM commerce catalog — still a merchant building a store, <b>not an agent selling on a call</b>.</p>
+          <div class="row"><span class="badge take">Take the language</span><a class="link" href="https://mobbin.com/screens/696e2e97-8ac7-4b7e-b21a-3af79b7ee6ee" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/b2e9dd69-6b91-4d00-b67f-f698e60fa245" target="_blank" rel="noopener"><img src="refs/12-uxcel.jpg" alt="Uxcel recommendations explaining they are based on skill gaps" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">12</span><h3>Uxcel</h3><span class="pat">recommendation with a stated reason</span></div>
+          <p><b>“These personalized recommendations are based on your skill gaps.”</b> The only screen in the set that writes the reason in plain language — which became the optional <code>reason</code> line on at most two cards.</p>
+          <div class="row"><span class="badge take">Take the reason line</span><span class="badge reject">Reject reco-as-IA</span><a class="link" href="https://mobbin.com/screens/b2e9dd69-6b91-4d00-b67f-f698e60fa245" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="group">
+    <h2 class="gtitle">The one we argued with <span>1</span></h2>
+    <div class="reflist">
+
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/2f8c5e2c-f206-4e7b-a78f-d98957e1afff" target="_blank" rel="noopener"><img src="refs/13-zendesk.jpg" alt="Zendesk compare support plans modal with a feature table" /></a>
+        <div class="meta">
+          <div class="top"><span class="num">13</span><h3>Zendesk</h3><span class="pat">compare as a table modal</span></div>
+          <p>Compare Support plans: Team / Professional / Enterprise, feature rows with checkmarks, Continue to payment. This is <b>Zendesk selling its own plans to an admin</b> — adjacent to QuickBooks, and <b>not</b> an agent selling telco offers to a customer on the phone. Rejected as the primary decision surface; the Details panel does that job instead.</p>
+          <div class="row"><span class="badge reject">Rejected</span><a class="link" href="https://mobbin.com/screens/2f8c5e2c-f206-4e7b-a78f-d98957e1afff" target="_blank" rel="noopener">Open on Mobbin<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" stroke-linecap="round"/></svg></a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <p class="foot">
+    Sources: Mobbin, <code>web</code> platform, ten queries under one shared task intent, September 2026.
+    Full write-up in <code>workshop/submissions/daniel/research/browse-catalog/FINDINGS.md</code>;
+    the per-reference notes are in <code>REFERENCES.md</code>.
+    <br />
+    <b>0 of 16</b> screens showed a catalog hiding or greying an offer because an eligibility rule fired —
+    which is why <code>/catalog-v2</code> does not pretend to have one.
+  </p>
+</div>
+</body>
+</html>

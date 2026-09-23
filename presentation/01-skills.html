@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Problem &amp; the skills — Telekom CEP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="deck.css" />
+<style>
+  /* ───────── deck 01 · local patterns ───────── */
+  .stagemap{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:26px;}
+  .stagemap .sm{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    background:var(--paper);padding:14px 13px;box-shadow:var(--shadow-card);
+  }
+  .stagemap .sm .n{font-family:var(--font-mono);font-size:11px;color:var(--magenta);font-weight:600;}
+  .stagemap .sm .t{font-size:13.5px;font-weight:600;color:var(--ink);margin-top:5px;line-height:1.3;}
+  .stagemap .sm .d{font-size:11.5px;color:var(--faint);margin-top:4px;line-height:1.35;}
+
+  /* the dead end — a code line called out */
+  .deadend{
+    display:grid;grid-template-columns:1fr;gap:0;margin-top:8px;
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    overflow:hidden;background:var(--paper);box-shadow:var(--shadow-card);
+  }
+  .deadend .row{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line-soft);}
+  .deadend .row:last-child{border-bottom:0;}
+  .deadend .row .lbl{font-size:13px;color:var(--faint);width:210px;flex:none;}
+  .deadend .row .val{font-size:14px;color:var(--ink);font-weight:600;}
+  .deadend .row .val.no{color:var(--brand);}
+  .deadend code{font-size:12px;}
+
+  .pipeline{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;margin-top:22px;}
+  .pipeline .arrow{color:var(--rail-line);font-size:22px;}
+  .pipeline .node{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:18px 16px;box-shadow:var(--shadow-card);
+  }
+  .pipeline .node .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;}
+  .pipeline .node .nm{
+    font-family:var(--font-mono);font-size:13px;color:var(--magenta);margin-top:7px;font-weight:500;word-break:break-all;
+  }
+  .pipeline .node .d{font-size:12.5px;color:var(--secondary-text);margin-top:8px;line-height:1.4;}
+
+  /* ───────── prompt anatomy · step through the seven parameters ─────────
+     Three states per element: dim (not reached) · lit (already covered)
+     · cur (the one being talked about). Only two accent colours are used —
+     magenta for what the prompt had, info blue for what it was missing —
+     because the product has no 7-colour categorical palette and the deck
+     ships under the same "no new tokens" rule as the feature. */
+
+  .pa-layout{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;align-items:stretch;margin-top:6px;}
+  .pa-layout .prompt-card{margin-top:0;display:flex;flex-direction:column;cursor:pointer;}
+  .pc-hint{
+    margin-inline-start:auto;font-family:var(--font-mono);font-size:11px;color:var(--faint);
+    letter-spacing:.04em;text-transform:none;
+  }
+
+  .pa-body{padding:17px 19px;font-size:15px;line-height:1.85;color:var(--faint);flex:1;transition:color .3s var(--ease);}
+  .pa-body .seg{
+    border-radius:var(--radius-field);padding:1px 3px;
+    box-decoration-break:clone;-webkit-box-decoration-break:clone;
+    transition:background .34s var(--ease),color .34s var(--ease),box-shadow .34s var(--ease);
+  }
+  .pa-body .seg.lit{color:var(--ink);}
+  .pa-body .seg.cur{
+    color:var(--ink);background:var(--magenta-wash);
+    box-shadow:inset 0 -2px 0 var(--magenta);
+  }
+
+  .pa-addhead{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--info);margin-top:18px;opacity:0;transition:opacity .34s var(--ease);
+  }
+  .pa-addhead.lit{opacity:1;}
+  .pa-add{
+    display:block;margin-top:9px;padding:10px 13px;border-radius:var(--radius-btn);
+    background:var(--paper);border:1px dashed var(--line);color:var(--faint);
+    font-size:14px;line-height:1.5;opacity:0;transform:translateY(6px);
+    transition:opacity .34s var(--ease),transform .34s var(--ease),border-color .34s var(--ease),background .34s var(--ease),color .34s var(--ease);
+  }
+  .pa-add .plus{color:var(--faint);font-weight:700;margin-inline-end:8px;}
+  .pa-add.lit{opacity:1;transform:none;color:var(--secondary-text);}
+  .pa-add.cur{
+    opacity:1;transform:none;color:var(--ink);
+    background:var(--info-wash);border-color:var(--info);border-style:solid;
+  }
+  .pa-add.cur .plus{color:var(--info);}
+
+  .pa-foot{
+    padding:10px 19px;border-top:1px solid var(--line-soft);background:var(--surface);
+    font-family:var(--font-mono);font-size:11.5px;color:var(--faint);
+  }
+  .pa-foot a{color:var(--info);text-decoration:none;}
+  .pa-foot a:hover{text-decoration:underline;}
+
+  .pa-legend{display:flex;flex-direction:column;gap:7px;justify-content:center;}
+  .pa-item{
+    display:grid;grid-template-columns:26px 1fr;gap:11px;align-items:start;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-btn);
+    padding:8px 12px;opacity:.4;
+    transition:opacity .34s var(--ease),border-color .34s var(--ease),background .34s var(--ease);
+  }
+  .pa-item.lit{opacity:1;}
+  .pa-item .pk{font-family:var(--font-mono);font-size:11px;color:var(--faint);font-weight:600;text-align:center;padding-top:2px;}
+  .pa-item .pt{display:block;font-size:13px;font-weight:700;color:var(--ink);}
+  .pa-item .pd{display:block;font-size:11.5px;color:var(--secondary-text);line-height:1.4;margin-top:1px;}
+  .pa-item.cur{opacity:1;border-color:var(--magenta-line);background:var(--magenta-wash);}
+  .pa-item.cur .pk{color:var(--magenta);}
+  /* a parameter revealed as an addition reads in info blue, not as covered ground */
+  .pa-item.addcur{border-color:var(--info);background:var(--info-wash);}
+  .pa-item.addcur .pk{color:var(--info);}
+
+  .pa-note{min-height:52px;transition:border-color .34s var(--ease);}
+  .pa-note.done{border-inline-start-color:var(--info);}
+
+  @media(max-width:1000px){ .pa-layout{grid-template-columns:1fr;} }
+  @media(prefers-reduced-motion:reduce){
+    .seg,.pa-add,.pa-item,.pa-addhead{transition:none!important;}
+  }
+</style>
+</head>
+<body data-brand="Problem &amp; the skills">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Design + AI workshop · Telekom CEP Customer Service Workspace</p>
+      <h1 class="title" data-stagger="2">Two skills,<br>one screen<em>.</em></h1>
+      <p class="lead" data-stagger="3">
+        A dead-end button became a shipped screen — through a chain of three AI skills that each
+        handed off to the next. This is the whole run: <b>the prompts we typed</b>, what came back,
+        where the machine argued with us, and where it was wrong.
+      </p>
+      <div class="stagemap">
+        <div class="sm" data-stagger="4"><div class="n">01</div><div class="t">Problem &amp; skills</div><div class="d">Two skills built from scratch</div></div>
+        <div class="sm" data-stagger="4"><div class="n">02</div><div class="t">Research</div><div class="d">17 real competitor screens</div></div>
+        <div class="sm" data-stagger="5"><div class="n">03</div><div class="t">Spec</div><div class="d">PRD + screen spec</div></div>
+        <div class="sm" data-stagger="5"><div class="n">04</div><div class="t">Design</div><div class="d">Built, tested, rendered</div></div>
+        <div class="sm" data-stagger="6"><div class="n">05</div><div class="t">Insights</div><div class="d">What to copy on Monday</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · THE PROBLEM ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The problem</p>
+      <h2 class="head" data-stagger="1">A button that goes nowhere</h2>
+      <p class="lead" data-stagger="2">
+        The workspace lets an agent find a customer, read their 360, configure an offer and run a
+        five-step order. But an agent who searches and <b>finds nobody</b> hits a wall — there is no
+        way to continue the call.
+      </p>
+      <div class="deadend" data-stagger="3">
+        <div class="row"><span class="lbl">Create Customer button</span><span class="val">Exists in Figma and in code — <span class="val no">does nothing</span></span></div>
+        <div class="row"><span class="lbl">Create Customer screen</span><span class="val no">No route, no frame, no spec</span></div>
+        <div class="row"><span class="lbl">Project skills</span><span class="val no"><code>.cursor/skills/</code> does not exist yet</span></div>
+      </div>
+      <p class="note-strip" data-stagger="4">
+        Note the problem statement. Not <i>"agents need a create-customer screen"</i> — that names the
+        solution. <b>"An agent who searched and found nobody has no way to continue."</b>
+        One of those you can solve several ways; the other tells you what to draw.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · WHY A SKILL ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The method · <span class="cmd">/skill-creator</span></p>
+      <h2 class="head" data-stagger="1">Why build a skill instead of writing a prompt</h2>
+      <p class="lead" data-stagger="2">
+        A prompt is advice you retype every time and that drifts every time. A <b>skill</b> is a
+        checked-in folder of instructions, references and templates that loads itself when relevant —
+        so the standard is the same on Monday as on Friday. Six steps, both times:
+      </p>
+      <div class="steps" style="margin-top:20px">
+        <div class="steprow on" data-stagger="3"><span class="n">1</span><div><p class="t">Clarify</p><p class="d">A short batch of sharp questions. Never a wall — stop once the intent is clear.</p></div></div>
+        <div class="steprow" data-stagger="3"><span class="n">2</span><div><p class="t">Study the source</p><p class="d">Read the linked repo for patterns worth distilling — not copying.</p></div></div>
+        <div class="steprow" data-stagger="4"><span class="n">3</span><div><p class="t">Read our repo</p><p class="d">Routes, components, tokens, mock data, verification commands, dead ends.</p></div></div>
+        <div class="steprow" data-stagger="4"><span class="n">4</span><div><p class="t">Write</p><p class="d">A lean <code>SKILL.md</code> that always loads, plus <code>references/</code> and <code>assets/</code> loaded only when needed.</p></div></div>
+        <div class="steprow" data-stagger="5"><span class="n">5</span><div><p class="t">Validate &amp; package</p><p class="d"><code>quick_validate.py</code> → <code>package_skill.py</code> → a shareable <code>.skill</code>.</p></div></div>
+        <div class="steprow" data-stagger="5"><span class="n">6</span><div><p class="t">Install</p><p class="d">Project-scoped in <code>.cursor/skills/</code>, so it loads automatically in this repo.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · SKILL 01 PROMPT · ANATOMY ═════ -->
+  <section class="slide" data-slide id="pa-pm">
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1"><span class="num">Skill 01</span> · <span class="stage">cep-product-manager</span> · the prompt</p>
+      <h2 class="head" data-stagger="2" style="margin-bottom:14px">One prompt. Seven parameters.</h2>
+      <div class="pa-layout" data-stagger="3">
+        <div class="prompt-card">
+          <div class="pc-top">
+            <span class="pc-avatar">D</span>
+            <span class="pc-who">Daniel typed <span class="cmd">/skill-creator</span></span>
+            <span class="pc-hint">→ break it apart</span>
+          </div>
+          <div class="pa-body"><span class="seg" data-el="persona">I want a product manager for this product</span><span class="seg" data-el="purpose"> that helps me write specs and PRDs, runs competitor research,</span><span class="seg" data-el="triggers"> and thinks with me about every new feature and new screen before I build it.</span><span class="seg" data-el="context"> It is connected to the code structure, the design system, and everything in this repo.</span><span class="seg" data-el="reference"> Use github.com/RefoundAI/lenny-skills as your reference for how strong PM skills are built.</span><span class="seg" data-el="purpose"> The main reason: help me characterize and make better decisions about the pages I want to create.</span><span class="seg" data-el="method"> Ask me questions to clarify my idea before you write anything.</span>
+            <div class="pa-addhead">What was missing ↓</div>
+            <div class="pa-add" data-el="tools"><span class="plus">+</span>Use the Figma MCP to read the real frames and node IDs — never describe a screen you haven't opened.</div>
+            <div class="pa-add" data-el="success"><span class="plus">+</span>Done = a spec an engineer can build from without a meeting, where every criterion names a command I can run.</div>
+          </div>
+          <div class="pa-foot">reference → <a href="https://github.com/RefoundAI/lenny-skills" target="_blank" rel="noopener">github.com/RefoundAI/lenny-skills</a></div>
+        </div>
+        <div class="pa-legend">
+          <div class="pa-item" data-el="persona"><span class="pk">01</span><span><span class="pt">Persona</span><span class="pd">The role it wears. A PM has opinions; "an assistant" has none.</span></span></div>
+          <div class="pa-item" data-el="purpose"><span class="pk">02</span><span><span class="pt">Purpose</span><span class="pd">What it produces — and why that's worth having.</span></span></div>
+          <div class="pa-item" data-el="triggers"><span class="pk">03</span><span><span class="pt">Triggers</span><span class="pd">When it wakes up: a new feature, a new screen.</span></span></div>
+          <div class="pa-item" data-el="context"><span class="pk">04</span><span><span class="pt">Context</span><span class="pd">This repo — the code, the design system, the mock data.</span></span></div>
+          <div class="pa-item" data-el="method"><span class="pk">05</span><span><span class="pt">Method</span><span class="pd">How it thinks: questions <em>before</em> answers — plus a reference for what "good" looks like.</span></span></div>
+          <div class="pa-item miss" data-el="tools"><span class="pk">06</span><span><span class="pt">Tools · MCP</span><span class="pd">Its hands. Nothing here — so it never opens Figma.</span></span></div>
+          <div class="pa-item miss" data-el="success"><span class="pk">07</span><span><span class="pt">Success</span><span class="pd">What "done" means, so it has something to aim at.</span></span></div>
+        </div>
+      </div>
+      <p class="note-strip pa-note" data-stagger="4">
+        Five sentences, exactly as typed. <b>Six parameters already inside.</b> Press → to see where each one sits.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · SKILL 01 · BEFORE ASKING ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Skill 01</span> · what happened next</p>
+      <h2 class="head" data-stagger="1">It read before it asked</h2>
+      <div class="cards cols-3" style="margin-top:14px">
+        <div class="card" data-stagger="2">
+          <p class="k">01 · the source</p>
+          <h3>Took the shape, not the text</h3>
+          <p>The lenny-skills README gave the catalog. The locally installed <code>pm-writing-prds</code> skill gave the shape worth copying: a lenny-grade PM rewired to <b>one specific product</b>.</p>
+        </div>
+        <div class="card" data-stagger="3">
+          <p class="k">02 · our repo</p>
+          <h3>11 routes, 29 components</h3>
+          <p>Tokens in <code>globals.css</code>, the <code>Customer</code> type, 44 Storybook stories, the screen↔node map — and the dead-end button at <code>ResultsCard.tsx:72</code>.</p>
+        </div>
+        <div class="card accent" data-stagger="4">
+          <p class="k">03 · the insight in the code</p>
+          <h3>We inherit Dynamics 365</h3>
+          <p>Session tabs, productivity rail, Segoe UI in the customer header — that's the Dynamics pattern. The commerce depth is telco BSS. <b>That gave the research a real anchor</b> instead of generic SaaS comparison.</p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        Only then did it ask — <b>five scoping questions</b>: one skill or three · real-product vs
+        workshop reasoning · where it lives · what to research and how · how hard to push back.
+        My entire answer was <b>"all five"</b>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · SKILL 01 · RESULT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1"><span class="num">Skill 01</span> · the result</p>
+      <h2 class="head" data-stagger="1">What it became</h2>
+      <div class="cards cols-2" style="align-items:start;grid-template-columns:1.05fr .95fr">
+        <div data-stagger="2">
+<pre class="tree"><b>.cursor/skills/cep-product-manager/</b>
+├─ <b>SKILL.md</b>                <i>the gate · 5-phase workflow</i>
+│                          <i>12 principles · 10 mistakes</i>
+├─ references/
+│  ├─ repo-map.md          <i>routes, contracts, tokens,</i>
+│  │                       <i>mock data, dead ends</i>
+│  ├─ discovery.md         <i>the agent's reality, AHT/FCR,</i>
+│  │                       <i>the states nobody draws</i>
+│  └─ competitors.md       <i>what CEP inherits from Dynamics</i>
+└─ assets/
+   ├─ prd-template.md
+   ├─ lite-prd-template.md
+   ├─ screen-spec-template.md
+   └─ competitor-scan-template.md</pre>
+        </div>
+        <div data-stagger="3">
+          <p class="lead" style="font-size:17px">
+            A PM grounded in <b>this</b> product. It knows the user is a care agent with someone
+            waiting on the line, that there is <b>no error color token</b>, and that duplicate Figma
+            frames are states rather than screens.
+          </p>
+          <div class="pills" style="margin-top:20px">
+            <span class="pill mag">Progressive disclosure</span>
+            <span class="pill">Reuse-first</span>
+            <span class="pill">Observable criteria</span>
+            <span class="pill">Cites real files</span>
+            <span class="pill">Feeds the researcher</span>
+          </div>
+          <p class="note-strip" style="margin-top:22px">
+            <b>8 files.</b> One always-loaded <code>SKILL.md</code>; the three references load only
+            when the task needs them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 7 · SKILL 01 · THE THREE DECISIONS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Skill 01</span> · what makes it not generic</p>
+      <h2 class="head" data-stagger="1">Three decisions worth stealing</h2>
+      <div class="cards cols-3" style="margin-top:14px">
+        <div class="card" data-stagger="2">
+          <p class="k">the hard gate</p>
+          <h3>Refuses to draft</h3>
+          <p>No spec until the discovery questions are answered — and it <b>names a thin answer</b> instead of papering over it.</p>
+          <p>This is what turned it from a document generator into a thinking partner. It then did exactly this to me.</p>
+        </div>
+        <div class="card" data-stagger="3">
+          <p class="k">the invent gate</p>
+          <h3>REUSE → COMPOSE → EXTEND → INVENT</h3>
+          <p>Every element tagged, stop at the first that works, name the real file. <b>INVENT costs</b> a written justification and a Storybook story.</p>
+          <p>This is the mechanism that stops a second design system quietly appearing.</p>
+        </div>
+        <div class="card" data-stagger="4">
+          <p class="k">the scope cut</p>
+          <h3>Every spec ends with a cut</h3>
+          <p>Full spec / <b>what ships in this repo</b> / deferred.</p>
+          <p>No backend, no auth, fixed tokens, pixel-verified screens. A spec that ignores all four isn't buildable here.</p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        <b>The generic version</b> of this skill says "write clear requirements".
+        <b>This one</b> knows there is no error color token in our theme.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 8 · SKILL 02 PROMPT · ANATOMY ═════ -->
+  <section class="slide" data-slide id="pa-research">
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1"><span class="num">Skill 02</span> · <span class="stage">design-competitor-research</span> · the prompt</p>
+      <h2 class="head" data-stagger="2" style="margin-bottom:14px">Same checklist. Different holes.</h2>
+      <div class="pa-layout" data-stagger="3">
+        <div class="prompt-card">
+          <div class="pc-top">
+            <span class="pc-avatar">D</span>
+            <span class="pc-who">Daniel typed <span class="cmd">/skill-creator</span></span>
+            <span class="pc-hint">→ break it apart</span>
+          </div>
+          <div class="pa-body"><span class="seg" data-el="persona">Create a design research skill</span><span class="seg" data-el="purpose"> that sees how our competitors design the features we want to build.</span><span class="seg" data-el="tools"> It connects to the Mobbin MCP and gets real references.</span><span class="seg" data-el="context"> Its "brain" comes from our competitive-analyst agent.</span><span class="seg" data-el="success"> It delivers HTML slides plus the Mobbin references, so we can paste them into the presentation and into Figma.</span><span class="seg" data-el="method"> Ask me questions to make it better.</span>
+            <div class="pa-addhead">What was missing ↓</div>
+            <div class="pa-add" data-el="triggers"><span class="plus">+</span>Wake up whenever a new feature or screen starts — right after the PM hands over the brief.</div>
+            <div class="pa-add" data-el="reference"><span class="plus">+</span>Use designer-skills as your reference for how strong research skills are built — and say what to take from it.</div>
+          </div>
+          <div class="pa-foot">reference → <a href="https://github.com/Owl-Listener/designer-skills" target="_blank" rel="noopener">github.com/Owl-Listener/designer-skills.git</a> <span style="color:var(--brand)">· pasted, but never instructed</span></div>
+        </div>
+        <div class="pa-legend">
+          <div class="pa-item" data-el="persona"><span class="pk">01</span><span><span class="pt">Persona</span><span class="pd">A researcher this time — a different role, different opinions.</span></span></div>
+          <div class="pa-item" data-el="purpose"><span class="pk">02</span><span><span class="pt">Purpose</span><span class="pd">Not inspiration — evidence about what already exists.</span></span></div>
+          <div class="pa-item miss" data-el="triggers"><span class="pk">03</span><span><span class="pt">Triggers</span><span class="pd">Nothing says when it runs. It waits to be summoned.</span></span></div>
+          <div class="pa-item" data-el="context"><span class="pk">04</span><span><span class="pt">Context</span><span class="pd">A brain it inherits — the competitive-analyst agent.</span></span></div>
+          <div class="pa-item half" data-el="method"><span class="pk">05</span><span><span class="pt">Method</span><span class="pd">Half there: it asks questions, but the reference is a bare URL with no verb.</span></span></div>
+          <div class="pa-item" data-el="tools"><span class="pk">06</span><span><span class="pt">Tools · MCP</span><span class="pd">This one remembered its hands: Mobbin brings real screens.</span></span></div>
+          <div class="pa-item" data-el="success"><span class="pk">07</span><span><span class="pt">Success</span><span class="pd">Deliverables named up front: slides, plus refs for Figma.</span></span></div>
+        </div>
+      </div>
+      <p class="note-strip pa-note" data-stagger="4">
+        Five sentences again. <b>Six parameters — but not the same six.</b> Press → to see which.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 9 · SKILL 02 · THE EXPERIMENTS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Skill 02</span> · the part worth showing</p>
+      <h2 class="head" data-stagger="1">It tested the pipeline <em>before</em> designing it</h2>
+      <p class="lead" data-stagger="2">Three cheap experiments came first. Each one changed the skill.</p>
+      <table class="t" style="margin-top:18px" data-stagger="3">
+        <thead><tr><th style="width:27%">Experiment</th><th style="width:36%">What it found</th><th>What changed because of it</th></tr></thead>
+        <tbody>
+          <tr data-stagger="3">
+            <td><b>Called Mobbin for real</b><br /><span class="sub">"form for creating a customer with name, phone and ID fields"</span></td>
+            <td>Shopify's <i>New customer</i>, Cofounder's <i>Create contact</i> modal, a HoneyBook form — each with <code>image_url</code>, <code>mobbin_url</code>, <code>app_name</code></td>
+            <td>Confirmed real precedent exists for this exact task, and revealed <b>the metadata shape the whole pipeline depends on</b></td>
+          </tr>
+          <tr data-stagger="4">
+            <td><b>curl'd an image_url</b></td>
+            <td><code>http=200</code>, <code>image/webp</code>, 768×523, no auth needed</td>
+            <td>Made a <b>local asset folder</b> possible — the thing that makes the Figma paste work. Also set the max references per slide row</td>
+          </tr>
+          <tr data-stagger="5">
+            <td><b>Read the existing decks</b></td>
+            <td>Not loose HTML — a web component, a 1920×1080 auto-scaled canvas, keyboard nav, print-to-PDF, shared tokens</td>
+            <td>The deck template matches the real system, so output <b>drops into existing presentations</b> instead of looking foreign</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note-strip" data-stagger="6">
+        Then the same five-question interview as Skill 01, and only then the writing.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 10 · SKILL 02 · RESULT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1"><span class="num">Skill 02</span> · the result</p>
+      <h2 class="head" data-stagger="1">What it became</h2>
+      <div class="cards cols-2" style="align-items:start;grid-template-columns:1.05fr .95fr">
+        <div data-stagger="2">
+<pre class="tree"><b>.cursor/skills/design-competitor-research/</b>
+├─ <b>SKILL.md</b>                  <i>6-step workflow</i>
+│                            <i>11 principles · 9 mistakes</i>
+├─ references/
+│  ├─ mobbin-playbook.md     <i>3 tools, query craft,</i>
+│  │                         <i>1 feature → 4–6 angles</i>
+│  ├─ analysis-brain.md      <i>the analyst discipline,</i>
+│  │                         <i>reading a screenshot</i>
+│  └─ deck-conventions.md    <i>tokens, classes, markup</i>
+├─ scripts/
+│  └─ <b>fetch_refs.py</b>          <i>refs/ + manifest.json</i>
+│                            <i>+ REFERENCES.md</i>
+└─ assets/
+   ├─ deck-template.html     <i>7 slides</i>
+   └─ findings-template.md</pre>
+        </div>
+        <div data-stagger="3">
+          <p class="lead" style="font-size:17px">
+            Pulls <b>real Mobbin references</b>, analyses them with the analyst brain, and returns
+            three artifacts: a <b>reference folder you can drag into Figma</b>, an HTML deck, and a
+            findings document that ends in a recommendation.
+          </p>
+          <div class="pills" style="margin-top:20px">
+            <span class="pill mag">Mobbin MCP</span>
+            <span class="pill">Local image capture</span>
+            <span class="pill">Comparison matrix + "us" row</span>
+            <span class="pill">Confidence labels</span>
+          </div>
+          <p class="note-strip" style="margin-top:22px">
+            Installed globally too — this one is useful on any project, not just CEP.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 11 · SKILL 02 · THE THREE DECISIONS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Skill 02</span> · what makes it not a screenshot dump</p>
+      <h2 class="head" data-stagger="1">Three decisions worth stealing</h2>
+      <div class="cards cols-3" style="margin-top:14px">
+        <div class="card" data-stagger="2">
+          <p class="k">the images</p>
+          <h3>Download, never hotlink</h3>
+          <p>Mobbin's <code>image_url</code> is a short-lived redirect. Hotlinking means a deck that breaks next week and a Figma paste that never worked.</p>
+          <p><b>One script solves both deliverables at once.</b></p>
+        </div>
+        <div class="card accent" data-stagger="3">
+          <p class="k">the honesty rule</p>
+          <h3>Mobbin has no true competitors for us</h3>
+          <p>It will never show you Amdocs or Dynamics. The skill <b>says so out loud</b>, offers proxy apps as <i>adjacent precedent</i>, and falls back to the web for behaviour.</p>
+          <p>Calling it "competitive analysis" would have been a lie.</p>
+        </div>
+        <div class="card" data-stagger="4">
+          <p class="k">the structure</p>
+          <h3>The conclusion goes on slide two</h3>
+          <p>Inherited from the analyst brain: lead with the answer.</p>
+          <p>A deck that saves its recommendation for the end is <b>a screenshot gallery with suspense</b>.</p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        The skill got good because the agent <b>tested before designing</b>. Guessing would have
+        produced a skill that hotlinks expiring images into a deck that doesn't match your slides.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 12 · THE CHECKLIST PAYOFF ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Both prompts, one checklist</p>
+      <h2 class="head" data-stagger="1">Seven parameters. Neither prompt had them all.</h2>
+      <table class="t" style="margin-top:20px" data-stagger="2">
+        <thead>
+          <tr>
+            <th style="width:15%">Parameter</th>
+            <th style="width:34%">Skill 01 · the PM</th>
+            <th style="width:34%">Skill 02 · the researcher</th>
+            <th style="width:17%">Where it ends up biting</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-stagger="2">
+            <td><b>Triggers</b></td>
+            <td>"every new feature and new screen"</td>
+            <td><span style="color:var(--brand);font-weight:600">missing</span> — nothing says when it runs</td>
+            <td>It waits to be summoned instead of following the PRD</td>
+          </tr>
+          <tr data-stagger="3">
+            <td><b>Tools · MCP</b></td>
+            <td><span style="color:var(--brand);font-weight:600">missing</span> — no tool named</td>
+            <td>"connects to the Mobbin MCP"</td>
+            <td>The PM reasons about screens it never opened</td>
+          </tr>
+          <tr data-stagger="4">
+            <td><b>Success</b></td>
+            <td><span style="color:var(--brand);font-weight:600">missing</span> — a purpose, not a bar</td>
+            <td>"HTML slides plus the Mobbin references"</td>
+            <td>Nothing to aim at, so "thorough" becomes the goal</td>
+          </tr>
+          <tr data-stagger="5">
+            <td><b>Method ·<br />the reference</b></td>
+            <td>"Use lenny-skills <b>as your reference for how strong PM skills are built</b>"</td>
+            <td>A bare URL, <span style="color:var(--brand);font-weight:600">no verb</span></td>
+            <td>A link is not an instruction</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note-strip" data-stagger="6">
+        This is the part people get backwards. <b>A longer prompt does not make a better skill.</b> A prompt
+        that walks the checklist does — and still ends with <i>ask me questions</i>. Note what's in neither
+        one: no format, no sections, no tone. <b>The structure came out of the conversation.</b>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 13 · THE PIPELINE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Together</p>
+      <h2 class="head" data-stagger="1">One pipeline, three skills</h2>
+      <p class="lead" data-stagger="2">
+        Neither skill was built in isolation. Each one's output is the next one's input — and
+        <b>I verify between every handoff</b>.
+      </p>
+      <div class="pipeline">
+        <div class="node" data-stagger="3">
+          <div class="k">Define</div>
+          <div class="nm">/cep-product-manager</div>
+          <div class="d">The problem, the decisions at stake, and a research brief that names them.</div>
+        </div>
+        <div class="arrow" data-stagger="3">→</div>
+        <div class="node" data-stagger="4">
+          <div class="k">Evidence</div>
+          <div class="nm">/design-competitor-research</div>
+          <div class="d">Real references, a matrix with an "us" row, and a recommendation that can argue back.</div>
+        </div>
+        <div class="arrow" data-stagger="4">→</div>
+        <div class="node" data-stagger="5">
+          <div class="k">Build</div>
+          <div class="nm">/senior-product-designer</div>
+          <div class="d">The screen itself, gated against the design system, rendered and tested.</div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="6">
+        <b>The handoff is the product.</b> A brief that only says "research create-customer screens"
+        produces a gallery. Naming the four decisions produces an argument. Next up: what that brief
+        actually said.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="deck.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   Prompt anatomy — step through the parameters of each skill prompt.
+
+   Each step lights one segment of the verbatim prompt plus its legend
+   row, and rewrites the note. The last two steps reveal the parameters
+   the prompt was missing. deck.js consults window.deckSubStep before
+   advancing, so → walks the parameters first and only then changes slide.
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  var CONFIGS = [
+    {
+      id: 'pa-pm',
+      addAt: 7, /* step 7 is the first addition — the six before it were really in the prompt */
+      order: ['persona', 'purpose', 'triggers', 'context', 'method', 'reference', 'tools', 'success'],
+      note: [
+        ['Five sentences, exactly as typed. <b>Six parameters already inside.</b> Press → to see where each one sits.', false],
+        ['<b>Persona.</b> Not "help me" — a role. A PM argues with you; an assistant agrees with you.', false],
+        ['<b>Purpose.</b> What it produces — specs, PRDs, research — and why: <i>better decisions</i>, not more documents.', false],
+        ['<b>Triggers.</b> A new feature, a new screen. Now it knows when to wake up, without being told each time.', false],
+        ['<b>Context.</b> The sentence that stops it being a generic PM off the internet. This repo is its whole world.', false],
+        ['<b>Method.</b> Ask before you write. Every one of the five questions it put back to me came from this line.', false],
+        ['Still method — <b>the reference.</b> Never let it guess what "good" looks like; hand it a repo of strong skills to learn from.', false],
+        ['Missing: <b>tools.</b> No MCP was named, so the skill reasons about screens from a map rather than opening the Figma file.', true],
+        ['And missing: <b>a definition of done.</b> "Better decisions" is a purpose, not a bar. Two added lines — nothing clever, just no forgotten parameters.', true]
+      ]
+    },
+    {
+      id: 'pa-research',
+      addAt: 7,
+      order: ['persona', 'purpose', 'tools', 'context', 'success', 'method', 'triggers', 'reference'],
+      note: [
+        ['Five sentences again. <b>Six parameters — but not the same six.</b> Press → to see which.', false],
+        ['<b>Persona.</b> A researcher, not a mood board. A different role carries a different set of opinions.', false],
+        ['<b>Purpose.</b> Not inspiration — <i>evidence</i>: how competitors already solved the thing we are about to design.', false],
+        ['<b>Tools.</b> This prompt remembered its hands. The Mobbin MCP brings real screens, not memories of screens.', false],
+        ['<b>Context.</b> A brain it inherits — the competitive-analyst agent decides <i>how</i> it judges what it sees.', false],
+        ['<b>Success.</b> The deliverables were named up front: slides, plus references ready for the deck and for Figma.', false],
+        ['<b>Method.</b> The same four words as skill 01 — ask me questions. That one line is what makes either skill a partner.', false],
+        ['Missing: <b>triggers.</b> Nothing said when it runs, so it waits to be summoned instead of following the PRD.', true],
+        ['And method was only half there — <b>the reference was a URL with no verb.</b> The link was in the box; the instruction wasn\'t. Every prompt forgets different parameters, which is exactly why you want a checklist and not a template.', true]
+      ]
+    }
+  ];
+
+  var slides = [].slice.call(document.querySelectorAll('[data-slide]'));
+
+  var instances = CONFIGS.map(function (cfg) {
+    var slide = document.getElementById(cfg.id);
+    if (!slide) return null;
+
+    var note = slide.querySelector('.pa-note');
+    var hint = slide.querySelector('.pc-hint');
+    var addhead = slide.querySelector('.pa-addhead');
+    var card = slide.querySelector('.prompt-card');
+    var MAX = cfg.order.length;
+    var step = 0;
+
+    function isActive() { return slide.classList.contains('is-active'); }
+
+    /* the reference is part of Method, so it gets its own step in the prompt
+       but points back at the same row of the checklist — seven parameters, eight steps */
+    var ROW = { reference: 'method' };
+
+    function paint() {
+      var seen = {}, current = step > 0 ? cfg.order[step - 1] : null;
+      for (var k = 0; k < step; k++) seen[cfg.order[k]] = true;
+
+      var currentRow = ROW[current] || current;
+      var revealingAnAddition = step >= cfg.addAt;
+
+      slide.querySelectorAll('.seg, .pa-add').forEach(function (el) {
+        var key = el.getAttribute('data-el');
+        /* a parameter can appear in more than one sentence — light them all */
+        el.classList.toggle('lit', !!seen[key]);
+        el.classList.toggle('cur', key === current);
+      });
+
+      slide.querySelectorAll('.pa-item').forEach(function (el) {
+        var key = el.getAttribute('data-el');
+        var isCur = key === currentRow;
+        el.classList.toggle('lit', !!seen[key] || (key === 'method' && !!seen.reference));
+        el.classList.toggle('cur', isCur);
+        el.classList.toggle('addcur', isCur && revealingAnAddition);
+      });
+
+      if (addhead) addhead.classList.toggle('lit', step >= cfg.addAt);
+      if (note) {
+        note.innerHTML = cfg.note[step][0];
+        note.classList.toggle('done', cfg.note[step][1]);
+      }
+      if (hint) hint.style.visibility = step >= MAX ? 'hidden' : '';
+    }
+
+    var inst = {
+      index: slides.indexOf(slide),
+      step: function (dir) {
+        if (!isActive()) return false;
+        if (dir > 0 && step < MAX) { step++; paint(); return true; }
+        if (dir < 0 && step > 0) { step--; paint(); return true; }
+        return false; /* exhausted — let the deck move on */
+      },
+      /* arriving forwards starts empty; arriving backwards starts fully revealed */
+      reset: function (full) { step = full ? MAX : 0; paint(); }
+    };
+
+    if (card) card.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      if (isActive()) inst.step(1);
+    });
+
+    paint();
+    return inst;
+  }).filter(Boolean);
+
+  window.deckSubStep = function (dir) {
+    for (var k = 0; k < instances.length; k++) {
+      if (instances[k].step(dir)) return true;
+    }
+    return false;
+  };
+
+  var last = -1;
+  window.addEventListener('deckslide', function (e) {
+    var idx = e.detail.index;
+    instances.forEach(function (inst) {
+      if (idx === inst.index && idx !== last) inst.reset(last > inst.index);
+    });
+    last = idx;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spec — Browse Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../deck.css" />
+<style>
+  /* ───────── deck 03 · local patterns ───────── */
+  .cut{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px;}
+  .cut .c{
+    display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:baseline;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:13px 15px;box-shadow:var(--shadow-card);
+  }
+  .cut .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:700;}
+  .cut .v{font-size:14px;color:var(--ink);font-weight:600;line-height:1.4;}
+  .cut .v span{display:block;font-weight:400;font-size:12.5px;color:var(--secondary-text);margin-top:3px;}
+
+  .tags{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;}
+  .tags .t{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:16px 15px;box-shadow:var(--shadow-card);
+  }
+  .tags .t .lbl{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.04em;}
+  .tags .t.reuse .lbl{color:#1c5132;}
+  .tags .t.compose .lbl{color:var(--info);}
+  .tags .t.extend .lbl{color:var(--magenta);}
+  .tags .t.invent .lbl{color:#a3323c;}
+  .tags .t .big{font-size:26px;font-weight:700;color:var(--ink);line-height:1;margin-top:9px;letter-spacing:-.02em;}
+  .tags .t .d{font-size:12.5px;color:var(--secondary-text);margin-top:9px;line-height:1.45;}
+  .tags .t .d b{color:var(--ink);font-weight:600;}
+
+  .acc td.cmd{font-family:var(--font-mono);font-size:12px;color:var(--magenta);white-space:nowrap;}
+  .states td.yes b{color:#1c5132;}
+  .states td.no b{color:#a3323c;}
+</style>
+</head>
+<body data-brand="Browse Catalog · Run 2">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Run 02</span> · <span class="stage">Stage 03</span> · the PRD and screen spec</p>
+      <h1 class="title" data-stagger="2">A direction isn't<br>a <em>cut</em>.</h1>
+      <p class="lead" data-stagger="3">
+        “Make it an agent's tool” could mean three different screens. The PRD's job was to pick one, name
+        what it isn't, and write down what would prove it built — <b>with the command that proves each line</b>.
+      </p>
+      <p class="note-strip" data-stagger="4">
+        Then the checkpoint got skipped: <b>“ok go now and build the new catalog-v2”</b>. The spec went
+        straight to code without a human reading it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · THE CUT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Locked before a line of code</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:2px">Ten decisions, so the build had nothing left to invent</h2>
+      <div class="cut">
+        <div class="c" data-stagger="2"><span class="k">Route</span><span class="v"><code>/catalog-v2</code><span>A sibling route. <code>/catalog</code> and <code>lib/catalog.ts</code> are never touched.</span></span></div>
+        <div class="c" data-stagger="2"><span class="k">Session tab</span><span class="v">“Choose offer”<span>Not “Order Flow” — so v1 and v2 are distinguishable in the chrome itself.</span></span></div>
+        <div class="c" data-stagger="3"><span class="k">How it's entered</span><span class="v">Products → <b>Add new</b><span>A button that was dead on Customer 360. Dashboard, Shop and Continue shopping deliberately still open v1.</span></span></div>
+        <div class="c" data-stagger="3"><span class="k">Customer context</span><span class="v">Strip above the grid<span>Name, initials, the <b>real</b> Singapore address, mobile / internet counts, the <code>$40.00</code> line.</span></span></div>
+        <div class="c" data-stagger="4"><span class="k">Find</span><span class="v">Tabs + live search + sort<span>Search filters title and body as you type. The count is the number of cards.</span></span></div>
+        <div class="c" data-stagger="4"><span class="k">Current plan</span><span class="v">A card, chipped <em>Current</em><span>Primary action disabled — the Bonsai affordance, not a hidden row.</span></span></div>
+        <div class="c" data-stagger="5"><span class="k">Details</span><span class="v">Right panel<span>The grid stays. × / overlay / Escape close it. No new route, no modal.</span></span></div>
+        <div class="c" data-stagger="5"><span class="k">Select</span><span class="v">Still <code>/offer</code><span>The existing five-step wizard is untouched, so the order flow keeps working.</span></span></div>
+        <div class="c" data-stagger="6"><span class="k">Data</span><span class="v"><code>lib/catalog-v2.ts</code><span>12 named offers, mixed prices, one flagged <code>current</code>, two carrying a <code>reason</code>.</span></span></div>
+        <div class="c" data-stagger="6"><span class="k">Not building</span><span class="v">Eligibility · AI find · matrix<span>Each one rejected with a reference count behind it, not a shrug.</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · REUSE → INVENT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Every element carries a tag · stop at the first that works</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">REUSE → COMPOSE → EXTEND → <em>INVENT</em></h2>
+      <p class="lead" data-stagger="2">
+        The rule that kept a redesign from becoming a re-skin: you may not invent until you've proved the
+        cheaper three don't work — and every INVENT owes a justification and a Storybook story.
+      </p>
+      <div class="tags">
+        <div class="t reuse" data-stagger="3">
+          <div class="lbl">REUSE</div>
+          <div class="big">Most of it</div>
+          <div class="d"><code>AppShell</code>, session tabs, <code>WorkspaceHeader</code>, buttons, fields, <code>Icon</code>, and <b>every token</b> in <code>@theme</code>.</div>
+        </div>
+        <div class="t compose" data-stagger="4">
+          <div class="lbl">COMPOSE</div>
+          <div class="big">4 new</div>
+          <div class="d">Customer strip, offer grid, <b>Details panel</b>, no-results — assembled from parts that already existed.</div>
+        </div>
+        <div class="t extend" data-stagger="5">
+          <div class="lbl">EXTEND</div>
+          <div class="big">1 pattern</div>
+          <div class="d">The offer card, in a <b>new file</b>. <code>OfferCard.tsx</code> is never imported, so v1 can't break.</div>
+        </div>
+        <div class="t invent" data-stagger="6">
+          <div class="lbl">INVENT</div>
+          <div class="big">0</div>
+          <div class="d"><b>Zero new tokens. Zero new icons.</b> The only new entity is the mock data file — and it lives beside the old one, not in it.</div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="6">
+        The one shared component touched: <b><code>ProductsCard</code>'s Add new became a <code>Link</code></b> —
+        same classes, same copy. That's the whole blast radius on existing code.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · THE STATES ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The states nobody draws</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:14px">Specced, including the ones we refused to build</h2>
+      <table class="t states" data-stagger="2">
+        <thead><tr><th style="width:26%">State</th><th>Behaviour</th><th style="width:13%">In scope</th></tr></thead>
+        <tbody>
+          <tr><td><b>Default</b></td><td>Featured offers, real count, current card visible</td><td class="yes"><b>Yes</b></td></tr>
+          <tr><td><b>Searching</b></td><td>Grid filters as you type; the count follows the cards</td><td class="yes"><b>Yes</b></td></tr>
+          <tr><td><b>No results</b></td><td>Message + <b>Clear search</b> — the Shopify pattern</td><td class="yes"><b>Yes</b></td></tr>
+          <tr><td><b>Filter empty</b></td><td>Message + Clear filters, naming what's applied</td><td class="yes"><b>Yes</b></td></tr>
+          <tr><td><b>Details open</b></td><td>Panel over the page; the grid is still behind it</td><td class="yes"><b>Yes</b></td></tr>
+          <tr><td><b>Address editing</b></td><td>Field + Done, session-only — not persisted</td><td class="yes"><b>Yes</b></td></tr>
+          <tr><td><b>Unknown customer in the URL</b></td><td>Falls back to <code>sai-kumar</code> rather than erroring</td><td class="yes"><b>Yes</b></td></tr>
+          <tr><td>Loading / network</td><td>Not applicable — mock data, no fetch</td><td class="no"><b>No</b></td></tr>
+          <tr class="us"><td>Eligibility grey-out</td><td><b>Deliberately not built.</b> 0 of 16 references showed it</td><td class="no"><b>No</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · ACCEPTANCE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The patch that made this section exist</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">Every criterion names the <em>command</em> that proves it</h2>
+      <p class="lead" data-stagger="2" style="margin-bottom:14px">
+        “Done means an engineer builds from this file without asking one question.” A criterion nobody can
+        run is an opinion with a checkbox next to it.
+      </p>
+      <table class="t acc" data-stagger="3">
+        <thead><tr><th style="width:5%">#</th><th>Criterion</th><th style="width:31%">Command</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><code>/catalog</code> still shows 8 cards on Top offers; Mobile still says <b>“4 Results”</b></td><td class="cmd">node scripts/flow-test.mjs</td></tr>
+          <tr><td>2</td><td><b>Add new</b> on Sai's 360 lands on <code>/catalog-v2</code>; the strip shows Sai Kumar and Singapore</td><td class="cmd">same</td></tr>
+          <tr><td>3</td><td>Search changes the count; a nonsense query shows no-results</td><td class="cmd">same</td></tr>
+          <tr><td>4</td><td>Details opens a panel; Select on a non-current card reaches <code>/offer</code></td><td class="cmd">same</td></tr>
+          <tr><td>5</td><td>The <b>Current plan</b> control is disabled</td><td class="cmd">same</td></tr>
+          <tr><td>6</td><td>Stories exist for strip, grid, no-results, panel</td><td class="cmd">npm run storybook</td></tr>
+          <tr><td>7</td><td>Types clean</td><td class="cmd">npx tsc --noEmit</td></tr>
+        </tbody>
+      </table>
+      <p class="note-strip" data-stagger="4">
+        Criterion 1 is the important one: it asserts that <b>the screen we're not building still works</b>.
+        Six things link to <code>/catalog</code> and four of them are already covered by the flow test.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · WEAK SECTION ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The section the skill is required to write about itself</p>
+      <h2 class="head" data-stagger="1">Weak section: <em>almost nobody will find it</em></h2>
+      <div class="cards cols-2" style="margin-top:18px">
+        <div class="card accent" data-stagger="2">
+          <p class="k">What the PRD admits</p>
+          <h3>One real entry point</h3>
+          <p>Entry is <b>Products → Add new</b> on Customer 360, plus a direct URL. Four dashboard quick actions, the banner's Shop now, Find Customer's Shop, the wizard's back arrow and order-complete's Continue shopping <b>all still open v1</b>.</p>
+          <p>An agent who only uses quick actions will never see the new screen unless someone shows them the 360 path.</p>
+        </div>
+        <div class="card" data-stagger="3">
+          <p class="k">Why it shipped that way anyway</p>
+          <h3>Repointing links is a product decision</h3>
+          <p>Every one of those six links is a <b>promise something else depends on</b> — four of them are asserted in the flow test. Silently redirecting them would have made the safest part of the run the riskiest.</p>
+          <p>So the constraint stayed, and the gap got written down instead of hidden. <b>The next run starts from a known problem, not a surprise.</b></p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="4">
+        Two open questions were answered the same way: the wizard's Back still returns to <code>/catalog</code>
+        (<b>accepted</b>, out of scope), and the edited address is <b>not persisted</b> — session-only, exactly
+        like Create Customer.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="../deck.js"></script>
+</body>
+</html>

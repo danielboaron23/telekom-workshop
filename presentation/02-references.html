@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>All 17 references — Telekom CEP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="deck.css" />
+<style>
+  /* scrolling page, not a slide deck */
+  body{overflow:auto;background:var(--page);}
+  .page{max-width:1180px;margin:0 auto;padding:44px 40px 72px;}
+  .phead{margin-bottom:34px;}
+  .phead h1{font-size:38px;font-weight:700;color:var(--ink);margin:8px 0 12px;letter-spacing:-.02em;}
+  .phead .lead{font-size:16px;}
+  .group{margin-top:38px;}
+  .gtitle{
+    font-size:13px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:700;
+    display:flex;align-items:center;gap:10px;margin:0 0 16px;
+    padding-bottom:11px;border-bottom:1px solid var(--line-soft);
+  }
+  .gtitle span{
+    font-size:11px;background:var(--magenta-wash);color:var(--magenta);
+    border:1px solid var(--magenta-line);border-radius:999px;padding:2px 8px;letter-spacing:0;
+  }
+  .reflist{display:grid;gap:14px;}
+  .ref{
+    display:grid;grid-template-columns:248px 1fr;gap:20px;align-items:start;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:15px;box-shadow:var(--shadow-card);
+  }
+  .thumb{display:block;border-radius:var(--radius-btn);overflow:hidden;border:1px solid var(--line-soft);background:var(--surface);}
+  .thumb img{display:block;width:100%;height:auto;}
+  .meta .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .meta .num{font-family:var(--font-mono);font-size:12px;color:var(--magenta);font-weight:600;}
+  .meta h3{font-size:18px;font-weight:700;color:var(--ink);margin:0;}
+  .meta .pat{
+    font-size:11.5px;color:var(--secondary-text);background:var(--surface);
+    border:1px solid var(--line-soft);border-radius:999px;padding:3px 9px;
+  }
+  .meta p{font-size:14px;line-height:1.55;color:var(--secondary-text);margin:11px 0 0;}
+  .meta p b{color:var(--ink);font-weight:600;}
+  .link{
+    display:inline-flex;align-items:center;gap:6px;margin-top:13px;
+    font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;
+    border:1px solid var(--line);border-radius:var(--radius-btn);padding:7px 12px;
+    background:var(--paper);transition:all .22s var(--ease);
+  }
+  .link:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8;}
+  .foot{
+    margin-top:44px;padding-top:20px;border-top:1px solid var(--line-soft);
+    font-size:13px;color:var(--faint);line-height:1.6;
+  }
+  @media(max-width:820px){ .ref{grid-template-columns:1fr;} .page{padding:28px 20px 56px;} }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="phead">
+    <p class="eyebrow">Stage 02 · the reference pack</p>
+    <h1>All 17 references</h1>
+    <p class="lead">
+      Every screen we pulled for <b>Create Customer</b>, grouped by the search angle it came from.
+      All images are stored locally in <code>refs/</code> — Mobbin's own URLs expire, and this folder is
+      what gets dragged into Figma. Each card links back to the original.
+    </p>
+  </header>
+
+    <section class="group">
+      <h2 class="gtitle">No results → create <span>4</span></h2>
+      <div class="reflist">
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/88bfa6c2-d2a2-4b42-9f86-0d8bf29a02fd" target="_blank" rel="noopener">
+          <img src="refs/01-folk.jpg" alt="folk — no results to create" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">01</span>
+            <h3>folk</h3>
+            <span class="pat">no results to create</span>
+          </div>
+          <p>"No results — We couldn't find any company matching &ldquo;alex&ldquo;." The primary action is a black button labelled <b>Create "alex"</b> — the searched term is carried into the action label itself, so the agent can see what will be created. Note also the left nav has a persistent "Duplicates 1" queue.</p>
+          <a class="link" href="https://mobbin.com/screens/88bfa6c2-d2a2-4b42-9f86-0d8bf29a02fd" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/983517a9-4e00-4d4f-91e9-a52927f7b5a8" target="_blank" rel="noopener">
+          <img src="refs/02-canny.jpg" alt="Canny — no results to create" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">02</span>
+            <h3>Canny</h3>
+            <span class="pat">no results to create</span>
+          </div>
+          <p>"No changelog entries found... Try searching for other keywords or create a new entry instead." Create is a text link inside the sentence — deliberately secondary to re-searching.</p>
+          <a class="link" href="https://mobbin.com/screens/983517a9-4e00-4d4f-91e9-a52927f7b5a8" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/3c46ffc6-f149-4160-ad6f-e143068b715e" target="_blank" rel="noopener">
+          <img src="refs/03-jasper.jpg" alt="Jasper — no results to create" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">03</span>
+            <h3>Jasper</h3>
+            <span class="pat">no results to create</span>
+          </div>
+          <p>Empty results card inside the page, copy suggests different keywords first, then a bounded secondary button "Create an App". Search field stays populated above.</p>
+          <a class="link" href="https://mobbin.com/screens/3c46ffc6-f149-4160-ad6f-e143068b715e" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/77962502-3c2f-461e-86f0-7bfd175fb8f2" target="_blank" rel="noopener">
+          <img src="refs/04-workable.jpg" alt="Workable — empty state, not no-results" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">04</span>
+            <h3>Workable</h3>
+            <span class="pat">empty state, not no-results</span>
+          </div>
+          <p>"No candidates, yet — Create a job to start receiving candidates." This is a first-run empty state, not a failed search, and the CTA points at a prerequisite rather than at creating the thing searched for. Useful contrast: do not conflate the two states.</p>
+          <a class="link" href="https://mobbin.com/screens/77962502-3c2f-461e-86f0-7bfd175fb8f2" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group">
+      <h2 class="gtitle">The create form itself <span>5</span></h2>
+      <div class="reflist">
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/ef03ab14-ff5e-4e0c-a10e-6b1b65d30e12" target="_blank" rel="noopener">
+          <img src="refs/05-oyster.jpg" alt="Oyster — create — full page" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">05</span>
+            <h3>Oyster</h3>
+            <span class="pat">create — full page</span>
+          </div>
+          <p>"Add contact" as a full centred page with a "Back to points of contact" link. One "Primary contact" section: Full name, Email, Phone with country selector, Job title, then two scope fields. Identity first, everything else below.</p>
+          <a class="link" href="https://mobbin.com/screens/ef03ab14-ff5e-4e0c-a10e-6b1b65d30e12" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/9741046f-72c2-4e00-a214-380d827b257e" target="_blank" rel="noopener">
+          <img src="refs/06-wave.jpg" alt="Wave — create — full page" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">06</span>
+            <h3>Wave</h3>
+            <span class="pat">create — full page</span>
+          </div>
+          <p>"New customer" full page, label-left layout. Exactly one required field, marked with * and explained ("Name of a business or person"); the primary contact block is visually grouped and entirely optional, with "+Add phone" / "Add contact" to grow it.</p>
+          <a class="link" href="https://mobbin.com/screens/9741046f-72c2-4e00-a214-380d827b257e" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/3ba61e34-90f4-4e2a-bd00-e2f36237b620" target="_blank" rel="noopener">
+          <img src="refs/07-zoom.jpg" alt="Zoom — create — modal over the list" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">07</span>
+            <h3>Zoom</h3>
+            <span class="pat">create — modal over the list</span>
+          </div>
+          <p>"Add a New Contact" modal sitting directly over the contacts table, which stays visible behind it. Name is the only required field, followed by five separate phone fields (Office, Home, Mobile, Fax, Phone) — a fixed long form with no progressive disclosure. Save / Cancel bottom-right.</p>
+          <a class="link" href="https://mobbin.com/screens/3ba61e34-90f4-4e2a-bd00-e2f36237b620" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/cd0f2ddb-9537-4279-958d-b0b1be07ba17" target="_blank" rel="noopener">
+          <img src="refs/08-skiff.jpg" alt="Skiff — create — inline panel" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">08</span>
+            <h3>Skiff</h3>
+            <span class="pat">create — inline panel</span>
+          </div>
+          <p>Contact editor opens as a panel beside the list. Shows Name, Email, Phone, Birthday — then a "+" menu offering Company, Job title, Address, Nickname, URL on demand. Progressive disclosure as an explicit control rather than a hidden section.</p>
+          <a class="link" href="https://mobbin.com/screens/cd0f2ddb-9537-4279-958d-b0b1be07ba17" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/b56bd763-d57f-4bab-8a0e-f8a1f70d6022" target="_blank" rel="noopener">
+          <img src="refs/09-proton.jpg" alt="Proton — create — modal, fully progressive" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">09</span>
+            <h3>Proton</h3>
+            <span class="pat">create — modal, fully progressive</span>
+          </div>
+          <p>"Create contact" modal where every group (Email addresses, Phone numbers, Addresses, Birthday, Notes, Other information) is a section with its own "Add" button. The form starts nearly empty. Maximum flexibility, maximum clicks — wrong trade for a timed task.</p>
+          <a class="link" href="https://mobbin.com/screens/b56bd763-d57f-4bab-8a0e-f8a1f70d6022" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group">
+      <h2 class="gtitle">The duplicate <span>5</span></h2>
+      <div class="reflist">
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/2c39aa52-7309-484c-ae49-aab05d045005" target="_blank" rel="noopener">
+          <img src="refs/10-navan.jpg" alt="Navan — duplicate — offer the existing record" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">10</span>
+            <h3>Navan</h3>
+            <span class="pat">duplicate — offer the existing record</span>
+          </div>
+          <p>The create modal itself is split into two tabs: <b>Add new traveler</b> and <b>Add existing traveler</b> (with a search icon). A top-right toast reports "Email jdoe@content-mobbin.com is already registered" while the modal stays open and filled. The create surface offers the search the user should have done, and a collision does not destroy their typing.</p>
+          <a class="link" href="https://mobbin.com/screens/2c39aa52-7309-484c-ae49-aab05d045005" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/ed4ea4cf-e652-4434-8e93-f5426acece6e" target="_blank" rel="noopener">
+          <img src="refs/11-biosites.jpg" alt="Biosites — duplicate — inline field error" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">11</span>
+            <h3>Biosites</h3>
+            <span class="pat">duplicate — inline field error</span>
+          </div>
+          <p>"An account with this email already exists." rendered as red helper text directly under the offending field, on blur, with the value left in place. Cheapest possible duplicate signal, and it points at exactly which field caused it — but it offers no way to reach the existing record.</p>
+          <a class="link" href="https://mobbin.com/screens/ed4ea4cf-e652-4434-8e93-f5426acece6e" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/ad2475a9-9407-4c46-b938-8f326c9a7b20" target="_blank" rel="noopener">
+          <img src="refs/12-the-leap.jpg" alt="The Leap — duplicate — inline field error" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">12</span>
+            <h3>The Leap</h3>
+            <span class="pat">duplicate — inline field error</span>
+          </div>
+          <p>"has already been taken" under the email field. Same mechanism as Biosites, worse copy — the sentence has no subject, so it reads as a fragment.</p>
+          <a class="link" href="https://mobbin.com/screens/ad2475a9-9407-4c46-b938-8f326c9a7b20" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/f2c3eabc-c7bf-4308-b59f-1a4c298f8016" target="_blank" rel="noopener">
+          <img src="refs/13-surfshark.jpg" alt="Surfshark — duplicate — dead-end alert" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">13</span>
+            <h3>Surfshark</h3>
+            <span class="pat">duplicate — dead-end alert</span>
+          </div>
+          <p>Modal alert: "The Gmail account you're trying to add is already linked to a Surfshark account." The only action is "Got it". Blocks, explains nothing actionable, and offers no route to the existing account. Reject — this is the shape our duplicate handling must not take.</p>
+          <a class="link" href="https://mobbin.com/screens/f2c3eabc-c7bf-4308-b59f-1a4c298f8016" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/0f085c42-6e9b-4abb-ad6b-3fd3b369f632" target="_blank" rel="noopener">
+          <img src="refs/14-square.jpg" alt="Square — duplicate — post-hoc merge queue" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">14</span>
+            <h3>Square</h3>
+            <span class="pat">duplicate — post-hoc merge queue</span>
+          </div>
+          <p>A dedicated "Review Duplicates" screen groups matched records and offers per-group <b>Ignore</b> / <b>Merge</b>, plus <b>Merge All</b>. Duplicates are treated as an ongoing data-quality job separate from creation — the same idea as folk's "Duplicates" nav item.</p>
+          <a class="link" href="https://mobbin.com/screens/0f085c42-6e9b-4abb-ad6b-3fd3b369f632" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="group">
+      <h2 class="gtitle">The success moment <span>3</span></h2>
+      <div class="reflist">
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/26bc06ce-87ce-4c67-a52b-18dc4c1ccb06" target="_blank" rel="noopener">
+          <img src="refs/15-airwallex.jpg" alt="Airwallex — success — dedicated confirmation" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">15</span>
+            <h3>Airwallex</h3>
+            <span class="pat">success — dedicated confirmation</span>
+          </div>
+          <p>"Your customer has been created", the new Customer ID shown as a copyable link, a card summarising the created record, and two actions: <b>Create another</b> (secondary) and <b>View customer</b> (primary). The closest reference in the whole set to our exact job.</p>
+          <a class="link" href="https://mobbin.com/screens/26bc06ce-87ce-4c67-a52b-18dc4c1ccb06" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/72f93043-ef2b-48bb-a0a6-2403da15ace0" target="_blank" rel="noopener">
+          <img src="refs/16-hubspot.jpg" alt="HubSpot — success — modal with link out" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">16</span>
+            <h3>HubSpot</h3>
+            <span class="pat">success — modal with link out</span>
+          </div>
+          <p>"Success — 2 contacts were added to the new list: New Contacts ↗" over the list, with a single "Got it". Confirms the count and links to the created thing, then returns the operator to where they were.</p>
+          <a class="link" href="https://mobbin.com/screens/72f93043-ef2b-48bb-a0a6-2403da15ace0" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      <article class="ref">
+        <a class="thumb" href="https://mobbin.com/screens/8860fe14-6dce-4bd3-9198-ffbd0c6d6356" target="_blank" rel="noopener">
+          <img src="refs/17-typeform.jpg" alt="Typeform — success — celebratory" loading="lazy" />
+        </a>
+        <div class="meta">
+          <div class="top">
+            <span class="num">17</span>
+            <h3>Typeform</h3>
+            <span class="pat">success — celebratory</span>
+          </div>
+          <p>"Your form has been published! 🎉" with next-step promo cards. Correct for a self-serve creator moment, wrong for an agent on their fortieth record of the day. Reject on tone.</p>
+          <a class="link" href="https://mobbin.com/screens/8860fe14-6dce-4bd3-9198-ffbd0c6d6356" target="_blank" rel="noopener">
+            View on Mobbin
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+      </div>
+    </section>
+  <p class="foot">
+    Source: <b>Mobbin</b> · platform <code>web</code> · captured Sep 2026 ·
+    full index at <code>workshop/submissions/daniel/research/create-customer/REFERENCES.md</code><br />
+    Adjacent pattern precedent, not direct competitors — Mobbin does not carry Amdocs, Dynamics 365, or telco BSS tooling.
+  </p>
+</div>
+</body>
+</html>

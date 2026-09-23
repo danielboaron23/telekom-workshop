@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research · Mobbin — Telekom CEP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="deck.css" />
+<style>
+  /* ───────── deck 02 · local patterns ───────── */
+
+  /* reference wall */
+  .refgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px;}
+  .refgrid .shot img{max-height:186px;object-fit:cover;object-position:top center;}
+  .refgrid .shot-cap{padding:9px 12px;font-size:11.5px;line-height:1.35;}
+  .refgrid .shot-cap .app{display:block;font-weight:700;color:var(--ink);font-size:12.5px;margin-bottom:2px;}
+
+  /* annotated deep dive */
+  .deep{display:grid;grid-template-columns:1.25fr 1fr;gap:26px;align-items:start;margin-top:12px;}
+  .deep .shot img{max-height:520px;object-fit:contain;background:var(--surface);}
+  .deep .an{display:grid;gap:15px;}
+  .deep .an .h{font-size:15.5px;font-weight:700;color:var(--ink);line-height:1.3;}
+  .deep .an p{font-size:14px;line-height:1.5;color:var(--secondary-text);margin:0;}
+  .deep .an p b{color:var(--ink);font-weight:600;}
+  .quoteline{
+    font-family:var(--font-mono);font-size:13px;color:var(--ink);
+    background:var(--surface);border:1px solid var(--line-soft);
+    border-radius:var(--radius-field);padding:9px 12px;line-height:1.45;
+  }
+
+  /* the four search angles */
+  .angles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;}
+  .angles .a{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:15px 14px;box-shadow:var(--shadow-card);
+  }
+  .angles .a .q{font-size:12.5px;font-weight:700;color:var(--ink);line-height:1.3;}
+  .angles .a .apps{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;}
+  .angles .a .apps span{
+    font-size:11.5px;padding:3px 8px;border-radius:999px;
+    background:var(--surface);color:var(--secondary-text);border:1px solid var(--line-soft);
+  }
+  .angles .a .apps span.key{background:var(--magenta-wash);border-color:var(--magenta-line);color:var(--magenta);font-weight:600;}
+
+  /* decision list for the brief */
+  .decisions{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px;}
+  .decisions .d{
+    display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    background:var(--paper);padding:15px 16px;box-shadow:var(--shadow-card);
+  }
+  .decisions .d .n{
+    flex:none;width:25px;height:25px;border-radius:50%;background:var(--gradient-primary);
+    color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;
+  }
+  .decisions .d .t{font-size:14.5px;font-weight:700;color:var(--ink);}
+  .decisions .d .o{font-size:12.5px;color:var(--secondary-text);margin-top:4px;line-height:1.4;}
+
+  /* the code dead-end callout */
+  .codeblock{
+    font-family:var(--font-mono);font-size:13px;line-height:1.75;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:17px 19px;box-shadow:var(--shadow-card);margin-top:8px;color:var(--secondary-text);
+  }
+  .codeblock .file{color:var(--faint);font-size:11.5px;letter-spacing:.05em;display:block;margin-bottom:8px;}
+  .codeblock b{color:var(--ink);font-weight:600;}
+  .codeblock .bad{color:var(--brand);font-weight:600;}
+</style>
+</head>
+<body data-brand="Research · Mobbin">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Stage 02</span> · <span class="cmd">/design-competitor-research</span></p>
+      <h1 class="title" data-stagger="2">How does anyone<br>else do <em>this?</em></h1>
+      <p class="lead" data-stagger="3">
+        Seventeen real product screens, pulled from Mobbin, read one at a time — to settle
+        <b>four specific decisions</b>. Not to fill a slide with screenshots.
+      </p>
+      <hr class="rule" data-stagger="4" />
+      <p class="sub" data-stagger="4">
+        The brief · five search angles · 17 references · two deep dives · where we rejected the pattern
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · THE PROMPT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The prompt that ran the whole chain</p>
+      <h2 class="head" data-stagger="1">One sentence, three skills</h2>
+      <div class="prompt-card" data-stagger="2">
+        <div class="pc-top">
+          <span class="pc-avatar">D</span>
+          <span class="pc-who">Daniel typed <span class="cmd">/cep-product-manager</span></span>
+        </div>
+        <div class="pc-body">
+          now you first task is to make research and cometitior research how they make "Create Customer"
+          and make prd for it and also instraction for the <span class="cmd">/design-competitor-research</span>
+          after he will finish the <span class="cmd">/senior-product-designer</span> will design the screen
+          <b>after each of the skill finish you let me verfing all</b>
+        </div>
+        <div class="pc-foot">
+          Verbatim, typos and all. It sets an <b>order</b> (PM → research → designer) and a
+          <b>rule</b> (a human checkpoint between each). That last clause is what made the whole run safe.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · WHY THE PM WENT FIRST ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The order</p>
+      <h2 class="head" data-stagger="1">Why the PM went <em>before</em> the research</h2>
+      <p class="lead" data-stagger="2">
+        Both skills carry the same rule for the same reason: <b>a competitor claim that ends up in a PRD
+        gets verified before it's used.</b> So the order became brief → research → verify → PRD.
+        Never research-then-justify.
+      </p>
+      <div class="cards cols-3" style="margin-top:22px">
+        <div class="card" data-stagger="3">
+          <p class="k">If research goes first</p>
+          <h3>You get a gallery</h3>
+          <p>Interesting screens, no decision. Somebody then writes a spec that cherry-picks whichever screenshot supports it.</p>
+        </div>
+        <div class="card accent" data-stagger="4">
+          <p class="k">If the brief goes first</p>
+          <h3>You get an argument</h3>
+          <p>The brief names the decisions. Every reference either moves one of them or gets cut — including the pretty ones.</p>
+        </div>
+        <div class="card" data-stagger="5">
+          <p class="k">Either way</p>
+          <h3>Read the code first</h3>
+          <p>Before writing the brief, the PM read the actual repo rather than trusting the workshop description. That changed the task.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · THE FINDING THAT REFRAMED IT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Before any research · reading our own code</p>
+      <h2 class="head" data-stagger="1">The moment this feature depends on <em>doesn't exist</em></h2>
+      <div class="codeblock" data-stagger="2">
+        <span class="file">components/search/SearchFields.tsx</span>
+        onSubmit<b>?</b>: (value: string) =&gt; void;   <span class="bad">← optional</span>
+      </div>
+      <div class="codeblock" data-stagger="3">
+        <span class="file">components/find-customer/ResultsCard.tsx</span>
+        &lt;SearchFields /&gt;   <span class="bad">← never passes onSubmit</span>
+      </div>
+      <p class="lead" data-stagger="4" style="margin-top:22px">
+        So the Find Customer search field <b>does nothing</b>, and the results table always renders all
+        ten mock customers. The "agent searched and found nobody" moment — the one the entire feature is
+        a response to — <b>was not reachable in the product.</b>
+      </p>
+      <p class="note-strip" data-stagger="5">
+        That went into the brief as the <b>"us, today"</b> row, and became an open question the PRD had
+        to answer. Research can't find this for you. Only reading your own code can.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · THE BRIEF ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The handoff · <code>RESEARCH_BRIEF.md</code></p>
+      <h2 class="head" data-stagger="1">Four decisions, and a refusal</h2>
+      <p class="lead" data-stagger="2">
+        The brief deliberately did not say "research create-customer screens". It named the four
+        decisions at stake and <b>refused anything that didn't serve one of them</b>.
+      </p>
+      <div class="decisions">
+        <div class="d" data-stagger="3"><span class="n">1</span><div><div class="t">Surface</div><div class="o">Route · modal · side panel · inline expansion — which, and why?</div></div></div>
+        <div class="d" data-stagger="3"><span class="n">2</span><div><div class="t">Minimum field set</div><div class="o">What must be filled before Save is allowed at all?</div></div></div>
+        <div class="d" data-stagger="4"><span class="n">3</span><div><div class="t">Duplicate guard</div><div class="o">What happens when this customer already exists?</div></div></div>
+        <div class="d" data-stagger="4"><span class="n">4</span><div><div class="t">Success destination</div><div class="o">Where does the agent land after Save?</div></div></div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        Plus our user in one paragraph — <b>a care agent with someone waiting on the line</b> — the five
+        search angles, the matrix dimensions, and the "us, today" row pulled from real file paths.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · FIVE ANGLES ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Searching Mobbin</p>
+      <h2 class="head" data-stagger="1">Five angles, not one query</h2>
+      <p class="lead" data-stagger="2">
+        "Customer create edit delete list" returns noise. One intent per query, <code>limit: 5–8</code>,
+        and <b>look at every image</b> — metadata tells you nothing.
+      </p>
+      <div class="angles">
+        <div class="a" data-stagger="3">
+          <div class="q">No results → create</div>
+          <div class="apps"><span class="key">folk</span><span>Canny</span><span>Jasper</span><span>Workable</span></div>
+        </div>
+        <div class="a" data-stagger="4">
+          <div class="q">The create form itself</div>
+          <div class="apps"><span>Oyster</span><span>Wave</span><span class="key">Zoom</span><span class="key">Skiff</span><span class="key">Proton</span></div>
+        </div>
+        <div class="a" data-stagger="5">
+          <div class="q">The duplicate</div>
+          <div class="apps"><span class="key">Navan</span><span>Biosites</span><span>The Leap</span><span>Surfshark</span><span class="key">Square</span></div>
+        </div>
+        <div class="a" data-stagger="6">
+          <div class="q">The success moment</div>
+          <div class="apps"><span class="key">Airwallex</span><span>HubSpot</span><span>Typeform</span></div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="6">
+        <b>17 references</b>, every one downloaded locally as a JPG — because Mobbin's image URLs expire,
+        and that folder is what gets dragged into Figma.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 7 · THE WALL ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The evidence · 6 of 17 shown</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">Real screens, one decision each</h2>
+      <div class="refgrid">
+        <div class="shot" data-stagger="2">
+          <img src="refs/01-folk.jpg" alt="folk — no results with a Create button carrying the searched term" />
+          <div class="shot-cap"><span class="app">folk</span>Puts the failed query inside the button: <b>Create "alex"</b></div>
+        </div>
+        <div class="shot" data-stagger="2">
+          <img src="refs/04-workable.jpg" alt="Workable — first-run empty state" />
+          <div class="shot-cap"><span class="app">Workable</span>A first-run empty state, <b>not</b> a failed search — different job</div>
+        </div>
+        <div class="shot" data-stagger="3">
+          <img src="refs/07-zoom.jpg" alt="Zoom — Add a New Contact modal over the contacts table" />
+          <div class="shot-cap"><span class="app">Zoom</span>Modal over the list, which stays visible. <b>Name is the only required field</b></div>
+        </div>
+        <div class="shot" data-stagger="4">
+          <img src="refs/10-navan.jpg" alt="Navan — create modal split into Add new and Add existing traveler" />
+          <div class="shot-cap"><span class="app">Navan</span>Warns <b>and</b> offers the existing record. The best find in the set</div>
+        </div>
+        <div class="shot" data-stagger="5">
+          <img src="refs/14-square.jpg" alt="Square — Review Duplicates screen with merge and ignore" />
+          <div class="shot-cap"><span class="app">Square</span>Duplicates as an <b>ongoing data-quality queue</b>, separate from creating</div>
+        </div>
+        <div class="shot" data-stagger="6">
+          <img src="refs/15-airwallex.jpg" alt="Airwallex — customer created confirmation with ID and View customer" />
+          <div class="shot-cap"><span class="app">Airwallex</span>Confirmation names the record and offers <b>View customer</b> / Create another</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 8 · DEEP DIVE folk ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Deep dive 01 · <span class="stage">folk</span> · <span class="badge take">take</span></p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">Don't make them type it twice</h2>
+      <div class="deep">
+        <div class="shot" data-stagger="2">
+          <img src="refs/01-folk.jpg" alt="folk no-results screen with Create alex button" />
+          <div class="shot-cap">folk · no results → create · <b>mobbin.com/screens/88bfa6c2…</b></div>
+        </div>
+        <div class="an">
+          <div data-stagger="3">
+            <div class="h">The failed query is quoted back</div>
+            <div class="quoteline" style="margin-top:9px">No results — We couldn't find any company matching "alex".</div>
+          </div>
+          <div data-stagger="4">
+            <div class="h">…and it's inside the button</div>
+            <div class="quoteline" style="margin-top:9px">Create "alex"</div>
+            <p style="margin-top:9px">The searched term is carried into the <b>action label itself</b>, so you can see what you're about to create before you commit.</p>
+          </div>
+          <div data-stagger="5">
+            <p><b>Why it reframed our task.</b> "The create screen" became "<b>the search fields are the create form's first draft</b>". Nothing gets re-typed — which for an agent mid-call is seconds of live silence saved.</p>
+          </div>
+          <div data-stagger="6">
+            <p class="sub">Also visible: a persistent <b>"Duplicates 1"</b> queue in the left nav — the same idea as Square.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 9 · DEEP DIVE Navan ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Deep dive 02 · <span class="stage">Navan</span> · <span class="badge take">take</span></p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">A duplicate is a <em>routing</em> problem</h2>
+      <div class="deep">
+        <div class="shot" data-stagger="2">
+          <img src="refs/10-navan.jpg" alt="Navan create traveler modal with two tabs" />
+          <div class="shot-cap">Navan · duplicate — offer the existing record · <b>mobbin.com/screens/2c39aa52…</b></div>
+        </div>
+        <div class="an">
+          <div data-stagger="3">
+            <div class="h">The create surface contains the search you should have done</div>
+            <p style="margin-top:7px">The modal is split into two tabs: <b>Add new traveler</b> and <b>Add existing traveler</b>. Creating and finding are offered as the same task.</p>
+          </div>
+          <div data-stagger="4">
+            <div class="h">A collision doesn't destroy your typing</div>
+            <div class="quoteline" style="margin-top:9px">Email jdoe@…mobbin.com is already registered</div>
+            <p style="margin-top:9px">Reported as a toast while the modal <b>stays open and filled</b>.</p>
+          </div>
+          <div data-stagger="5">
+            <p><b>Why this was the best find.</b> Navan is the only reference where adding a record has real consequences — and the only one that both <b>warns and offers the existing record</b>. That correlation is the whole argument.</p>
+          </div>
+          <div data-stagger="6">
+            <p class="sub">Everyone else either blocks you dead (Surfshark) or shows red helper text and leaves you stuck (Biosites, The Leap).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 10 · ARGUING WITH THE PATTERN ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The variance · where our decision actually lives</p>
+      <h2 class="head" data-stagger="1">Two places we <em>rejected</em> the majority</h2>
+      <div class="cards cols-2" style="margin-top:16px">
+        <div class="card" data-stagger="2">
+          <p class="k">Surface · <span class="badge reject">rejected</span></p>
+          <h3>3 of 6 use a modal. We chose a route.</h3>
+          <p>A modal's whole benefit is <b>protecting your place in the list</b>. CEP's session tabs already do that — <i>and</i> they survive an interruption.</p>
+          <p>A modal dies the moment the agent switches tabs to take another call. <b>Interrupted is the normal case for an agent</b>, not the edge case.</p>
+        </div>
+        <div class="card" data-stagger="3">
+          <p class="k">Fields · <span class="badge reject">rejected</span></p>
+          <h3>Not one of the 17 required more than two. We require three.</h3>
+          <p>Name, Personal ID, and one reachable number.</p>
+          <p>A name-only contact is fine in Zoom. A <b>name-only telco subscriber is unfindable and unbillable</b> — Find Customer searches by identifier, and this data lands in billing.</p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="4">
+        This is the part that makes it research rather than a screenshot dump. <b>"Everyone does X" is the
+        start of the analysis, not the end of it</b> — you still have to say whether X was designed for
+        your user.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 11 · WHAT WE COULDN'T SEE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The honesty slide</p>
+      <h2 class="head" data-stagger="1">What the screenshots <em>can't</em> tell us</h2>
+      <div class="cards cols-3" style="margin-top:14px">
+        <div class="card accent" data-stagger="2">
+          <p class="k">our duplicate banner</p>
+          <h3>Inferred, not observed</h3>
+          <p><b>No reference does what we're proposing.</b> It's a synthesis of Navan's intent and Square's candidate-list layout.</p>
+          <p>Labelled <i>inferred</i> in the findings, the deck, and the PRD — in those words.</p>
+        </div>
+        <div class="card" data-stagger="3">
+          <p class="k">the matrix</p>
+          <h3>"Success" is mostly blank</h3>
+          <p>The column is almost entirely <b>"Not visible"</b> — a screenshot cannot show what happens after Save.</p>
+          <p>Saying that is more useful than filling the column with guesses.</p>
+        </div>
+        <div class="card" data-stagger="4">
+          <p class="k">the library</p>
+          <h3>Mobbin has no Amdocs</h3>
+          <p>Our real competitors aren't in it. What we have is <b>adjacent pattern precedent</b> — valuable, but a different claim.</p>
+          <p>Calling this "competitive analysis" would be a lie.</p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        Every claim in the findings carries a confidence label. <b>Credibility is the whole asset</b> — one
+        invented behaviour and nobody trusts the other sixteen references.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 12 · TAKEAWAY ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Stage 02 · takeaway</p>
+      <h2 class="head" data-stagger="1">Research earns its keep when it <em>argues</em> with the pattern</h2>
+      <p class="lead" data-stagger="2" style="font-size:20px">
+        Seventeen references agreed on one required field and a modal. We took the speed and rejected
+        both — because our user is interrupted mid-call and their typos land in billing.
+      </p>
+      <hr class="rule" data-stagger="3" />
+      <div class="pills" data-stagger="3">
+        <span class="pill mag">4 recommendations</span>
+        <span class="pill">17 local, Figma-ready refs</span>
+        <span class="pill">10-slide findings deck</span>
+        <span class="pill">Matrix with an "us" row</span>
+        <span class="pill">Every claim labelled</span>
+      </div>
+      <p class="note-strip" data-stagger="4">
+        <b>Next:</b> the four decisions went back to Daniel as explicit choices with the trade named.
+        All four approved — and approving one of them exposed a blocker that would have shipped a 404.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="deck.js"></script>
+</body>
+</html>

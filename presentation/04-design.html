@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design · the build — Telekom CEP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="deck.css" />
+<style>
+  /* ───────── deck 04 · local patterns ───────── */
+
+  /* screen + annotation */
+  .screen{display:grid;grid-template-columns:1.42fr 1fr;gap:26px;align-items:start;margin-top:10px;}
+  .screen .shot img{max-height:566px;object-fit:contain;background:var(--surface);}
+  .screen .an{display:grid;gap:14px;}
+  .screen .an .h{font-size:15.5px;font-weight:700;color:var(--ink);line-height:1.3;}
+  .screen .an p{font-size:14px;line-height:1.52;color:var(--secondary-text);margin:0;}
+  .screen .an p b{color:var(--ink);font-weight:600;}
+  .screen .an .src{
+    font-family:var(--font-mono);font-size:11.5px;color:var(--faint);
+    padding-top:11px;border-top:1px solid var(--line-soft);line-height:1.6;
+  }
+  .copyline{
+    font-size:13.5px;color:var(--ink);background:var(--surface);
+    border-inline-start:3px solid var(--magenta);border-radius:0 var(--radius-field) var(--radius-field) 0;
+    padding:9px 12px;line-height:1.45;
+  }
+
+  /* the gate table */
+  .gate{display:grid;gap:10px;margin-top:16px;}
+  .gate .g{
+    display:grid;grid-template-columns:auto 1.05fr 1.35fr;gap:18px;align-items:center;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:14px 17px;box-shadow:var(--shadow-card);
+  }
+  .gate .tag{
+    font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    border-radius:999px;padding:4px 10px;white-space:nowrap;
+  }
+  .gate .tag.compose{background:var(--info-wash);color:var(--info);}
+  .gate .tag.extend{background:rgba(240,165,0,.16);color:#8a5d00;}
+  .gate .file{font-family:var(--font-mono);font-size:12.5px;color:var(--ink);word-break:break-all;}
+  .gate .from{font-size:13px;color:var(--secondary-text);line-height:1.45;}
+  .gate .from b{color:var(--ink);font-weight:600;}
+
+  /* bug cards */
+  .bug{display:grid;gap:11px;}
+  .bug .why{
+    font-size:12.5px;color:var(--secondary-text);line-height:1.45;
+    padding-top:10px;border-top:1px solid var(--line-soft);
+  }
+  .bug .why b{color:var(--ink);font-weight:600;}
+
+  /* verification scoreboard */
+  .score{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:18px;}
+  .score .s{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:16px 15px;box-shadow:var(--shadow-card);
+  }
+  .score .s .v{font-size:30px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.02em;}
+  .score .s .v em{font-style:normal;color:var(--magenta);}
+  .score .s .k{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-top:9px;}
+  .score .s .d{font-family:var(--font-mono);font-size:11.5px;color:var(--secondary-text);margin-top:6px;line-height:1.4;}
+</style>
+</head>
+<body data-brand="Design · the build">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Stage 04</span> · <span class="cmd">/senior-product-designer</span></p>
+      <h1 class="title" data-stagger="2">Then it got <em>built</em></h1>
+      <p class="lead" data-stagger="3">
+        In this project the repo <b>is</b> the design surface — the app is a 1:1 clone of the Figma file.
+        So the deliverable isn't a mockup, it's working code that passes the same tests as everything
+        else in the workspace.
+      </p>
+      <hr class="rule" data-stagger="4" />
+      <p class="sub" data-stagger="4">The gate · four screens · three bugs a spec can't catch · the numbers</p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · BEFORE WRITING ANYTHING ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Before a single line</p>
+      <h2 class="head" data-stagger="1">Load the context, size the job, gate every element</h2>
+      <div class="cards cols-3" style="margin-top:16px">
+        <div class="card" data-stagger="2">
+          <p class="k">Layer 1 · non-negotiable</p>
+          <h3>Read <code>DESIGN_CONTEXT.md</code></h3>
+          <p>Load the product's real context and <b>print what was loaded, with its age</b> — so a stale map is visible rather than silently trusted.</p>
+        </div>
+        <div class="card" data-stagger="3">
+          <p class="k">Triage</p>
+          <h3>This came in as <b>Flow</b> tier</h3>
+          <p>Four surfaces touched, not one component. Tweak-tier would have skipped delegation; Flow runs the full pipeline.</p>
+        </div>
+        <div class="card accent" data-stagger="4">
+          <p class="k">Layer 2 · the gate</p>
+          <h3>Five categories, re-verified</h3>
+          <p>REUSE → COMPOSE → EXTEND → INVENT → PLACEHOLDER. The PM's tags from stage 03 were <b>re-checked, not trusted</b> — the rule is to re-verify the inventory before declaring anything new.</p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        An emoji or an ad-hoc SVG standing in for a real icon counts as <b>PLACEHOLDER</b> and must be
+        tagged. That single rule is why the icon got recoloured properly instead of faked.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · THE GATE RESULT ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The gate · result</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">Four new files. Nothing invented.</h2>
+      <div class="gate">
+        <div class="g" data-stagger="2">
+          <span class="tag compose">compose</span>
+          <span class="file">components/ui/Field.tsx</span>
+          <span class="from"><code>DeliveryCard</code>'s input idiom + the <b>error-alert icon already used beside neutral text</b> at <code>BillingColumn.tsx:68</code></span>
+        </div>
+        <div class="g" data-stagger="3">
+          <span class="tag compose">compose</span>
+          <span class="file">components/ui/DuplicateMatchBanner.tsx</span>
+          <span class="from"><code>DeliveryCard.tsx:119</code>'s bordered callout + the same alert icon + an existing <code>IconButton</code></span>
+        </div>
+        <div class="g" data-stagger="4">
+          <span class="tag compose">compose</span>
+          <span class="file">components/find-customer/NoResults.tsx</span>
+          <span class="from">The existing empty-state card shape + the search icon</span>
+        </div>
+        <div class="g" data-stagger="5">
+          <span class="tag extend">extend</span>
+          <span class="file">public/icons/ui/person-avatar-add-white.svg</span>
+          <span class="from"><code>person-avatar-add.svg</code>, recoloured white — the gradient tile needs a white icon</span>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="6">
+        Plus two <b>one-line</b> fixes that made folk's pattern possible at all: <code>SearchCustomerCard</code>
+        stops discarding the typed term, and <code>ResultsCard</code> finally passes <code>onSubmit</code> through.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · SCREEN · NO RESULTS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The screens · 01 · the moment that didn't exist</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">Search finds nobody</h2>
+      <div class="screen">
+        <div class="shot" data-stagger="2">
+          <img src="shots/no-results.png" alt="Find Customer with no results for Nadia and a create link" />
+        </div>
+        <div class="an">
+          <div data-stagger="3">
+            <div class="h">The failed query is quoted back</div>
+            <div class="copyline" style="margin-top:9px">No customers match "Nadia"</div>
+            <p style="margin-top:9px">Then: <i>Check the search term, or <b>create a new customer</b></i>. folk's pattern, in our components.</p>
+          </div>
+          <div data-stagger="4">
+            <div class="h">This state is <b>new</b> — and so is search</div>
+            <p style="margin-top:7px">Before this stage the field did nothing and the table always showed all ten mock customers. The entry point to the whole feature had to be built before the feature could be reached.</p>
+          </div>
+          <div data-stagger="5">
+            <p class="src">
+              components/find-customer/NoResults.tsx <b>new</b><br />
+              components/find-customer/ResultsCard.tsx <b>filters now</b>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · SCREEN · SEEDED FORM ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The screens · 02 · the create form</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">Opens with the name already in it</h2>
+      <div class="screen">
+        <div class="shot" data-stagger="2">
+          <img src="shots/seeded-form.png" alt="Create Customer form with Nadia pre-filled and focus on Personal ID" />
+        </div>
+        <div class="an">
+          <div data-stagger="3">
+            <div class="h">Its own session tab</div>
+            <p style="margin-top:7px">"Create Customer" sits beside Agent Dashboard and Find Customer. <b>Take another call and come back — the half-filled form is still there.</b> That's the argument that beat the modal.</p>
+          </div>
+          <div data-stagger="4">
+            <div class="h">Nothing is re-typed</div>
+            <p style="margin-top:7px">"Nadia" carried over from the failed search, and focus lands on the <b>first empty required field</b> — Personal ID, not the top of the form.</p>
+          </div>
+          <div data-stagger="5">
+            <div class="h">Three required, the rest deferred</div>
+            <p style="margin-top:7px">Name, Personal ID, and one of Phone / MSISDN. Everything else hides behind <b>+ Add details</b>. The primary action stays disabled until it can succeed.</p>
+          </div>
+          <div data-stagger="6">
+            <p class="src">app/create-customer/page.tsx · components/create-customer/CreateCustomerCard.tsx</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · SCREEN · DUPLICATE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The screens · 03 · <span class="badge mag">the state no reference showed us</span></p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">This ID belongs to someone</h2>
+      <div class="screen">
+        <div class="shot" data-stagger="2">
+          <img src="shots/duplicate-block.png" alt="Create Customer blocked because the personal ID belongs to Sai Kumar" />
+        </div>
+        <div class="an">
+          <div data-stagger="3">
+            <div class="h">It routes instead of refusing</div>
+            <div class="copyline" style="margin-top:9px">This personal ID belongs to Sai Kumar. Open their record instead of creating a new one.</div>
+            <p style="margin-top:9px">With an <b>Open Sai Kumar</b> action. Navan's intent — warn <i>and</i> offer the existing record — built from our own components.</p>
+          </div>
+          <div data-stagger="4">
+            <div class="h">The typing survives</div>
+            <p style="margin-top:7px">The form stays filled, the field carries its own error (<i>Already used by Sai Kumar</i>), and the primary action is disabled rather than failing on click.</p>
+          </div>
+          <div data-stagger="5">
+            <div class="h">Prevention, not undo</div>
+            <p style="margin-top:7px">A duplicate customer becomes <b>someone else's billing ticket next week</b>. This is the most expensive mistake on the screen, so it gets the most design.</p>
+          </div>
+          <div data-stagger="6">
+            <p class="src">components/ui/DuplicateMatchBanner.tsx · lib/created-customers.ts</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 7 · SCREEN · SUCCESS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The screens · 04 · the success moment</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">Land on the record, not a dead end</h2>
+      <div class="screen">
+        <div class="shot" data-stagger="2">
+          <img src="shots/success-360.png" alt="Customer 360 for the newly created Nadia Ferreira with empty cards" />
+        </div>
+        <div class="an">
+          <div data-stagger="3">
+            <div class="h">The tab renames itself</div>
+            <p style="margin-top:7px">"Create Customer" becomes <b>"Nadia Ferreira"</b>. The agent is now on the customer they just made and can keep working the call.</p>
+          </div>
+          <div data-stagger="4">
+            <div class="h">The confirmation names the record</div>
+            <div class="copyline" style="margin-top:9px">Nadia Ferreira was created. Personal ID 099112233.</div>
+            <p style="margin-top:9px">Dismissible — a permanent success message becomes furniture by the fortieth call.</p>
+          </div>
+          <div data-stagger="5">
+            <div class="h">Empty is a real state</div>
+            <p style="margin-top:7px">No products, no bills, no activity. One line per card — <i>No products yet</i> — because the alternative is three cards that look broken. <b>This was Risk 1 in the PRD, named before it was hit.</b></p>
+          </div>
+          <div data-stagger="6">
+            <p class="src">app/customers/new/page.tsx · components/customer/CreatedCustomerView.tsx</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 8 · THE BUGS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The part no spec would have caught</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:8px">Three bugs that only exist once it runs</h2>
+      <div class="cards cols-3">
+        <div class="card bug" data-stagger="2">
+          <div>
+            <p class="k">01 · focus</p>
+            <h3>Autofocus landed on the wrong field</h3>
+            <p>"Focus the first empty required field" was implemented with <code>:placeholder-shown</code> — and <b>Full name has no placeholder</b>, so it never matched.</p>
+          </div>
+          <p class="why"><b>Why a spec can't catch it:</b> the CSS selector that <i>looks</i> like it means "empty" quietly depends on a property the design never gave that field.</p>
+        </div>
+        <div class="card bug" data-stagger="3">
+          <div>
+            <p class="k">02 · duplicate keys</p>
+            <h3><code>ContactCard</code> threw on the new customer</h3>
+            <p>It keys contact rows by their text. All ten mock customers have every contact field filled, so <b>two empty strings had never collided before</b>.</p>
+          </div>
+          <p class="why"><b>Why a spec can't catch it:</b> a new customer is the first record in this product's history with <b>partial data</b>. The empty state broke a component that already ships.</p>
+        </div>
+        <div class="card bug" data-stagger="4">
+          <div>
+            <p class="k">03 · stale tooling</p>
+            <h3>Both servers were lying</h3>
+            <p>Storybook kept reporting <b>44 stories</b> and the dev server 404'd the new routes — both were long-running processes serving an older truth.</p>
+          </div>
+          <p class="why"><b>Why it matters:</b> verification that trusts a process someone left running isn't verification. Fixed by building Storybook fresh and testing that.</p>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        Two things also got added that the PRD never asked for, straight off the quality checklist:
+        <b>a visible focus ring</b> on inputs (this screen is keyboard-driven and there wasn't one), and
+        <b>a dismiss button</b> on the confirmation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 9 · VERIFICATION ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Verification · all re-run at the end</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">The numbers, and the one thing they missed</h2>
+      <div class="score">
+        <div class="s" data-stagger="2"><div class="v"><em>90</em>/90</div><div class="k">flow checks</div><div class="d">scripts/flow-test.mjs<br />~20 of them new</div></div>
+        <div class="s" data-stagger="3"><div class="v"><em>52</em>/52</div><div class="k">stories render</div><div class="d">scripts/sb-smoke.mjs<br />up from 44</div></div>
+        <div class="s" data-stagger="4"><div class="v">clean</div><div class="k">types + build</div><div class="d">tsc --noEmit<br />npm run build</div></div>
+        <div class="s" data-stagger="5"><div class="v"><em>6</em></div><div class="k">screens looked at</div><div class="d">1440×1024<br />every state</div></div>
+      </div>
+      <p class="lead" data-stagger="6" style="margin-top:24px">
+        The build output also <b>proved the 404 fix</b>: <code>/customers/new</code> comes out
+        <code>○ Static</code> while <code>/customers/[id]</code> still prerenders its ten mock paths.
+        Confirmed in the output, not assumed.
+      </p>
+      <p class="note-strip" data-stagger="6">
+        <b>And the thing the tests missed.</b> The first duplicate screenshot was captured with a dashed
+        ID, so format validation fired and what appeared was the <i>name-match warning</i> — labelled as
+        the ID block. Two different states, wrong caption. <b>The test suite was green either way.</b>
+        Looking at the image is what caught it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 10 · TAKEAWAY ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Stage 04 · takeaway</p>
+      <h2 class="head" data-stagger="1">Specs are checked by reading. Designs are checked by <em>looking</em>.</h2>
+      <p class="lead" data-stagger="2" style="font-size:20px">
+        The gate held — four new files, zero new tokens, nothing invented. But the build still found
+        three things the spec couldn't: a focus selector that depended on a property the design never
+        gave, a shipping component that had never met a record with empty fields, and two stale servers
+        cheerfully reporting the old truth.
+      </p>
+      <hr class="rule" data-stagger="3" />
+      <div class="pills" data-stagger="3">
+        <span class="pill mag">4 new files</span>
+        <span class="pill">0 new tokens</span>
+        <span class="pill">0 invented components</span>
+        <span class="pill">11 states specced</span>
+        <span class="pill">7 new Storybook stories</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="deck.js"></script>
+</body>
+</html>

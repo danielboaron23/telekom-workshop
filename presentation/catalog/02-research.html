@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research — Browse Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../deck.css" />
+<style>
+  /* ───────── deck 02 · local patterns ───────── */
+  .refgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;}
+  .refgrid figure{margin:0;border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    overflow:hidden;background:var(--paper);box-shadow:var(--shadow-card);}
+  .refgrid img{display:block;width:100%;height:132px;object-fit:cover;object-position:top;}
+  .refgrid figcaption{padding:9px 11px;border-top:1px solid var(--line-soft);background:var(--surface);
+    font-size:11.5px;line-height:1.35;color:var(--secondary-text);}
+  .refgrid figcaption b{color:var(--ink);font-weight:700;display:block;font-size:12.5px;}
+
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:18px;}
+  .levels .l{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:17px 16px;box-shadow:var(--shadow-card);position:relative;
+  }
+  .levels .l.picked{border-color:var(--magenta-line);background:var(--magenta-wash);box-shadow:none;}
+  .levels .l.out{opacity:.66;}
+  .levels .lv{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:700;}
+  .levels .picked .lv{color:var(--magenta);}
+  .levels .t{font-size:16px;font-weight:700;color:var(--ink);margin-top:8px;line-height:1.28;}
+  .levels .d{font-size:13px;color:var(--secondary-text);margin-top:9px;line-height:1.5;}
+  .levels .d b{color:var(--ink);font-weight:600;}
+  .levels .ev{margin-top:11px;font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  .levels .ev.yes{color:#1c5132;} .levels .ev.no{color:#a3323c;}
+
+  .recs{display:grid;gap:10px;margin-top:14px;}
+  .recs .r{display:grid;grid-template-columns:26px 1fr 1.15fr;gap:16px;align-items:start;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:13px 16px;box-shadow:var(--shadow-card);}
+  .recs .n{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;
+    display:grid;place-items:center;font-size:12px;font-weight:700;}
+  .recs .did{font-size:14px;font-weight:600;color:var(--ink);line-height:1.42;}
+  .recs .why{font-size:13px;color:var(--secondary-text);line-height:1.45;}
+  .recs .why b{color:var(--ink);font-weight:600;}
+
+  .rej{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:18px;}
+  .rej .c{border:1px solid rgba(240,92,98,.28);border-radius:var(--radius-card);
+    background:rgba(240,92,98,.05);padding:16px 15px;}
+  .rej .c .t{font-size:15px;font-weight:700;color:var(--ink);margin-top:9px;line-height:1.3;}
+  .rej .c .d{font-size:13px;color:var(--secondary-text);margin-top:8px;line-height:1.45;}
+  .rej .c .d b{color:var(--ink);font-weight:600;}
+</style>
+</head>
+<body data-brand="Browse Catalog · Run 2">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER / THE QUESTION ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Run 02</span> · <span class="stage">Stage 02</span> · design research</p>
+      <h1 class="title" data-stagger="2" style="font-size:clamp(30px,3.9vw,54px);max-width:24ch">One question, handed over with four decisions.</h1>
+      <div class="prompt-card" data-stagger="3">
+        <div class="pc-top">
+          <span class="pc-avatar">PM</span>
+          <span class="pc-who">the brief the research skill fired on</span>
+        </div>
+        <div class="pc-body">
+          When a care agent is mid-call and must pick an offer <em>for this customer</em>, how do other
+          products put the customer on the catalog — and what do they do instead of showing a shopper's grid?
+        </div>
+        <div class="pc-foot">
+          Four decisions at stake: <b>whose catalog</b> · <b>how the agent finds</b> · <b>how they compare</b> ·
+          <b>what Details and Select do</b> before the order wizard.
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="4">
+        <b>A landed brief is the trigger</b> — that's the patch from stage 01 doing its job. Nobody had to
+        ask for research; the brief arriving was the ask.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · WHAT MOBBIN ACTUALLY HAD ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Ten queries · web · same task intent · 16 kept</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">Adjacent precedent, labelled as such</h2>
+      <p class="lead" data-stagger="2" style="margin-bottom:4px">
+        Amdocs CES, Salesforce Industries, Ericsson and Netcracker are <b>not in Mobbin</b>. Pretending
+        otherwise would have been the easiest lie in the run. Consumer shopper grids came back first;
+        <b>named-app queries recovered the useful set</b>.
+      </p>
+      <div class="refgrid">
+        <figure data-stagger="3"><img src="refs/01-navan.jpg" alt="Navan booking with a traveler chip" /><figcaption><b>Navan</b>Traveler is a chip <em>before</em> the catalog is searched</figcaption></figure>
+        <figure data-stagger="3"><img src="refs/03-deel.jpg" alt="Deel order page titled Order for Adriana Costa" /><figcaption><b>Deel</b>“Order for Adriana Costa” · Details as a panel over 19 items</figcaption></figure>
+        <figure data-stagger="4"><img src="refs/06-quickbooks.jpg" alt="QuickBooks upgrade table with a current plan column" /><figcaption><b>QuickBooks</b>First column is <em>CURRENT PLAN</em></figcaption></figure>
+        <figure data-stagger="4"><img src="refs/08-bonsai.jpg" alt="Bonsai plan cards with a disabled Current Plan button" /><figcaption><b>Bonsai</b>Current stays in the grid — the affordance changes</figcaption></figure>
+        <figure data-stagger="5"><img src="refs/10-faire.jpg" alt="Faire wholesale search with a live count" /><figcaption><b>Faire</b>Search has changed the grid · 22,184 brands</figcaption></figure>
+        <figure data-stagger="5"><img src="refs/11-stripe.jpg" alt="Stripe product catalogue with a 4 results footer" /><figcaption><b>Stripe</b>Footer says <em>4 results</em>, and there are 4</figcaption></figure>
+        <figure data-stagger="6"><img src="refs/12-uxcel.jpg" alt="Uxcel recommendations with a stated reason" /><figcaption><b>Uxcel</b>“based on your skill gaps” — a reason, in words</figcaption></figure>
+        <figure data-stagger="6"><img src="refs/15-shopify.jpg" alt="Shopify empty inventory with clear search and filters" /><figcaption><b>Shopify</b>Empty is a way out: <em>Clear search and filters</em></figcaption></figure>
+      </div>
+      <p class="sub" data-stagger="6" style="margin-top:13px">All 16 references, with their Mobbin links, are on the <b>reference wall</b> — the sub-tab above.</p>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · THE PATTERN ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">What the catalogs that are <em>not</em> shopper grids agree on</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:14px">Five mechanisms, with counts</h2>
+      <ul class="takeaways">
+        <li data-stagger="2"><span class="b">1</span><span><b>Name the other person first.</b> Navan (2 screens), Deel, HubSpot — 3 products, 4 screens. HubSpot won't even let you add line items until the quote is associated with a customer.</span></li>
+        <li data-stagger="3"><span class="b">2</span><span><b>Current is on the same surface as available</b> — <b>5 of 5</b> plan pickers: Peec AI, QuickBooks, Framer, Bonsai, Juicebox. Four different surfaces, one mechanism.</span></li>
+        <li data-stagger="4"><span class="b">3</span><span><b>The number on screen is the number of rows.</b> Faire, Stripe. Salesforce even prints <code>0 items · 2 Filters Applied</code>.</span></li>
+        <li data-stagger="5"><span class="b">4</span><span><b>Empty is a way out, not a poster.</b> Shopify, Salesforce — the primary action clears the thing that caused it.</span></li>
+        <li data-stagger="6"><span class="b">5</span><span><b>A recommendation, when it exists, states why.</b> Uxcel is the only screen in the set that writes the reason in plain language.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · THE OMISSION ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The decision the brief deliberately left open</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">How far “an agent's tool” goes — <em>level 2, not level 3</em></h2>
+      <p class="lead" data-stagger="2">
+        “Agent's tool” is a direction, not a cut. The brief named three levels and required evidence for
+        all three, so the PRD could pick one instead of inventing one.
+      </p>
+      <div class="levels">
+        <div class="l picked" data-stagger="3">
+          <div class="lv">Level 1 · identity</div>
+          <div class="t">Name who the order is for</div>
+          <div class="d">Navan's traveler chip, Deel's page title, Amazon's <b>Deliver to</b> in the chrome.</div>
+          <div class="ev yes">Observed · 4 screens</div>
+        </div>
+        <div class="l picked" data-stagger="4">
+          <div class="lv">Level 2 · current products</div>
+          <div class="t">What they have, on this surface</div>
+          <div class="d">Current as a card, a badge, or a disabled action — never on another tab.</div>
+          <div class="ev yes">Observed · 5 of 5</div>
+        </div>
+        <div class="l out" data-stagger="5">
+          <div class="lv">Level 3 · eligibility</div>
+          <div class="t">Rules that change the grid</div>
+          <div class="d">Hiding or greying offers because a rule fired. <b>Not specced</b>, because it was never seen.</div>
+          <div class="ev no">0 of 16 screens</div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="6">
+        <b>The interesting finding was an omission.</b> A screenshot cannot show a rule firing — so
+        “don't invent eligibility” is the research <em>result</em>, not a failure to look. Level 3 would have
+        been a rules engine we don't have, dressed as a design decision.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · THE RECOMMENDATIONS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Four decisions, four answers, each with its evidence</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:8px">What the research told us to build</h2>
+      <div class="recs">
+        <div class="r" data-stagger="2">
+          <span class="n">1</span>
+          <span class="did">A customer strip: Sai Kumar, the <b>real</b> Singapore address, and the <code>$40.00</code> line they're already on.</span>
+          <span class="why">Identity alone still makes the agent flip tabs to see the current line. <b>Navan + Deel + HubSpot</b> for the placement, the plan pickers for the holdings.</span>
+        </div>
+        <div class="r" data-stagger="3">
+          <span class="n">2</span>
+          <span class="did">Keep the category tabs. Wire the search. Print the real count. Empty and no-results get a <b>Clear search</b>.</span>
+          <span class="why">Operator catalogs keep a filterable list (<b>Faire, Stripe, Shopify, Salesforce</b>). Consumer catalogs lead with chat — wrong user, and we have no model in this repo.</span>
+        </div>
+        <div class="r" data-stagger="4">
+          <span class="n">3</span>
+          <span class="did">The current plan becomes <b>a card in the grid</b>, chipped <em>Current</em>, its primary action disabled.</span>
+          <span class="why">A live call can't hold four identical tiles against a <code>$40</code> line on another tab. <b>5 of 5</b> pickers put current on the surface; none shipped an 8-column matrix.</span>
+        </div>
+        <div class="r" data-stagger="5">
+          <span class="n">4</span>
+          <span class="did"><b>Details opens a panel</b> that keeps the grid. Select still navigates to the existing <code>/offer</code> wizard.</span>
+          <span class="why"><b>Deel</b>: 19 items stay put, the panel does the work. Losing the grid is how the agent loses the other seven offers they were scanning.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · REJECTED ON PURPOSE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Research earns its keep when it argues with the pattern</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">Three popular answers we <em>rejected</em></h2>
+      <div class="rej">
+        <div class="c" data-stagger="2">
+          <span class="badge reject">Rejected</span>
+          <div class="t">AI chat as the find mechanism</div>
+          <div class="d">Amazon Rufus, Shop, Codecademy, ChatGPT — <b>4 of the 5</b> “recommended” hits were a chatbot or a feed. Wrong user, wrong IA, and no model in this repo.</div>
+        </div>
+        <div class="c" data-stagger="3">
+          <span class="badge reject">Rejected</span>
+          <div class="t">The compare-plans table</div>
+          <div class="d">Zendesk's modal is <b>Zendesk selling its own SKUs to an admin</b>. Our agent configures a telco offer for someone else, on the phone. Same-looking screen, different job.</div>
+        </div>
+        <div class="c" data-stagger="4">
+          <span class="badge reject">Rejected</span>
+          <div class="t">Identity only</div>
+          <div class="d">The cheapest fix — put the name in the header, ship it. It still leaves the agent remembering the 360, which is the actual failure.</div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="5">
+        Two of these are what the majority of the sample does. <b>Counting the references is what made it
+        safe to disagree with them</b> — “most catalogs do X” is only an argument once you know what X costs
+        the person holding the phone.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="../deck.js"></script>
+</body>
+</html>

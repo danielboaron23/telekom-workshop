@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Problem — Browse Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../deck.css" />
+<style>
+  /* ───────── deck 01 · local patterns ───────── */
+  .dead td.what{width:31%;}
+  .dead td.does b{color:var(--ink);}
+  .dead code{white-space:nowrap;}
+
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:center;margin-top:8px;}
+  .split .shot img{max-height:520px;object-fit:cover;object-position:top;}
+
+  .vs2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+  .vs2 .b{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:17px 16px;box-shadow:var(--shadow-card);
+  }
+  .vs2 .b.bad{border-color:rgba(240,92,98,.32);background:rgba(240,92,98,.05);box-shadow:none;}
+  .vs2 .b .w{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:700;}
+  .vs2 .b .t{font-size:15.5px;font-weight:700;color:var(--ink);margin-top:8px;line-height:1.3;}
+  .vs2 .b .d{font-size:13.5px;color:var(--secondary-text);margin-top:8px;line-height:1.5;}
+  .vs2 .b .d b{color:var(--ink);font-weight:600;}
+
+  .chain{display:grid;gap:9px;margin-top:14px;}
+  .chain .r{
+    display:grid;grid-template-columns:26px 190px 1fr 128px;gap:16px;align-items:center;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:12px 15px;box-shadow:var(--shadow-card);
+  }
+  .chain .n{width:26px;height:26px;border-radius:50%;background:var(--gradient-primary);color:#fff;
+    display:grid;place-items:center;font-size:12px;font-weight:700;}
+  .chain .who{font-family:var(--font-mono);font-size:12.5px;color:var(--magenta);}
+  .chain .out{font-size:13.5px;color:var(--secondary-text);line-height:1.4;}
+  .chain .out b{color:var(--ink);font-weight:600;}
+  .chain .gate{font-size:12px;font-weight:700;color:var(--ink);text-align:end;}
+  .chain .r.skipped{opacity:.62;}
+  .chain .r.skipped .gate{color:#a3323c;}
+</style>
+</head>
+<body data-brand="Browse Catalog · Run 2">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Run 02</span> · <span class="stage">Stage 01</span> · the problem</p>
+      <h1 class="title" data-stagger="2">A screen that<br>looks <em>finished</em>.</h1>
+      <p class="lead" data-stagger="3">
+        Run 1 specced a screen that didn't exist — the easy case, because nothing was there to argue with.
+        <b>Browse Catalog is the opposite:</b> built, pixel-matched to Figma, covered by the flow test, and
+        wrong in a way you can't see in a screenshot.
+      </p>
+      <p class="note-strip" data-stagger="4">
+        That gap between <b>“looks done”</b> and <b>“is done”</b> is the more common job — and the harder
+        thing to teach.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · THE DEAD CONTROLS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Verified in the source, not remembered</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:14px">Every control on it is a <em>prop</em></h2>
+      <table class="t dead" data-stagger="2">
+        <thead><tr><th>What it looks like</th><th>What it actually does</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td class="what"><b>A search field</b></td><td class="does">Uncontrolled <code>&lt;input&gt;</code>, no <code>onChange</code>, no state. Typing changes nothing.</td><td><code>CatalogView.tsx</code></td></tr>
+          <tr><td class="what"><b>A filter button</b></td><td class="does">No handler. No filter panel exists anywhere in the repo.</td><td>same</td></tr>
+          <tr><td class="what"><b>A category dropdown</b></td><td class="does">Displays the active tab's label. Not clickable. Duplicates the tabs beside it.</td><td>same</td></tr>
+          <tr class="us"><td class="what"><b>“100 Results”</b></td><td class="does">Hardcoded. <code>lib/catalog.ts</code> holds <b>8</b> offers. <b>The number on screen is a lie.</b></td><td>same</td></tr>
+          <tr><td class="what"><b>Serviceability address + Change</b></td><td class="does">Hardcoded Seattle string, dead button, no address picker.</td><td>same</td></tr>
+          <tr><td class="what"><b>Details</b> on every card</td><td class="does">No handler. No detail view exists.</td><td><code>OfferCard.tsx</code></td></tr>
+          <tr><td class="what">The offers themselves</td><td class="does">“Single line title”, “Lorem ipsum dolor sit amet”. Every price is <code>$18.99</code>.</td><td><code>lib/catalog.ts</code></td></tr>
+        </tbody>
+      </table>
+      <p class="sub" data-stagger="3" style="margin-top:14px">
+        The only control that genuinely works is the category tab row — and <code>bundles</code> returns exactly
+        one offer, with no empty state behind it if a filter ever returned none.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · THE DEEPER PROBLEM ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The actual brief</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:8px">A consumer storefront rendered inside an <em>agent's</em> workspace</h2>
+      <div class="split">
+        <div>
+          <p class="lead" data-stagger="2">
+            The agent arrives here <b>from Sai Kumar's Customer 360, with an Order Flow session tab already
+            open</b>. The screen knows whose order this is. It shows none of it.
+          </p>
+          <div class="vs2">
+            <div class="b" data-stagger="3">
+              <div class="w">What the chrome knows</div>
+              <div class="t">Mobile (3) · Internet (1)</div>
+              <div class="d">A <b>$40.00 /mo</b> line, and the address <b>16 Sandilands Road, Kovan, Singapore</b> — all sitting in <code>lib/customers.ts</code>.</div>
+            </div>
+            <div class="b bad" data-stagger="4">
+              <div class="w">What the catalog says</div>
+              <div class="t">“123 Merry lane, Seattle”</div>
+              <div class="d">The screen isn't <b>missing</b> customer context. It is <b>wrong about the customer</b> — and that is a better problem than a dead search box.</div>
+            </div>
+          </div>
+          <p class="note-strip" data-stagger="5">
+            Same failure as Run 1, one level up: <b>designed for the wrong user</b>. Run 1 fixed a missing
+            screen. Run 2 fixes a screen built for a shopper and handed to a professional working on
+            someone else's behalf, with a customer waiting on the line.
+          </p>
+        </div>
+        <div class="shot" data-stagger="3">
+          <img src="shots/v1-catalog.png" alt="The original /catalog screen: eight identical lorem-ipsum offer cards, 100 Results, a Seattle address" />
+          <div class="shot-cap"><b>/catalog</b> as it shipped — eight cards, every price <code>$18.99</code>, “100 Results”, a Seattle address for a Singapore customer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · PATCH THE SKILLS FIRST ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Step one, before any work on the screen</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">Run 1's last slide became four <em>file edits</em></h2>
+      <p class="lead" data-stagger="2" style="margin-bottom:16px">
+        Run 1's retrospective claimed the prompts were missing parameters. Either that finding changes the
+        skills, or it was decoration. Both skills were patched <b>before</b> they ran again.
+      </p>
+      <table class="t" data-stagger="3">
+        <thead><tr><th style="width:23%">Skill</th><th style="width:20%">Missing parameter</th><th>What got added</th></tr></thead>
+        <tbody>
+          <tr><td><code>cep-product-manager</code></td><td><b>Tools · MCP</b></td><td>A <b>“Tools you have hands for”</b> table: Figma MCP on the real file for ground truth — screenshot first, never describe a frame you haven't opened — hand competitor research to the research skill, cite paths via <code>rg</code>, and name the command that proves each criterion.</td></tr>
+          <tr><td><code>cep-product-manager</code></td><td><b>Success</b></td><td><b>“Done means”</b>: an engineer builds from the file alone without one question, and every criterion names its command — otherwise hand it over labelled a draft and say which section is the reason.</td></tr>
+          <tr><td><code>design-competitor-research</code></td><td><b>Triggers</b></td><td><b>“When this fires”</b>: a landed brief <b>is</b> the trigger — plus stalled taste arguments, and consumer patterns about to be lifted into an operator tool.</td></tr>
+          <tr><td><code>design-competitor-research</code></td><td><b>The bar</b></td><td>A <b>review gate</b>: the answer on slide two, counts not “most”, an “us” row, the trade named, the gaps written down, a next step.</td></tr>
+        </tbody>
+      </table>
+      <p class="note-strip" data-stagger="4">
+        Worth noticing: the PM was missing <b>tools</b>, the researcher was missing <b>triggers</b> — exactly
+        the two parameters that make a chain a chain instead of three separate chats. The one that fetches
+        evidence had no hands; the one that should fire on a hand-off didn't know a hand-off existed.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · THE CHAIN ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Same three skills, same order, a gate after each</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">No stage starts before the previous one is <em>verified</em></h2>
+      <div class="chain">
+        <div class="r" data-stagger="2">
+          <span class="n">1</span>
+          <span class="who">cep-product-manager</span>
+          <span class="out"><b>RESEARCH_BRIEF.md</b> — the question, four decisions at stake, the “us” baseline</span>
+          <span class="gate">Verified ✓</span>
+        </div>
+        <div class="r" data-stagger="3">
+          <span class="n">2</span>
+          <span class="who">design-competitor-research</span>
+          <span class="out"><b>16 refs + FINDINGS.md</b> + a 10-slide research deck</span>
+          <span class="gate">Verified ✓</span>
+        </div>
+        <div class="r skipped" data-stagger="4">
+          <span class="n">3</span>
+          <span class="who">cep-product-manager</span>
+          <span class="out"><b>PRD.md + SCREEN_SPEC.md</b> — the cut, the states, the acceptance commands</span>
+          <span class="gate">Skipped — build now</span>
+        </div>
+        <div class="r" data-stagger="5">
+          <span class="n">4</span>
+          <span class="who">senior-product-designer</span>
+          <span class="out"><b>/catalog-v2</b> — new data file, new components, stories, flow-test cases</span>
+          <span class="gate">Verified ✓</span>
+        </div>
+        <div class="r" data-stagger="6">
+          <span class="n">5</span>
+          <span class="who">ui-ux-pro-max</span>
+          <span class="out"><b>/catalog-studio</b> — a second direction, deliberately off the design system</span>
+          <span class="gate">3 attempts</span>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="6">
+        The one gate that got skipped is the one where the deck later had the least to say. <b>The PRD went
+        straight to build on a “go now”</b> — it held up, but nobody had checked the cut before code existed.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<script src="../deck.js"></script>
+</body>
+</html>

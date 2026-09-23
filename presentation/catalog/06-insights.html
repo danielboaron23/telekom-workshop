@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insights — Browse Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../deck.css" />
+<style>
+  /* ───────── deck 06 · local patterns ───────── */
+  .why{display:grid;gap:10px;margin-top:14px;}
+  .why .r{
+    display:grid;grid-template-columns:1fr 1.35fr;gap:20px;align-items:start;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:14px 16px;box-shadow:var(--shadow-card);
+  }
+  .why .did{font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.38;}
+  .why .did span{display:block;font-weight:500;font-size:12.5px;color:var(--faint);margin-top:4px;}
+  .why .rz{font-size:13.5px;color:var(--secondary-text);line-height:1.5;}
+  .why .rz b{color:var(--ink);font-weight:600;}
+
+  .lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:16px;}
+  .lessons .l{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:16px 16px;box-shadow:var(--shadow-card);
+  }
+  .lessons .st{font-family:var(--font-mono);font-size:11.5px;color:var(--magenta);font-weight:600;}
+  .lessons h3{font-size:16.5px;font-weight:700;color:var(--ink);margin:8px 0 0;line-height:1.28;}
+  .lessons p{font-size:13px;line-height:1.5;color:var(--secondary-text);margin:9px 0 0;}
+  .lessons p b{color:var(--ink);font-weight:600;}
+
+  .bad{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:16px;}
+  .bad .b{
+    border:1px solid rgba(240,92,98,.28);border-radius:var(--radius-card);
+    background:rgba(240,92,98,.05);padding:15px 16px;
+  }
+  .bad .b h3{font-size:15.5px;font-weight:700;color:var(--ink);margin:9px 0 0;line-height:1.3;}
+  .bad .b p{font-size:13px;line-height:1.48;color:var(--secondary-text);margin:8px 0 0;}
+  .bad .b p b{color:var(--ink);font-weight:600;}
+  .bad .b .fix{
+    display:block;margin-top:9px;font-size:12px;color:#1c5132;font-weight:600;
+    border-top:1px solid rgba(28,81,50,.16);padding-top:8px;
+  }
+
+  .nums{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:20px;}
+  .nums .n{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:15px 12px;box-shadow:var(--shadow-card);text-align:center;
+  }
+  .nums .n .v{font-size:25px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.02em;}
+  .nums .n.mag .v{color:var(--magenta);}
+  .nums .n .k{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-top:8px;line-height:1.35;}
+</style>
+</head>
+<body data-brand="Browse Catalog · Run 2">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Run 02</span> · <span class="stage">Insights</span> · what the second run taught us</p>
+      <h1 class="title" data-stagger="2">Redesigning is<br>harder than <em>designing</em>.</h1>
+      <p class="lead" data-stagger="3">
+        Run 1 had nothing to argue with — a screen that didn't exist can't be defended. Run 2 had a finished,
+        pixel-matched, test-covered screen, and the work was mostly about <b>proving what was wrong with it</b>
+        before touching it, then not breaking it on the way past.
+      </p>
+      <p class="note-strip" data-stagger="4">
+        Same three skills. Same order. The differences that mattered were <b>evidence</b>, <b>a sibling
+        route</b>, and <b>a second direction to argue against</b>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · CONCLUSIONS: WHY WE MADE THESE CHOICES ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">Conclusions from the redesign · every choice, and what forced it</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:2px">Why <code style="font-size:.72em">/catalog-v2</code> looks the way it does</h2>
+      <div class="why">
+        <div class="r" data-stagger="2">
+          <div class="did">We put the customer on the catalog<span>Customer strip: name, real address, holdings, current line</span></div>
+          <div class="rz">Because the failure wasn't cosmetic — <b>the screen was wrong about the customer</b>, showing Seattle for a Singapore account. And because the agent otherwise holds the 360 in their head while someone talks to them. <b>4 screens across Navan, Deel and HubSpot</b> name the other person before the catalog is usable at all.</div>
+        </div>
+        <div class="r" data-stagger="3">
+          <div class="did">We made the current plan a card in the grid<span>Chipped <em>Current</em>, primary action disabled</span></div>
+          <div class="rz">Because “which is better than what they have?” is the actual question on a call, and it can't be answered from four identical tiles. <b>5 of 5</b> plan pickers in the sample put current on the same surface as available — and <b>Bonsai</b> in particular disables the action rather than hiding the row, which keeps the comparison honest.</div>
+        </div>
+        <div class="r" data-stagger="4">
+          <div class="did">We wired search and printed the real count<span>“6 offers”, and six cards</span></div>
+          <div class="rz">Because a control that looks live and isn't <b>costs more trust than a missing control</b>. “100 Results” over 8 cards teaches the agent to distrust every number on the screen. Faire, Stripe and Salesforce all print the count of rows they actually have — Salesforce even names the filters causing a zero.</div>
+        </div>
+        <div class="r" data-stagger="5">
+          <div class="did">We made Details a panel, not a page<span>Grid stays; × / overlay / Escape close it</span></div>
+          <div class="rz">Because navigating away loses the other offers the agent was mid-comparison on. <b>Deel</b> keeps a 19-item list visible and does the detail work in a right panel. Zendesk's compare-table modal was the tempting alternative and was <b>rejected</b>: that's a vendor selling its own SKUs to an admin, not an agent configuring an offer for someone else.</div>
+        </div>
+        <div class="r" data-stagger="6">
+          <div class="did">We refused to build eligibility<span>No greyed-out offers, no rules</span></div>
+          <div class="rz">Because <b>0 of 16</b> references showed a catalog hiding or greying an offer because a rule fired — a screenshot can't show a rule. Building it would have meant inventing a rules engine and calling it a design decision. <b>The omission got written into the PRD as a non-goal</b>, so the next run inherits a known gap instead of a surprise.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · ONE INSIGHT PER STAGE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">One thing worth keeping from each stage</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:2px">What transfers to the next run</h2>
+      <div class="lessons">
+        <div class="l" data-stagger="2">
+          <div class="st">stage 01 · the problem</div>
+          <h3>Read the code before you judge the pixels</h3>
+          <p>The Figma-matched screen was fine. <b>Six of its controls had no handlers</b> and its headline number was a hardcoded lie — none of which is visible in a screenshot or a review. <b>The audit was <code>rg</code>, not taste.</b></p>
+        </div>
+        <div class="l" data-stagger="2">
+          <div class="st">stage 01 · the skills</div>
+          <h3>A retro that changes no file is decoration</h3>
+          <p>Run 1 found the prompts were missing parameters. Run 2 started by <b>editing both skill files</b> — tools and a definition of done for the PM, triggers and a review gate for the researcher. The researcher then fired on a landed brief <b>without being asked</b>.</p>
+        </div>
+        <div class="l" data-stagger="3">
+          <div class="st">stage 02 · research</div>
+          <h3>The most useful finding was a zero</h3>
+          <p><b>0 of 16</b> screens showed eligibility. Counting made the absence sayable — and a counted absence is what lets you cut scope <b>on evidence</b> rather than on time pressure. “Most catalogs do X” only becomes an argument once you know what X costs.</p>
+        </div>
+        <div class="l" data-stagger="3">
+          <div class="st">stage 03 · the spec</div>
+          <h3>Name the command, not the confidence</h3>
+          <p>Seven criteria, each with the command that proves it. The one that mattered most asserted that <b>the screen we weren't building still worked</b> — and it's why <code>/catalog</code> can still be demoed, lies intact, beside its own replacement.</p>
+        </div>
+        <div class="l" data-stagger="4">
+          <div class="st">stage 04 · the build</div>
+          <h3>A sibling route beats a brave migration</h3>
+          <p>Three catalogs, one repo, <b>zero regressions</b>, and a comparison you can put on a slide. Rebuilding in place would have made every design argument a risk conversation.</p>
+        </div>
+        <div class="l" data-stagger="4">
+          <div class="st">comparison · two directions</div>
+          <h3>Build the control group</h3>
+          <p>The off-system version isn't shipping — it converted “the design system feels dated” into <b>three specific requests</b> (photos, ratings, a cart) each with a running example behind it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · THE HONEST SLIDE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The parts that didn't go well</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:2px">Four things that cost us time</h2>
+      <div class="bad">
+        <div class="b" data-stagger="2">
+          <span class="badge reject">Two rejected designs</span>
+          <h3>“Off the design system” was read as “make it pretty”</h3>
+          <p>An editorial magazine layout, then a dark compare-switchboard — <b>both rejected</b> before the marketplace landed. Nobody had written down what off-system was <b>for</b>, so the first two attempts optimised for looking impressive.</p>
+          <span class="fix">Fix: give the off-system probe its own one-line brief — “what would a product company ship?” — before the first pixel.</span>
+        </div>
+        <div class="b" data-stagger="3">
+          <span class="badge reject">Skipped gate</span>
+          <h3>The PRD went straight to build</h3>
+          <p>Checkpoint 3 was skipped on a “go now”. The spec held up — but <b>nobody had read the cut before code existed</b>, and the one weak part of it (a single entry point) only surfaced later, in the spec's own weak-section paragraph.</p>
+          <span class="fix">Fix: the cheapest gate in the chain is the one right before code. Keep that one.</span>
+        </div>
+        <div class="b" data-stagger="4">
+          <span class="badge reject">Self-inflicted bugs</span>
+          <h3>Two React mistakes in the off-system build</h3>
+          <p>State initialised from a variable declared later in the component, and a hydration mismatch from reading search params. Both caught in the browser, not in review — <b>a screen that renders can still be wrong before it settles</b>.</p>
+          <span class="fix">Fix: open every new route in a real browser before saying it's done. <code>tsc</code> did not catch either one.</span>
+        </div>
+        <div class="b" data-stagger="5">
+          <span class="badge reject">Known gap, shipped</span>
+          <h3>Almost nobody can find the new screen</h3>
+          <p>Six things link to <code>/catalog</code>; only <b>Products → Add new</b> reaches <code>/catalog-v2</code>. Four of those links are asserted in the flow test, so repointing them is a product call, not a refactor.</p>
+          <span class="fix">Fix: it's written into the PRD as the weak section, with the reason. The next run starts from a known problem.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · THE NUMBERS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The run, counted</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">One session, one repo</h2>
+      <div class="nums">
+        <div class="n mag" data-stagger="2"><div class="v">4</div><div class="k">skills in the chain</div></div>
+        <div class="n" data-stagger="2"><div class="v">16</div><div class="k">Mobbin references, all local</div></div>
+        <div class="n" data-stagger="3"><div class="v">10</div><div class="k">decisions locked in the PRD</div></div>
+        <div class="n" data-stagger="3"><div class="v">2</div><div class="k">new routes, 0 removed</div></div>
+        <div class="n mag" data-stagger="4"><div class="v">111</div><div class="k">assertions, all passing</div></div>
+        <div class="n" data-stagger="4"><div class="v">0</div><div class="k">new design tokens</div></div>
+      </div>
+      <div class="cards cols-2" style="margin-top:20px">
+        <div class="card" data-stagger="5">
+          <p class="k">What came out of it</p>
+          <h3>Six documents and two screens</h3>
+          <p>A research brief, 16 captured references with per-screen notes, a findings write-up, a 10-slide research deck, a PRD and a screen spec — then <code>/catalog-v2</code> (5 components, 12 offers, Storybook stories) and <code>/catalog-studio</code>.</p>
+          <p>Every claim in this deck points at a file or a command in the repo.</p>
+        </div>
+        <div class="card accent" data-stagger="6">
+          <p class="k">The one sentence version</p>
+          <h3>The screen wasn't unfinished — it was for the wrong person</h3>
+          <p>Dead controls were the symptom. The cause was a <b>consumer storefront handed to a professional working on someone else's behalf</b>, with a customer waiting on the line.</p>
+          <p>Every choice in <code>/catalog-v2</code> follows from fixing that one thing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · CLOSE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Run 02 · close</p>
+      <h1 class="title" data-stagger="2" style="font-size:clamp(28px,3.6vw,50px);max-width:26ch">
+        Anyone can rebuild a screen. The work is <em>proving it needed rebuilding</em>.
+      </h1>
+      <p class="lead" data-stagger="3">
+        Three things to steal from this run: <b>audit the code, not the mockup</b> · <b>count your
+        references so an absence can be an argument</b> · <b>build the second direction you don't intend to
+        ship</b>, because it's the only way to make a design system conversation concrete.
+      </p>
+      <p class="note-strip" data-stagger="4">
+        And keep the gate before code. It's the cheapest one in the chain and it's the one we skipped —
+        the only part of this deck with an apology in it.
+      </p>
+      <div class="pills" data-stagger="5" style="margin-top:26px">
+        <span class="pill">workshop/WORKFLOW_LOG.md</span>
+        <span class="pill">submissions/daniel/browse-catalog/</span>
+        <span class="pill mag">Comparison tab · the pages are live</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="../deck.js"></script>
+</body>
+</html>

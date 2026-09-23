@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insights — Telekom CEP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="deck.css" />
+<style>
+  /* ───────── deck 05 · local patterns ───────── */
+  .stagelist{display:grid;gap:11px;margin-top:16px;}
+  .stagelist .r{
+    display:grid;grid-template-columns:auto 150px 1fr;gap:18px;align-items:center;
+    background:var(--paper);border:1px solid var(--line-soft);border-radius:var(--radius-card);
+    padding:14px 17px;box-shadow:var(--shadow-card);
+  }
+  .stagelist .n{
+    flex:none;width:26px;height:26px;border-radius:50%;background:var(--gradient-primary);
+    color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;
+  }
+  .stagelist .st{font-size:13.5px;font-weight:700;color:var(--ink);}
+  .stagelist .st span{display:block;font-weight:500;font-size:11.5px;color:var(--faint);margin-top:2px;}
+  .stagelist .ins{font-size:14px;line-height:1.5;color:var(--secondary-text);}
+  .stagelist .ins b{color:var(--ink);font-weight:600;}
+
+  .checks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;}
+  .checks .c{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:16px 15px;box-shadow:var(--shadow-card);
+  }
+  .checks .c .w{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:700;}
+  .checks .c .t{font-size:15px;font-weight:700;color:var(--ink);margin-top:8px;line-height:1.3;}
+  .checks .c .d{font-size:13px;color:var(--secondary-text);margin-top:8px;line-height:1.45;}
+  .checks .c .d b{color:var(--ink);font-weight:600;}
+
+  .bignums{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:22px;}
+  .bignums .b{
+    border:1px solid var(--line-soft);border-radius:var(--radius-card);background:var(--paper);
+    padding:15px 13px;box-shadow:var(--shadow-card);text-align:center;
+  }
+  .bignums .b .v{font-size:27px;font-weight:700;color:var(--magenta);line-height:1;letter-spacing:-.02em;}
+  .bignums .b .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-top:8px;line-height:1.35;}
+
+  .closing{text-align:center;}
+  .closing .big{
+    font-size:clamp(30px,3.9vw,52px);font-weight:700;color:var(--ink);
+    line-height:1.14;letter-spacing:-.02em;margin:0 auto;max-width:20ch;
+  }
+  .closing .big em{font-style:normal;color:var(--magenta);}
+  .closing .sub2{font-size:17px;color:var(--secondary-text);margin-top:22px;line-height:1.55;max-width:60ch;margin-inline:auto;}
+</style>
+</head>
+<body data-brand="Insights">
+
+<main class="deck">
+
+  <!-- ═════ 1 · COVER ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1"><span class="num">Stage 05</span> · for the workshop</p>
+      <h1 class="title" data-stagger="2">What to take<br>from this<em>.</em></h1>
+      <p class="lead" data-stagger="3">
+        Five stages, three skills, one screen. The transferable part isn't the screen —
+        it's <b>where the machine was made to argue, and where it had to be checked</b>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 2 · ONE PER STAGE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">One insight per stage</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:6px">The five things that actually mattered</h2>
+      <div class="stagelist">
+        <div class="r" data-stagger="2">
+          <span class="n">1</span>
+          <span class="st">Skills<span>the setup</span></span>
+          <span class="ins">A skill is only worth having if it knows <b>your</b> product. The generic version says "write clear requirements"; ours knows there's no error colour token and that duplicate Figma frames are states, not screens.</span>
+        </div>
+        <div class="r" data-stagger="3">
+          <span class="n">2</span>
+          <span class="st">Building them<span>the method</span></span>
+          <span class="ins">The research skill got good because the agent <b>tested the pipeline before designing it</b> — one API call, one <code>curl</code>, one read of the existing decks. Each experiment changed the design.</span>
+        </div>
+        <div class="r" data-stagger="4">
+          <span class="n">3</span>
+          <span class="st">Research<span>the evidence</span></span>
+          <span class="ins">Research earns its keep when it <b>argues with the pattern</b>. Seventeen references agreed on one required field and a modal; we took the speed and rejected both.</span>
+        </div>
+        <div class="r" data-stagger="5">
+          <span class="n">4</span>
+          <span class="st">Spec<span>the plan</span></span>
+          <span class="ins">Research decides <b>what</b> to build; the codebase decides <b>whether it's buildable</b>. Three decisions changed after reading real files — including a 404 that would have shipped.</span>
+        </div>
+        <div class="r" data-stagger="6">
+          <span class="n">5</span>
+          <span class="st">Design<span>the build</span></span>
+          <span class="ins">Specs are checked by reading; designs are checked by <b>rendering them and looking</b>. Three bugs only existed once something was running.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 3 · THE CHECKPOINTS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The rule that made the whole run safe</p>
+      <h2 class="head" data-stagger="1">"after each of the skill finish you let me <em>verfing</em> all"</h2>
+      <p class="lead" data-stagger="2">
+        That clause — typos and all — is the most important thing I typed all day. Three checkpoints,
+        and each one caught something:
+      </p>
+      <div class="checks">
+        <div class="c" data-stagger="3">
+          <div class="w">Checkpoint 1 · after research</div>
+          <div class="t">Confirmed the argument, not the screenshots</div>
+          <div class="d">The research recommended <b>rejecting the majority pattern twice</b>. That needs a human yes before it becomes a spec — otherwise you've automated a strong opinion nobody agreed to.</div>
+        </div>
+        <div class="c" data-stagger="4">
+          <div class="w">Checkpoint 2 · after the PRD</div>
+          <div class="t">Approving the destination exposed a 404</div>
+          <div class="d">Because I approved "land on the Customer 360", the PM then had to check whether it was buildable — and <b>it wasn't</b>. The checkpoint is what forced the check.</div>
+        </div>
+        <div class="c" data-stagger="5">
+          <div class="w">Checkpoint 3 · after the design</div>
+          <div class="t">Caught a mislabelled state</div>
+          <div class="d">A screenshot captioned as the ID block was actually the name-match warning. <b>90 out of 90 tests passed either way.</b></div>
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="6">
+        Three skills running unattended would have produced the same four files — and shipped a 404, an
+        invented component, and a mislabelled state. <b>The checkpoints are the difference between
+        delegation and abdication.</b>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 4 · WHERE IT WAS WRONG ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">The honest slide</p>
+      <h2 class="head" data-stagger="1">Green tests are not the same as a <em>correct</em> screen</h2>
+      <p class="lead" data-stagger="2">
+        Everything below passed some form of automated check while still being wrong. This is the
+        argument for staying in the loop:
+      </p>
+      <ul class="takeaways" style="margin-top:20px">
+        <li data-stagger="3"><span class="b">1</span><span>A <b>404 that would have shipped</b> — the approved success destination was unreachable in a static build. No test existed for a route nobody had written yet.</span></li>
+        <li data-stagger="4"><span class="b">2</span><span>An <b>invented component that already existed</b>. The research called the duplicate banner "genuinely new"; two files in the repo already did it.</span></li>
+        <li data-stagger="5"><span class="b">3</span><span><b>Two servers reporting an older truth</b> — 44 stories and 404s on real routes. A green run against a stale process is worse than no run.</span></li>
+        <li data-stagger="6"><span class="b">4</span><span>A <b>screenshot labelled as the wrong state</b>. Tests green, caption wrong. Only looking at the image caught it.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═════ 5 · DOCUMENT AS YOU GO ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap">
+      <p class="eyebrow" data-stagger="1">Why this presentation exists</p>
+      <h2 class="head" data-stagger="1">The first thing I typed, before any work</h2>
+      <div class="prompt-card" data-stagger="2">
+        <div class="pc-top">
+          <span class="pc-avatar">D</span>
+          <span class="pc-who">Daniel, at the very start of the session</span>
+        </div>
+        <div class="pc-body">
+          now we are going to do some workfloe that i need you to docmation in md file becuse we will
+          create from this slide deck about what we just did ok ?
+        </div>
+        <div class="pc-foot">
+          Every stage was logged <b>as it happened</b> into <code>workshop/WORKFLOW_LOG.md</code> —
+          the prompt, what came back, what broke, and the one-line takeaway.
+        </div>
+      </div>
+      <p class="note-strip" data-stagger="3">
+        <b>This deck was generated from that log</b>, not reconstructed from memory afterwards. That's
+        why it still contains the failures — the stale server, the wrong focus selector, the mislabelled
+        screenshot. Write the log while you work and the retro writes itself; write it afterwards and
+        you'll only remember the parts that went well.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════ 6 · THE NUMBERS ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap wide">
+      <p class="eyebrow" data-stagger="1">The whole run</p>
+      <h2 class="head" data-stagger="1" style="margin-bottom:4px">One session, end to end</h2>
+      <div class="bignums">
+        <div class="b" data-stagger="2"><div class="v">2</div><div class="k">skills built</div></div>
+        <div class="b" data-stagger="2"><div class="v">17</div><div class="k">real references</div></div>
+        <div class="b" data-stagger="3"><div class="v">4</div><div class="k">decisions settled</div></div>
+        <div class="b" data-stagger="3"><div class="v">11</div><div class="k">states specced</div></div>
+        <div class="b" data-stagger="4"><div class="v">4</div><div class="k">new components</div></div>
+        <div class="b" data-stagger="4"><div class="v">0</div><div class="k">new design tokens</div></div>
+      </div>
+      <div class="cards cols-3" style="margin-top:22px">
+        <div class="card flat" data-stagger="5">
+          <p class="k">what a stakeholder sees</p>
+          <h3>A working screen</h3>
+          <p>Reachable from a real search, guarded against duplicates, landing on the customer's record — inside the existing workspace, using the existing design system.</p>
+        </div>
+        <div class="card flat" data-stagger="5">
+          <p class="k">what a designer gets</p>
+          <h3>A reference pack + a spec</h3>
+          <p>17 Figma-ready images with their sources, a PRD with 21 observable criteria, and a screen spec with real class strings and 11 states.</p>
+        </div>
+        <div class="card flat" data-stagger="6">
+          <p class="k">what stays behind</p>
+          <h3>Two reusable skills</h3>
+          <p>Checked into the repo. The next feature starts at stage 03, not stage 01 — and the standard doesn't drift.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════ 7 · CLOSE ═════ -->
+  <section class="slide" data-slide>
+    <div class="wrap closing">
+      <p class="eyebrow" data-stagger="1" style="text-align:center">The one thing to remember</p>
+      <p class="big" data-stagger="2">Give the machine a <em>standard</em>, then make it show you its <em>work</em>.</p>
+      <p class="sub2" data-stagger="3">
+        The skills carry the standard — read the repo, tag every element, name your weak sections, lead
+        with the answer. The checkpoints make it show the work. Neither one is optional, and neither one
+        is about the model you're using.
+      </p>
+      <div class="pills" data-stagger="4" style="justify-content:center;margin-top:34px">
+        <span class="pill mag">workshop/WORKFLOW_LOG.md</span>
+        <span class="pill">workshop/submissions/daniel/PRD.md</span>
+        <span class="pill">SCREEN_SPEC.md</span>
+        <span class="pill">research/create-customer/</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="deck.js"></script>
+</body>
+</html>
