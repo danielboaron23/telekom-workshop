@@ -40,4 +40,4 @@
 :HL["/icons/ui/box-product.svg","image"]
 :HL["/icons/ui/puzzle.svg","image"]
 :HL["/icons/ui/error-alert.svg","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"customers","param":null,"prefetchHints":4192,"slots":{"children":{"name":"id","param":{"type":"d","key":"sai-kumar","siblings":["new"]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"UJut0MlGw20bdbjc65hoI"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"customers","param":null,"prefetchHints":4192,"slots":{"children":{"name":"id","param":{"type":"d","key":"sai-kumar","siblings":["new"]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"5FWuSQ9bHMIMcPQISEfnr"}
